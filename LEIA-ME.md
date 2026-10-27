@@ -102,7 +102,9 @@ Campos de cada material:
 
 **Alterar um dia**: os campos `tema`, `atividade` e `entregavel` de cada dia podem ser editados livremente.
 
-**Pontos e selos**: no começo do arquivo, em `"config"`, você muda quantas estrelas vale cada ação (`"pontos"`) e a partir de quantas estrelas vem cada selo (`"selos"`).
+**Pontos**: no começo do arquivo, em `"config"`, você muda quantas estrelas vale cada ação (`"pontos"`).
+
+**Selos**: cada planeta tem um selo próprio, que o consultor conquista ao concluir todos os dias daquele planeta. O nome fica no campo `"selo"` de cada planeta (ex.: `"selo": "Mergulho JG"`). O selo de quem ainda não concluiu nenhum planeta fica em `"config"` → `"seloInicial"` (hoje, `"Decolagem"`).
 
 ---
 
@@ -175,4 +177,7 @@ O arquivo no Drive não está compartilhado como *Qualquer pessoa com o link →
 Alguns tipos de arquivo (como `.xlsm` com macros) não têm pré-visualização no Drive. O botão **Abrir material** continua funcionando.
 
 **Quero mudar as cores.**
-Ficam no início de `css/style.css`, em `:root`. As cores de cada planeta ficam no próprio `trilha.json`, em `"visual"` (`cor`, `sombra`, `anel`, `crateras`, `faixas`, `lua`).
+Ficam no início de `css/style.css`, em `:root`. As cores e o desenho de cada planeta ficam no próprio `trilha.json`, em `"visual"`:
+- `cor` e `sombra`: as duas cores do planeta.
+- `anel`: `true` mostra o anel em volta; `false` esconde.
+- `tema`: o desenho temático. Opções: `oceano` (mergulho, bandeira JG), `cidade` (prefeitura e mapa), `conversa` (balões de fala e gráfico), `campo` (duas pessoas e trilha) e `trofeu` (troféu e checklist).

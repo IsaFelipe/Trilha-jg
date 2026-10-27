@@ -5,18 +5,7 @@
     "titulo": "Trilha do Consultor JG",
     "subtitulo": "Onboarding comercial da Jovens Gênios",
     "pontos": { "material": 10, "nivel": 30 },
-    "selos": [
-      { "nome": "Bronze",   "min": 0,   "cor": "#CD8A4E" },
-      { "nome": "Prata",    "min": 200, "cor": "#C9CED9" },
-      { "nome": "Ouro",     "min": 450, "cor": "#F5C84C" },
-      { "nome": "Diamante", "min": 700, "cor": "#7FE3F0" }
-    ],
-    "ligas": [
-      { "nome": "Liga Lunar",     "planetasConcluidos": 0, "cor": "#C3A7EF" },
-      { "nome": "Liga Orbital",   "planetasConcluidos": 1, "cor": "#3CC3B5" },
-      { "nome": "Liga Estelar",   "planetasConcluidos": 3, "cor": "#F5C84C" },
-      { "nome": "Liga Galáctica", "planetasConcluidos": 5, "cor": "#FF8FB1" }
-    ]
+    "seloInicial": "Decolagem"
   },
 
   "planetas": [
@@ -25,7 +14,8 @@
       "nome": "Imersão JG",
       "periodo": "Semana 1 · Dias 1 a 3",
       "descricao": "Conheça a Jovens Gênios, seus produtos e serviços e os conceitos educacionais que sustentam a nossa venda.",
-      "visual": { "cor": "#3CC3B5", "sombra": "#14505A", "anel": false, "crateras": true, "faixas": false, "lua": true },
+      "selo": "Mergulho JG",
+      "visual": { "tema": "oceano", "cor": "#3CC3B5", "sombra": "#0E3F6B", "anel": false },
       "niveis": [
         {
           "id": "s1d1",
@@ -69,7 +59,8 @@
       "nome": "Cliente e mercado",
       "periodo": "Semana 1 · Dias 4 e 5",
       "descricao": "Entenda como o poder público compra, quem é o nosso cliente ideal e quais dores cada persona sente.",
-      "visual": { "cor": "#F5C84C", "sombra": "#9A3F1E", "anel": true, "crateras": false, "faixas": true, "lua": false },
+      "selo": "Radar de mercado",
+      "visual": { "tema": "cidade", "cor": "#F5C84C", "sombra": "#9A3F1E", "anel": true },
       "niveis": [
         {
           "id": "s1d4",
@@ -103,7 +94,8 @@
       "nome": "Prática comercial",
       "periodo": "Semana 2 · Dias 1 a 4",
       "descricao": "Treine discovery, demonstração, objeções e CRM até a conversa comercial ficar natural.",
-      "visual": { "cor": "#8040C0", "sombra": "#2A0F55", "anel": true, "crateras": false, "faixas": true, "lua": true, "corAnel": "#C3A7EF" },
+      "selo": "Voz comercial",
+      "visual": { "tema": "conversa", "cor": "#8040C0", "sombra": "#2A0F55", "anel": true, "corAnel": "#C3A7EF" },
       "niveis": [
         {
           "id": "s2d1",
@@ -161,7 +153,8 @@
       "nome": "Campo acompanhado",
       "periodo": "Semana 2 · Dia 5",
       "descricao": "Acompanhe uma reunião real como ouvinte e use os checklists antes e depois da conversa.",
-      "visual": { "cor": "#F07A8C", "sombra": "#6E1F4E", "anel": false, "crateras": true, "faixas": false, "lua": false },
+      "selo": "Pé no campo",
+      "visual": { "tema": "campo", "cor": "#7EDC8B", "sombra": "#1E5B45", "anel": false },
       "niveis": [
         {
           "id": "s2d5",
@@ -182,7 +175,8 @@
       "nome": "Aferição",
       "periodo": "Semana 3 · Dias 1 a 5",
       "descricao": "Semana de aferição: avaliação, banca, reunião real acompanhada e devolutiva de prontidão.",
-      "visual": { "cor": "#6FA8FF", "sombra": "#1B2A8A", "anel": true, "crateras": true, "faixas": false, "lua": true, "corAnel": "#F5C84C" },
+      "selo": "Missão cumprida",
+      "visual": { "tema": "trofeu", "cor": "#6FA8FF", "sombra": "#1B2A8A", "anel": true, "corAnel": "#F5C84C" },
       "niveis": [
         {
           "id": "s3d1",

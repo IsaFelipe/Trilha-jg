@@ -126,7 +126,7 @@
     try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) { /* ignora */ }
   }
 
-  /* ---------- Regras de pontos, selos e ligas ---------- */
+  /* ---------- Regras de pontos e selos ---------- */
   function points() {
     var c = DATA.config.pontos, p = 0, seen = {};
     MATERIALS.forEach(function (m) {
@@ -136,23 +136,16 @@
     LEVELS.forEach(function (l) { if (state.done[l.id]) p += c.nivel; });
     return p;
   }
-  function tierOf(p) {
-    var t = DATA.config.selos[0];
-    DATA.config.selos.forEach(function (x) { if (p >= x.min) t = x; });
-    return t;
-  }
-  function nextTier(p) {
-    return DATA.config.selos.filter(function (x) { return x.min > p; })[0] || null;
-  }
   function planetDone(p) { return p.niveis.filter(function (n) { return state.done[n.id]; }).length; }
-  function planetsCompleted() {
-    return DATA.planetas.filter(function (p) { return p.niveis.length && planetDone(p) === p.niveis.length; }).length;
+  function planetComplete(p) { return p.niveis.length > 0 && planetDone(p) === p.niveis.length; }
+  function planetsCompleted() { return DATA.planetas.filter(planetComplete).length; }
+  /* O selo atual é o do planeta concluído mais avançado na trilha (null = ainda nenhum). */
+  function seloAtual() {
+    var s = null;
+    DATA.planetas.forEach(function (p) { if (planetComplete(p)) s = p; });
+    return s;
   }
-  function ligaOf() {
-    var n = planetsCompleted(), l = DATA.config.ligas[0];
-    DATA.config.ligas.forEach(function (x) { if (n >= x.planetasConcluidos) l = x; });
-    return l;
-  }
+  function seloNome(p) { return p ? (p.selo || p.nome) : DATA.config.seloInicial; }
   /* Só destaca a ordem sugerida: nada é bloqueado de verdade. */
   function levelStatus(n) {
     if (state.done[n.id]) return 'done';
@@ -168,6 +161,85 @@
   };
 
   /* ---------- Desenhos (SVG) ---------- */
+  /* Ilustração temática de cada planeta (campo "tema" em "visual" no trilha.json).
+     back = atrás do planeta (o que fica "em pé" na superfície), inside = na superfície, front = na frente. */
+  function bubble(x, y, r) {
+    return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="#fff" fill-opacity=".15" stroke="#fff" stroke-opacity=".85" stroke-width="1.5"/>';
+  }
+  var THEMES = {
+    // Imersão JG: mergulho no oceano JG, com bandeira, ondas, peixes e bolhas
+    oceano: function (c, s, hl) {
+      var waves = [74, 98, 122, 146].map(function (y, i) {
+        return '<path d="M20 ' + y + 'q10-7 20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0" fill="none" stroke="' + (i % 2 ? '#fff' : hl) + '" stroke-opacity="' + (i % 2 ? 0.35 : 0.7) + '" stroke-width="4" stroke-linecap="round"/>';
+      }).join('');
+      return {
+        back: '<line x1="80" y1="44" x2="80" y2="12" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>' +
+          '<path d="M80 12h26l-6 7 6 7H80z" fill="#F5C84C"/>' +
+          '<text x="84" y="23" font-family="Poppins,Arial,sans-serif" font-size="10" font-weight="800" fill="#0F1A4A">JG</text>',
+        inside: '<rect x="30" y="112" width="140" height="60" fill="' + s + '" opacity=".35"/>' + waves +
+          '<path d="M112 108q9-8 18 0q-9 8-18 0z" fill="#F5C84C"/><path d="M112 108l-7-5v10z" fill="#F5C84C"/><circle cx="125" cy="106.5" r="1.4" fill="#0F1A4A"/>' +
+          '<path d="M66 134q7-6 14 0q-7 6-14 0z" fill="#FF8FB1"/><path d="M80 134l6-4v8z" fill="#FF8FB1"/><circle cx="70" cy="133" r="1.2" fill="#0F1A4A"/>',
+        front: bubble(150, 52, 5) + bubble(160, 36, 3.5) + bubble(146, 24, 4) + bubble(163, 15, 2.5)
+      };
+    },
+    // Cliente e mercado: o município, com prefeitura, prédios e pinos no mapa
+    cidade: function (c) {
+      var bld = mix(c, '#ffffff', 0.55), wall = '#EEF2FC';
+      function win(x, y) { return '<rect x="' + x + '" y="' + y + '" width="3" height="4" fill="#F5C84C"/>'; }
+      function pin(x, y, cor) {
+        return '<path d="M' + x + ' ' + y + 'c-6 0-9 4-9 8 0 6 9 14 9 14s9-8 9-14c0-4-3-8-9-8z" fill="' + cor + '"/><circle cx="' + x + '" cy="' + (y + 8) + '" r="3" fill="#fff"/>';
+      }
+      return {
+        back: '<rect x="62" y="28" width="16" height="22" rx="1.5" fill="' + bld + '"/>' + win(66, 32) + win(71, 32) + win(66, 39) + win(71, 39) +
+          '<rect x="122" y="18" width="16" height="32" rx="1.5" fill="' + bld + '"/>' + win(126, 22) + win(131, 22) + win(126, 29) + win(131, 29) + win(126, 36) + win(131, 36) +
+          '<rect x="82" y="22" width="36" height="22" fill="' + wall + '"/>' +
+          '<path d="M79 22 100 9l21 13z" fill="' + wall + '"/><circle cx="100" cy="17" r="3" fill="' + c + '"/>' +
+          '<path d="M87 26v14M94 26v14M106 26v14M113 26v14" stroke="' + mix(c, '#280D48', 0.4) + '" stroke-width="3"/>' +
+          '<rect x="97" y="31" width="6" height="11" rx="3" fill="#280D48"/>',
+        inside: '<path d="M30 70H170M30 100H170M30 130H170M70 30V170M100 30V170M130 30V170" stroke="#fff" stroke-opacity=".22" stroke-width="2"/>' +
+          pin(76, 74, '#F07A8C') + pin(122, 92, '#8040C0') + pin(92, 116, '#2559C7')
+      };
+    },
+    // Prática comercial: conversa (balões de fala) e gráfico de vendas subindo
+    conversa: function () {
+      return {
+        inside: '<path d="M58 150 80 122l20 12 20-32 24-18" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '<path d="M134 78l10 6-11 4" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>',
+        front: '<path d="M16 22h44a9 9 0 0 1 9 9v14a9 9 0 0 1-9 9H36l-9 8v-8H16a9 9 0 0 1-9-9V31a9 9 0 0 1 9-9z" fill="#fff"/>' +
+          '<circle cx="27" cy="38" r="3" fill="#8040C0"/><circle cx="38" cy="38" r="3" fill="#8040C0"/><circle cx="49" cy="38" r="3" fill="#8040C0"/>' +
+          '<path d="M140 136h44a9 9 0 0 1 9 9v12a9 9 0 0 1-9 9h-8v8l-9-8h-27a9 9 0 0 1-9-9v-12a9 9 0 0 1 9-9z" fill="#F5C84C"/>' +
+          '<path d="M151 151l6 6 12-11" stroke="#0F1A4A" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
+      };
+    },
+    // Campo acompanhado: duas pessoas lado a lado, trilha no campo e bandeira de chegada
+    campo: function (c, s) {
+      function tree(x, y) { return '<rect x="' + (x - 1.5) + '" y="' + y + '" width="3" height="7" fill="#6B4A2B"/><circle cx="' + x + '" cy="' + (y - 3) + '" r="7" fill="' + s + '"/>'; }
+      function person(x, cor) { return '<circle cx="' + x + '" cy="16" r="5" fill="#FBD9B5"/><rect x="' + (x - 6) + '" y="23" width="12" height="20" rx="6" fill="' + cor + '"/>'; }
+      return {
+        back: person(90, '#F5C84C') + person(110, '#8040C0'),
+        inside: '<path d="M44 146C70 128 64 108 96 100s30-26 44-30" fill="none" stroke="#F6E7B8" stroke-width="8" stroke-linecap="round"/>' +
+          tree(70, 90) + tree(132, 118) + tree(58, 120) + tree(112, 142) + tree(84, 72) +
+          '<path d="M140 72V56" stroke="#fff" stroke-width="2"/><path d="M140 56h11l-3 4 3 4h-11z" fill="#F07A8C"/>'
+      };
+    },
+    // Aferição: troféu no topo e checklist de prontidão na superfície
+    trofeu: function (c, s) {
+      var g = '#F5C84C';
+      function row(y) {
+        return '<rect x="70" y="' + (y - 7) + '" width="14" height="14" rx="3" fill="#fff" fill-opacity=".9"/>' +
+          '<path d="M73 ' + y + 'l3 3 6-6" stroke="' + s + '" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '<path d="M92 ' + y + 'h40" stroke="#fff" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/>';
+      }
+      return {
+        back: '<path d="M85 13c-9 0-10 13 2 15M115 13c9 0 10 13-2 15" fill="none" stroke="' + g + '" stroke-width="3"/>' +
+          '<path d="M85 8h30v12a15 15 0 0 1-30 0z" fill="' + g + '"/>' +
+          '<path d="M100 11l2.2 4.6 5 .6-3.7 3.4 1 5-4.5-2.5-4.5 2.5 1-5-3.7-3.4 5-.6z" fill="#fff"/>' +
+          '<rect x="96" y="33" width="8" height="6" fill="#C9962A"/><rect x="88" y="38" width="24" height="7" rx="2" fill="' + g + '"/>',
+        inside: row(84) + row(104) + row(124)
+      };
+    }
+  };
+
   function planetSVG(p, key) {
     var v = p.visual || {};
     var c = v.cor || '#3CC3B5';
@@ -178,7 +250,8 @@
     function ring(sweep, op) {
       return '<path d="M8 100 A92 24 0 0 ' + sweep + ' 192 100" fill="none" stroke="' + ringC + '" stroke-width="9" stroke-linecap="round" opacity="' + op + '" transform="rotate(-16 100 100)"/>';
     }
-    var deco = '';
+    var art = THEMES[v.tema] ? THEMES[v.tema](c, s, hl) : {};
+    var deco = art.inside || '';
     if (v.faixas) {
       deco += '<ellipse cx="100" cy="76" rx="90" ry="9" fill="' + s + '" opacity=".35"/>' +
         '<ellipse cx="100" cy="108" rx="90" ry="12" fill="' + hl + '" opacity=".3"/>' +
@@ -198,11 +271,11 @@
       '<clipPath id="' + id + '-c"><circle cx="100" cy="100" r="64"/></clipPath>' +
       '</defs>' +
       '<circle cx="100" cy="100" r="98" fill="url(#' + id + '-glow)"/>' +
-      (v.anel ? ring(1, 0.55) : '') +
+      (v.anel ? ring(1, 0.55) : '') + (art.back || '') +
       '<circle cx="100" cy="100" r="64" fill="url(#' + id + '-g)"/>' +
       '<g clip-path="url(#' + id + '-c)">' + deco + '<circle cx="132" cy="132" r="72" fill="' + s + '" opacity=".22"/></g>' +
       '<circle cx="100" cy="100" r="64" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="2"/>' +
-      (v.anel ? ring(0, 1) : '') + moon +
+      (v.anel ? ring(0, 1) : '') + (art.front || '') + moon +
       '</svg>';
   }
 
@@ -234,25 +307,13 @@
     return '<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="50" fill="' + a.fundo + '"/>' + body + head + '</svg>';
   }
 
-  function emblem(cor) {
-    return '<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">' +
-      '<circle cx="32" cy="32" r="29" fill="#3B1C6E" stroke="' + cor + '" stroke-width="3"/>' +
-      '<circle cx="32" cy="32" r="22" fill="#6A2FB0"/>' +
-      '<path d="M32 12l5.6 12.2 13.3 1.6-9.8 9.1 2.6 13.1L32 41.4 20.3 48l2.6-13.1-9.8-9.1 13.3-1.6z" fill="' + cor + '" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>' +
-      '</svg>';
-  }
-  function gem(cor) {
-    return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2 20 12 12 22 4 12z" fill="' + cor + '" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 2v20M4 12h16" stroke="#fff" stroke-opacity=".4" stroke-width="1"/></svg>';
-  }
-
   /* ---------- Topo ---------- */
   function renderHeader() {
-    var p = points(), t = tierOf(p), l = ligaOf();
+    var p = points(), sp = seloAtual(), nome = seloNome(sp);
     document.getElementById('avatarBtn').innerHTML = avatarSVG(state.avatar);
-    document.getElementById('league').innerHTML = emblem(l.cor) + '<span>' + esc(l.nome) + '</span>';
     var tier = document.getElementById('tierPill');
-    tier.innerHTML = gem(t.cor) + '<span>' + esc(t.nome.toUpperCase()) + '</span>';
-    tier.setAttribute('aria-label', 'Selo ' + t.nome);
+    tier.innerHTML = (sp ? '<span class="pill-planet">' + planetSVG(sp, 'pill') + '</span>' : ic('rocket')) + '<span>' + esc(nome.toUpperCase()) + '</span>';
+    tier.setAttribute('aria-label', 'Selo ' + nome);
     tier.setAttribute('role', 'img');
     var pts = document.getElementById('pointsPill');
     pts.innerHTML = STAR + '<span>' + p.toLocaleString('pt-BR') + '</span>';
@@ -419,15 +480,15 @@
     MATERIALS.forEach(function (m) { uniq[m.id] = true; });
     var matTotal = Object.keys(uniq).length;
     var matOpen = Object.keys(uniq).filter(function (k) { return state.opened[k]; }).length;
-    var p = points(), t = tierOf(p), nt = nextTier(p);
+    var p = points();
     var C = 2 * Math.PI * 64;
-    var tiers = DATA.config.selos.map(function (x) {
-      return '<span class="' + (x === t ? 'on' : '') + '">' + gem(x.cor) + esc(x.nome) + ' · ' + x.min + '</span>';
+    var selos = DATA.planetas.map(function (pl) {
+      var ok = planetComplete(pl);
+      return '<li class="selo' + (ok ? ' is-on' : '') + '">' +
+        '<span class="selo-art">' + planetSVG(pl, 'selo') + (ok ? '' : '<span class="selo-lock">' + ic('lock') + '</span>') + '</span>' +
+        '<strong>' + esc(seloNome(pl)) + '</strong>' +
+        '<span>' + (ok ? 'Conquistado' : 'Conclua ' + esc(pl.nome)) + '</span></li>';
     }).join('');
-    var tierText = nt
-      ? 'Faltam <strong>' + (nt.min - p) + ' estrelas</strong> para o selo ' + esc(nt.nome) + '.'
-      : 'Você chegou ao selo máximo. Parabéns!';
-    var tierBar = nt ? progressBar(p - t.min, nt.min - t.min, 'Progresso até o selo ' + nt.nome, true) : progressBar(1, 1, 'Selo máximo', true);
     var rows = DATA.planetas.map(function (pl) {
       var d = planetDone(pl);
       return '<a class="prow" href="#/planeta/' + esc(pl.id) + '">' +
@@ -448,10 +509,10 @@
       '<div class="stat"><b>' + done + '/' + total + '</b><span>níveis concluídos</span></div>' +
       '<div class="stat"><b>' + matOpen + '/' + matTotal + '</b><span>materiais abertos</span></div>' +
       '<div class="stat"><b>' + p.toLocaleString('pt-BR') + '</b><span>estrelas</span></div>' +
-      '<div class="stat"><b>' + esc(t.nome) + '</b><span>selo atual</span></div>' +
+      '<div class="stat"><b>' + esc(seloNome(seloAtual())) + '</b><span>selo atual</span></div>' +
       '</div>' +
-      '<div class="tier-box"><p>' + tierText + '</p>' + tierBar + '<div class="tier-list">' + tiers + '</div></div>' +
       '</div>' +
+      '<h2 class="section-title">Seus selos</h2><ul class="selos">' + selos + '</ul>' +
       '<h2 class="section-title">Níveis por planeta</h2><div class="planet-rows">' + rows + '</div>' +
       '<div class="reset-box"><h2 class="section-title" style="margin-top:0">Recomeçar</h2>' +
       '<p class="small">Apaga os níveis concluídos, os materiais abertos e as estrelas deste navegador.</p>' +
@@ -507,7 +568,8 @@
   /* ---------- Tela: Como funciona ---------- */
   function renderHelp() {
     var c = DATA.config;
-    var selos = c.selos.map(function (s) { return '<li><strong>' + esc(s.nome) + '</strong>: a partir de ' + s.min + ' estrelas</li>'; }).join('');
+    var selos = '<li><strong>' + esc(c.seloInicial) + '</strong>: no começo da trilha</li>' +
+      DATA.planetas.map(function (p) { return '<li><strong>' + esc(seloNome(p)) + '</strong>: ao concluir ' + esc(p.nome) + '</li>'; }).join('');
     var planetas = DATA.planetas.map(function (p) { return '<li><strong>' + esc(p.nome) + '</strong> — ' + esc(p.periodo) + '</li>'; }).join('');
     return '<section class="wrap page">' +
       '<p class="kicker">Guia rápido</p><h1>Como funciona</h1>' +
@@ -525,7 +587,7 @@
       '<li><strong>+' + c.pontos.material + ' estrelas</strong> por material aberto</li>' +
       '<li><strong>+' + c.pontos.nivel + ' estrelas</strong> por nível concluído</li></ul>' +
       '<p>Selos:</p><ul>' + selos + '</ul>' +
-      '<p>Ao concluir todos os níveis de um planeta, você recebe uma recompensa e sobe de liga.</p></div>' +
+      '<p>Ao concluir todos os níveis de um planeta, você recebe uma recompensa e conquista o selo daquele planeta.</p></div>' +
       '<div class="icard warn"><h2><span class="badge-num">!</span>Onde fica o progresso</h2>' +
       '<p>O seu progresso fica salvo <strong>só neste navegador, neste aparelho</strong>. Não há cadastro nem login.</p>' +
       '<p>Se você trocar de computador, usar outro navegador, abrir uma janela anônima ou limpar os dados de navegação, o progresso não vai junto.</p></div>' +
@@ -698,7 +760,7 @@
       '<h2 id="modalTitle">' + (all ? 'Trilha concluída!' : 'Planeta ' + esc(p.nome) + ' concluído!') + '</h2>' +
       '<p>' + (all
         ? 'Você completou todos os planetas da trilha. Agora é com você em campo!'
-        : 'Você completou os ' + p.niveis.length + ' níveis deste planeta. Sua liga agora é <strong>' + esc(ligaOf().nome) + '</strong>.') + '</p>' +
+        : 'Você completou os ' + p.niveis.length + ' níveis deste planeta e conquistou o selo <strong>' + esc(seloNome(p)) + '</strong>.') + '</p>' +
       '<div class="modal-actions">' + actions + '<button type="button" class="btn btn-ghost" data-action="close-modal">Continuar aqui</button></div>');
   }
   function confirmReset() {
@@ -796,10 +858,7 @@
     d.config = d.config || {};
     d.config.titulo = d.config.titulo || 'Trilha do Consultor JG';
     d.config.pontos = d.config.pontos || { material: 10, nivel: 30 };
-    d.config.selos = (d.config.selos && d.config.selos.length) ? d.config.selos : [{ nome: 'Bronze', min: 0, cor: '#CD8A4E' }];
-    d.config.selos.sort(function (a, b) { return a.min - b.min; });
-    d.config.ligas = (d.config.ligas && d.config.ligas.length) ? d.config.ligas : [{ nome: 'Liga', planetasConcluidos: 0, cor: '#C3A7EF' }];
-    d.config.ligas.sort(function (a, b) { return a.planetasConcluidos - b.planetasConcluidos; });
+    d.config.seloInicial = d.config.seloInicial || 'Decolagem';
     d.planetas = d.planetas || [];
     LEVELS = []; MATERIALS = [];
     d.planetas.forEach(function (p, pi) {
