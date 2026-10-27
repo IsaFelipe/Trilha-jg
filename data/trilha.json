@@ -1,0 +1,242 @@
+{
+  "_instrucoes": "Este é o único arquivo que você precisa editar. Para trocar um link, altere o valor de \"link\". Para incluir um vídeo, cole o endereço em \"video\" (YouTube ou Google Drive). Enquanto um link estiver como COLE_O_LINK_AQUI, o material aparece como 'Em breve'. Não altere os campos \"id\" depois que a trilha estiver em uso: o progresso de cada pessoa é salvo por id. Veja o LEIA-ME.md para o passo a passo.",
+
+  "config": {
+    "titulo": "Trilha do Consultor JG",
+    "subtitulo": "Onboarding comercial da Jovens Gênios",
+    "pontos": { "material": 10, "nivel": 30 },
+    "selos": [
+      { "nome": "Bronze",   "min": 0,   "cor": "#CD8A4E" },
+      { "nome": "Prata",    "min": 200, "cor": "#C9CED9" },
+      { "nome": "Ouro",     "min": 450, "cor": "#F5C84C" },
+      { "nome": "Diamante", "min": 700, "cor": "#7FE3F0" }
+    ],
+    "ligas": [
+      { "nome": "Liga Lunar",     "planetasConcluidos": 0, "cor": "#C3A7EF" },
+      { "nome": "Liga Orbital",   "planetasConcluidos": 1, "cor": "#3CC3B5" },
+      { "nome": "Liga Estelar",   "planetasConcluidos": 3, "cor": "#F5C84C" },
+      { "nome": "Liga Galáctica", "planetasConcluidos": 5, "cor": "#FF8FB1" }
+    ]
+  },
+
+  "planetas": [
+    {
+      "id": "imersao-jg",
+      "nome": "Imersão JG",
+      "periodo": "Semana 1 · Dias 1 a 3",
+      "descricao": "Conheça a Jovens Gênios, seus produtos e serviços e os conceitos educacionais que sustentam a nossa venda.",
+      "visual": { "cor": "#3CC3B5", "sombra": "#14505A", "anel": false, "crateras": true, "faixas": false, "lua": true },
+      "niveis": [
+        {
+          "id": "s1d1",
+          "dia": "Semana 1 · Dia 1",
+          "tema": "Quem é a JG e pitches",
+          "atividade": "Ler os materiais e gravar o pitch de 30 segundos.",
+          "entregavel": "Áudio do pitch (25 a 35 segundos).",
+          "materiais": [
+            { "id": "quem-e-a-jg", "titulo": "Quem é a Jovens Gênios", "formato": "PPT", "descricao": "História, missão, números e jeito de trabalhar da JG.", "link": "https://drive.google.com/file/d/1CLOkaIISfeQwxTvpOChji9jNRHabsyCg/view", "video": "" },
+            { "id": "pitch-30-segundos", "titulo": "Pitch de 30 segundos", "formato": "Documento", "descricao": "Estrutura e exemplo do pitch curto para abrir qualquer conversa.", "link": "https://drive.google.com/file/d/1FLEI66WqfKQqXIYYW0-ompDEvAOR7JRZ/view", "video": "" },
+            { "id": "pitch-base-b2g", "titulo": "Pitch Base Comercial B2G", "formato": "PDF", "descricao": "Narrativa base para apresentar a JG a secretarias e prefeituras.", "link": "https://drive.google.com/file/d/1SNM8zeqQHhHRFoVwsP3NNRuRjDp6Bx2n/view", "video": "" }
+          ]
+        },
+        {
+          "id": "s1d2",
+          "dia": "Semana 1 · Dia 2",
+          "tema": "Produtos e serviços",
+          "atividade": "Explicar três produtos em 1 minuto cada, com uma prova.",
+          "entregavel": "Explicação gravada ou apresentada.",
+          "materiais": [
+            { "id": "mapa-produtos", "titulo": "Mapa de produtos JG", "formato": "PPT", "descricao": "Visão geral dos produtos, para quem são e que problema resolvem.", "link": "https://drive.google.com/file/d/1DBc_Og7N_O7YhkAIozR20qxDeb1_5A1V/view", "video": "" },
+            { "id": "mapa-servicos", "titulo": "Mapa de serviços JG", "formato": "PPT", "descricao": "Serviços de formação e acompanhamento que complementam os produtos.", "link": "https://drive.google.com/file/d/1cH5IE6FL8ixfup37ycWw9plnCNewpp7P/view", "video": "" },
+            { "id": "biblioteca-provas", "titulo": "Biblioteca de provas e indicadores", "formato": "Documento", "descricao": "Resultados, números e casos para sustentar cada argumento.", "link": "https://drive.google.com/file/d/1dIyNR_uUGQzfglUBCDlUB9Y5H7Bd4mDZ/view", "video": "" }
+          ]
+        },
+        {
+          "id": "s1d3",
+          "dia": "Semana 1 · Dia 3",
+          "tema": "Educação",
+          "atividade": "Preencher a coluna \"Minha explicação\" do glossário.",
+          "entregavel": "Glossário preenchido.",
+          "materiais": [
+            { "id": "trilha-conceitos-educacionais", "titulo": "Trilha de conceitos educacionais", "formato": "PPT", "descricao": "Os conceitos de educação que aparecem nas conversas com redes de ensino.", "link": "https://drive.google.com/file/d/1y4x5y3AkYn1ho0HKuBuOeQ3F_aHjnFER/view", "video": "" },
+            { "id": "glossario-educacional", "titulo": "Glossário educacional aplicado", "formato": "Planilha", "descricao": "Termos educacionais com espaço para a sua própria explicação.", "link": "https://drive.google.com/file/d/1GsLTQDZGbFxGR0nDMq1gwC_ajlmt_1iV/view", "video": "" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cliente-e-mercado",
+      "nome": "Cliente e mercado",
+      "periodo": "Semana 1 · Dias 4 e 5",
+      "descricao": "Entenda como o poder público compra, quem é o nosso cliente ideal e quais dores cada persona sente.",
+      "visual": { "cor": "#F5C84C", "sombra": "#9A3F1E", "anel": true, "crateras": false, "faixas": true, "lua": false },
+      "niveis": [
+        {
+          "id": "s1d4",
+          "dia": "Semana 1 · Dia 4",
+          "tema": "Venda B2G",
+          "atividade": "Explicar o ciclo de compra público em 3 minutos.",
+          "entregavel": "Glossário comercial preenchido: compras públicas e orçamento.",
+          "materiais": [
+            { "id": "trilha-conceitos-comerciais", "titulo": "Trilha de conceitos comerciais", "formato": "PPT", "descricao": "Conceitos de venda consultiva e de venda para governo.", "link": "https://drive.google.com/file/d/1GBD39Mdyz7OLEKlnKijFFYfAdtcoOxWP/view", "video": "" },
+            { "id": "glossario-comercial", "titulo": "Glossário comercial aplicado", "formato": "Planilha", "descricao": "Termos de compras públicas e orçamento, com espaço para a sua explicação.", "link": "https://drive.google.com/file/d/1pxdayE8ioXzRKywjcwLrTtGnzMjyxpjt/view", "video": "" },
+            { "id": "ciclo-compra-publico", "titulo": "Mapa do ciclo de compra público", "formato": "Documento", "descricao": "Etapas, prazos e responsáveis em uma compra pública.", "link": "https://drive.google.com/file/d/1X0x-rAWWzglUBryV3MnOBZ5z2JuAMjgg/view", "video": "" },
+            { "id": "modelos-contratacao", "titulo": "Modelos de contratação", "formato": "Documento", "descricao": "Caminhos legais para o município contratar a JG.", "link": "https://drive.google.com/file/d/1n1VDFrxh6TGkivSfmTPStEgdnDh2fAmZ/view", "video": "" }
+          ]
+        },
+        {
+          "id": "s1d5",
+          "dia": "Semana 1 · Dia 5",
+          "tema": "ICP, personas e concorrentes",
+          "atividade": "Pontuar um município real no ICP.",
+          "entregavel": "Município pontuado, com personas e dores.",
+          "materiais": [
+            { "id": "icp-b2g", "titulo": "ICP B2G", "formato": "Documento", "descricao": "Perfil prioritário de município e critérios de pontuação.", "link": "https://drive.google.com/file/d/1e7yNGtbfaZ6ZgvV7Hr6UygDwQp-v-G9V/view", "video": "" },
+            { "id": "mapa-personas", "titulo": "Mapa de personas", "formato": "PPT", "descricao": "Quem decide, quem influencia e quem usa: perfis e motivações.", "link": "https://drive.google.com/file/d/1_Y2ZfoR3aaZ7CaDZ8hc6Ce1YO-7xV63C/view", "video": "" },
+            { "id": "dores-por-persona", "titulo": "Dores por persona", "formato": "PPT", "descricao": "As principais dores de cada persona e como a JG responde.", "link": "https://drive.google.com/file/d/1Lv4qBNu6z_wKwM6CLq4AS7YNU01uWJj7/view", "video": "" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pratica-comercial",
+      "nome": "Prática comercial",
+      "periodo": "Semana 2 · Dias 1 a 4",
+      "descricao": "Treine discovery, demonstração, objeções e CRM até a conversa comercial ficar natural.",
+      "visual": { "cor": "#8040C0", "sombra": "#2A0F55", "anel": true, "crateras": false, "faixas": true, "lua": true, "corAnel": "#C3A7EF" },
+      "niveis": [
+        {
+          "id": "s2d1",
+          "dia": "Semana 2 · Dia 1",
+          "tema": "Discovery e qualificação",
+          "atividade": "Simular 15 minutos de discovery.",
+          "entregavel": "Simulação com BANT preenchido.",
+          "materiais": [
+            { "id": "roteiro-discovery", "titulo": "Roteiro de discovery", "formato": "PPT", "descricao": "Sequência de perguntas para entender o contexto do município.", "link": "https://drive.google.com/file/d/1GSvlR_iZMOYPS7pWA8J5teu1J1ESpSfr/view", "video": "" },
+            { "id": "banco-perguntas-persona", "titulo": "Banco de perguntas por persona", "formato": "PPT", "descricao": "Perguntas prontas para cada perfil de interlocutor.", "link": "https://drive.google.com/file/d/1PoFhAIOVUKTML1OD4gZnb0-IpC1rqHdE/view", "video": "" },
+            { "id": "criterios-qualificacao", "titulo": "Critérios de qualificação", "formato": "PPT", "descricao": "Como usar o BANT para decidir se a oportunidade avança.", "link": "https://drive.google.com/file/d/1ZtyGVaa8IRg24ZvPH2APrM3imPNaVvWk/view", "video": "" }
+          ]
+        },
+        {
+          "id": "s2d2",
+          "dia": "Semana 2 · Dia 2",
+          "tema": "Primeira reunião e demonstração",
+          "atividade": "Fazer uma demonstração de 15 minutos ligada a uma dor.",
+          "entregavel": "Demonstração com feedback.",
+          "materiais": [
+            { "id": "roteiro-primeira-reuniao", "titulo": "Roteiro de primeira reunião", "formato": "Documento", "descricao": "Abertura, agenda, perguntas e fechamento da primeira conversa.", "link": "https://drive.google.com/file/d/12k2bbgNHsUiKzrIPQNHL3HQsNEo277eQ/view", "video": "" },
+            { "id": "roteiro-demonstracao", "titulo": "Roteiro de demonstração", "formato": "PPT", "descricao": "Como mostrar a plataforma conectando cada tela a uma dor.", "link": "https://drive.google.com/file/d/1U4Somrm5OxisZmPbLO6lBtfj6ZUqDm1m/view", "video": "" },
+            { "id": "one-pager-cases", "titulo": "One-pager de cases", "formato": "PDF", "descricao": "Resumo de casos de sucesso para deixar com o cliente.", "link": "https://drive.google.com/file/d/1WeISP3FLbsXfGIjhJv3C17P4d1NQntfT/view", "video": "" }
+          ]
+        },
+        {
+          "id": "s2d3",
+          "dia": "Semana 2 · Dia 3",
+          "tema": "Objeções e próximo passo",
+          "atividade": "Responder a 5 objeções sorteadas.",
+          "entregavel": "Rodada de objeções com feedback.",
+          "materiais": [
+            { "id": "matriz-objecoes", "titulo": "Matriz de objeções", "formato": "Documento", "descricao": "As objeções mais comuns, organizadas por tipo e persona.", "link": "https://drive.google.com/file/d/1_tHJKafrvrgvZMM9KPTFKtySteNEtAJh/view", "video": "" },
+            { "id": "respostas-investigacao", "titulo": "Respostas e perguntas de investigação", "formato": "Documento", "descricao": "Como responder e que perguntas fazer para entender a objeção.", "link": "https://drive.google.com/file/d/1WxjFu9eeyKNVFB5NUq5p1pcToXVapwzC/view", "video": "" },
+            { "id": "roteiro-proximo-passo", "titulo": "Roteiro de próximo passo", "formato": "Documento", "descricao": "Como sair de toda reunião com um compromisso concreto.", "link": "https://drive.google.com/file/d/1pMbrh6ZY4bThB8lgW1GtWZOoeAhEQ1pi/view", "video": "" }
+          ]
+        },
+        {
+          "id": "s2d4",
+          "dia": "Semana 2 · Dia 4",
+          "tema": "CRM e follow-up",
+          "atividade": "Cadastrar uma oportunidade fictícia no Twenty CRM.",
+          "entregavel": "Oportunidade de teste registrada.",
+          "materiais": [
+            { "id": "manual-crm", "titulo": "Manual de uso do CRM", "formato": "Documento", "descricao": "Passo a passo do Twenty CRM no dia a dia comercial.", "link": "https://drive.google.com/file/d/1fcRH6NJQY0qz59VBnj6jKpRaUe364-WX/view", "video": "" },
+            { "id": "criterios-funil", "titulo": "Critérios de entrada e saída do funil", "formato": "Documento", "descricao": "Quando uma oportunidade entra, avança ou sai de cada etapa.", "link": "https://drive.google.com/file/d/1uekbzaDZQKG1tVyIgUzPxW-dZw1rVFm5/view", "video": "" },
+            { "id": "templates-follow-up", "titulo": "Templates de follow-up", "formato": "Documento", "descricao": "Mensagens prontas para cada momento depois da reunião.", "link": "https://drive.google.com/file/d/1Ib6jkIceJ198ThhGAesLp7pcY11kvXL0/view", "video": "" },
+            { "id": "reativacao-oportunidades", "titulo": "Reativação de oportunidades", "formato": "Documento", "descricao": "Como retomar conversas paradas sem perder a relação.", "link": "https://drive.google.com/file/d/1dnGi5suWhjczqhMtWLHabTAWWg1U8gN0/view", "video": "" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "campo-acompanhado",
+      "nome": "Campo acompanhado",
+      "periodo": "Semana 2 · Dia 5",
+      "descricao": "Acompanhe uma reunião real como ouvinte e use os checklists antes e depois da conversa.",
+      "visual": { "cor": "#F07A8C", "sombra": "#6E1F4E", "anel": false, "crateras": true, "faixas": false, "lua": false },
+      "niveis": [
+        {
+          "id": "s2d5",
+          "dia": "Semana 2 · Dia 5",
+          "tema": "Reunião real como ouvinte",
+          "atividade": "Acompanhar uma reunião real e preencher o checklist pós-reunião.",
+          "entregavel": "Checklist preenchido e feedback.",
+          "materiais": [
+            { "id": "checklist-pre-reuniao", "titulo": "Checklist pré-reunião", "formato": "Documento", "descricao": "Tudo o que precisa estar pronto antes de entrar na reunião.", "link": "https://drive.google.com/file/d/1BG7k4yD856iG4brLspV0MRxSie4AfkcB/view", "video": "" },
+            { "id": "checklist-pos-reuniao", "titulo": "Checklist pós-reunião", "formato": "Documento", "descricao": "Registro, próximos passos e aprendizados depois da conversa.", "link": "https://drive.google.com/file/d/1CH7ycwBprOypBe_qpT_qusp4OCmdbHFG/view", "video": "" },
+            { "id": "mapa-stakeholders", "titulo": "Mapa de stakeholders", "formato": "Documento", "descricao": "Quem é quem na rede de ensino e qual o papel de cada pessoa.", "link": "https://drive.google.com/file/d/1pnZqEyERK6HfFDalHP7rzUNNIno-bh6N/view", "video": "" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "afericao",
+      "nome": "Aferição",
+      "periodo": "Semana 3 · Dias 1 a 5",
+      "descricao": "Semana de aferição: avaliação, banca, reunião real acompanhada e devolutiva de prontidão.",
+      "visual": { "cor": "#6FA8FF", "sombra": "#1B2A8A", "anel": true, "crateras": true, "faixas": false, "lua": true, "corAnel": "#F5C84C" },
+      "niveis": [
+        {
+          "id": "s3d1",
+          "dia": "Semana 3 · Dia 1",
+          "tema": "Avaliação de conhecimento",
+          "atividade": "Responder à avaliação.",
+          "entregavel": "Nota da avaliação.",
+          "materiais": [
+            { "id": "avaliacao-conhecimento", "titulo": "Avaliação de conhecimento", "formato": "Formulário", "descricao": "Questões sobre JG, produtos, educação e venda B2G.", "link": "COLE_O_LINK_AQUI", "video": "" }
+          ]
+        },
+        {
+          "id": "s3d2",
+          "dia": "Semana 3 · Dia 2",
+          "tema": "Pitch e município real",
+          "atividade": "Apresentar um pitch de 2 minutos e o mapeamento de um município para a banca.",
+          "entregavel": "Rubrica da banca.",
+          "materiais": []
+        },
+        {
+          "id": "s3d3",
+          "dia": "Semana 3 · Dia 3",
+          "tema": "Simulação de reunião completa",
+          "atividade": "Conduzir discovery, demonstração, objeções e próximo passo em uma simulação.",
+          "entregavel": "Rubrica da banca.",
+          "materiais": []
+        },
+        {
+          "id": "s3d4",
+          "dia": "Semana 3 · Dia 4",
+          "tema": "Reunião real com feedback",
+          "atividade": "Conduzir a primeira reunião real, acompanhado.",
+          "entregavel": "Feedback e registro no CRM.",
+          "materiais": []
+        },
+        {
+          "id": "s3d5",
+          "dia": "Semana 3 · Dia 5",
+          "tema": "Prontidão e devolutiva",
+          "atividade": "Revisar o checklist de prontidão e receber a devolutiva.",
+          "entregavel": "Consultor liberado, liberado com ressalvas ou com plano de reforço.",
+          "materiais": [
+            { "id": "checklist-prontidao", "titulo": "Checklist de prontidão", "formato": "Documento", "descricao": "Critérios usados para liberar o consultor para o campo.", "link": "https://drive.google.com/file/d/1R5wCjXCadL13No99J7qV5DoBS-Typxuh/view", "video": "" }
+          ]
+        }
+      ]
+    }
+  ],
+
+  "complementares": [
+    { "id": "novo-onboarding-2026", "titulo": "Novo Onboarding 2026", "modulo": "Complementares", "formato": "PDF", "descricao": "Cultura e jeito de ser da Jovens Gênios para quem está chegando.", "link": "https://drive.google.com/file/d/1I55AbeR0d0HzRPPv-1IDB5c71rvgamUM/view", "video": "" },
+    { "id": "apresentacao-jg-2026", "titulo": "Apresentação Jovens Gênios 2026", "modulo": "Complementares", "formato": "PDF", "descricao": "Apresentação institucional atualizada da JG.", "link": "https://drive.google.com/file/d/1xbP8srCVD0oNsBJGR5p3pSOmE240m5sB/view", "video": "" },
+    { "id": "matriz-competencias", "titulo": "Matriz de competências JG", "modulo": "Complementares", "formato": "PDF", "descricao": "Competências esperadas do consultor e como são observadas.", "link": "https://drive.google.com/file/d/1AHSw7Cray_G3-C51NRB9ZSYQSNKSAXqs/view", "video": "" },
+    { "id": "sales-enablement-jg", "titulo": "Sales Enablement JG", "modulo": "Complementares", "formato": "PDF", "descricao": "Visão geral do programa de Sales Enablement.", "link": "https://drive.google.com/file/d/10C3ClCAkuWL7LufnFZ8QWV9SEhL8xbWM/view", "video": "" },
+    { "id": "planilha-trilha-onboarding", "titulo": "Trilha de onboarding comercial", "modulo": "Complementares", "formato": "Planilha", "descricao": "Planilha com o cronograma completo das três semanas.", "link": "https://drive.google.com/file/d/1sD4rsdQn6uUhAdJdJBXPHiF7dhf7yCid/view", "video": "" }
+  ]
+}
