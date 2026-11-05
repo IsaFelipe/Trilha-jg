@@ -4,7 +4,7 @@
   "config": {
     "titulo": "Trilha do Consultor JG",
     "subtitulo": "Onboarding comercial da Jovens Gênios",
-    "pontos": { "material": 10, "nivel": 30 },
+    "pontos": { "material": 10, "nivel": 30, "acerto": 10 },
     "seloInicial": "Decolagem"
   },
 

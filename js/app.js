@@ -13,6 +13,7 @@
   var DATA = null;
   var LEVELS = [];      // todos os níveis, na ordem da trilha
   var MATERIALS = [];   // todos os materiais (trilha + complementares)
+  var QUIZ = {};        // questões por material (data/questoes.json)
   var homeIdx = null;   // planeta visível no carrossel
   var firstRender = true;
   var lastFocus = null;
@@ -119,7 +120,7 @@
   var PERFIL = null;  // { nome, email, gestor }
 
   /* ---------- Progresso: na conta (Supabase) e uma cópia no navegador ---------- */
-  function defaultState() { return { avatar: 0, font: 0, done: {}, opened: {}, rewarded: {} }; }
+  function defaultState() { return { avatar: 0, font: 0, done: {}, opened: {}, rewarded: {}, quiz: {} }; }
   function normalize(s) {
     var d = defaultState();
     if (s && typeof s === 'object') for (var k in d) if (s[k] != null) d[k] = s[k];
@@ -169,6 +170,9 @@
       var src = extra[k] || {};
       for (var id in src) if (!out[k][id] || src[id] < out[k][id]) out[k][id] = src[id];
     });
+    // questões: vale a primeira tentativa (a mais antiga)
+    var q = extra.quiz || {};
+    for (var mid in q) if (!out.quiz[mid] || q[mid].em < out.quiz[mid].em) out.quiz[mid] = q[mid];
     return out;
   }
 
@@ -187,11 +191,21 @@
     DATA.planetas.forEach(function (p) {
       if (p.niveis.length && p.niveis.every(function (n) { return st.done[n.id]; })) selo = p;
     });
+    // questões: só contam materiais que ainda têm bloco de questões
+    var acertos = 0, respondidas = 0, blocos = 0;
+    quizIds().forEach(function (id) {
+      var r = st.quiz && st.quiz[id];
+      if (r) { blocos++; acertos += r.acertos; respondidas += r.total; }
+    });
     return {
       done: done, total: LEVELS.length, opened: opened, matTotal: materialIds().length, selo: selo,
       pct: LEVELS.length ? Math.round((done / LEVELS.length) * 100) : 0,
-      pts: opened * c.material + done * c.nivel
+      acertos: acertos, respondidas: respondidas, blocos: blocos, blocosTotal: quizIds().length,
+      pts: opened * c.material + done * c.nivel + acertos * c.acerto
     };
+  }
+  function quizIds() {
+    return materialIds().filter(function (id) { return QUIZ[id] && QUIZ[id].length; });
   }
   function points() { return statsOf(state).pts; }
   function planetDone(p) { return p.niveis.filter(function (n) { return state.done[n.id]; }).length; }
@@ -415,9 +429,24 @@
       (ready ? '' : '<span class="soon-tag">Em breve</span>') + '</div>' +
       '<p class="mdesc">' + esc(m.descricao) + '</p>' +
       video +
-      '<div class="mactions">' + actions + '</div>' + trail +
+      '<div class="mactions">' + actions + '</div>' + quizBox(m) + trail +
       '<div class="preview" id="pv-' + esc(m.id) + '" hidden></div>' +
       '</article>';
+  }
+  /* Faixa de questões no card: convite para responder ou o resultado registrado */
+  function quizBox(m) {
+    var qs = QUIZ[m.id];
+    if (!qs || !qs.length || !isReady(m.link)) return '';
+    var r = state.quiz[m.id];
+    var pts = qs.length * DATA.config.pontos.acerto;
+    if (!r) {
+      return '<div class="quiz-box">' + ic('target') +
+        '<span><strong>' + qs.length + ' questões</strong> sobre este material · vale até ' + pts + ' ★</span>' +
+        '<button type="button" class="btn btn-quiz" data-quiz="' + esc(m.id) + '">Responder</button></div>';
+    }
+    return '<div class="quiz-box is-done">' + ic('check') +
+      '<span><strong>' + r.acertos + ' de ' + r.total + '</strong> na primeira tentativa · +' + (r.acertos * DATA.config.pontos.acerto) + ' ★</span>' +
+      '<button type="button" class="btn btn-quiz-ghost" data-quiz="' + esc(m.id) + '">Refazer</button></div>';
   }
 
   /* ---------- Tela: Início ---------- */
@@ -570,6 +599,10 @@
       '<div class="stat-grid">' +
       '<div class="stat"><b>' + done + '/' + total + '</b><span>níveis concluídos</span></div>' +
       '<div class="stat"><b>' + matOpen + '/' + matTotal + '</b><span>materiais abertos</span></div>' +
+      (quizIds().length ? (function () {
+        var s = statsOf(state);
+        return '<div class="stat"><b>' + s.acertos + '/' + s.respondidas + '</b><span>acertos nas questões (' + s.blocos + ' de ' + s.blocosTotal + ' blocos)</span></div>';
+      })() : '') +
       '<div class="stat"><b>' + p.toLocaleString('pt-BR') + '</b><span>estrelas</span></div>' +
       '<div class="stat"><b>' + esc(seloNome(seloAtual())) + '</b><span>selo atual</span></div>' +
       '</div>' +
@@ -647,7 +680,9 @@
       '<p>A ordem é sugerida, mas você pode abrir qualquer nível a qualquer momento.</p></div>' +
       '<div class="icard"><h2><span class="badge-num">3</span>Estrelas e selos</h2><ul>' +
       '<li><strong>+' + c.pontos.material + ' estrelas</strong> por material aberto</li>' +
-      '<li><strong>+' + c.pontos.nivel + ' estrelas</strong> por nível concluído</li></ul>' +
+      '<li><strong>+' + c.pontos.nivel + ' estrelas</strong> por nível concluído</li>' +
+      (Object.keys(QUIZ).length ? '<li><strong>+' + c.pontos.acerto + ' estrelas</strong> por acerto nas questões de cada material (só na primeira tentativa)</li>' : '') +
+      '</ul>' +
       '<p>Selos:</p><ul>' + selos + '</ul>' +
       '<p>Ao concluir todos os níveis de um planeta, você recebe uma recompensa e conquista o selo daquele planeta.</p></div>' +
       (LOGIN_ON
@@ -732,6 +767,95 @@
     });
   }
 
+  /* ---------- Bloco de questões de cada material ---------- */
+  var QZ = null; // tentativa em andamento: { mid, i, acertos, respondida, primeira }
+  function openQuiz(mid) {
+    if (!QUIZ[mid] || !QUIZ[mid].length) return;
+    QZ = { mid: mid, i: 0, acertos: 0, respondida: false, primeira: !state.quiz[mid] };
+    renderQuizStep();
+  }
+  function renderQuizStep() {
+    var qs = QUIZ[QZ.mid], q = qs[QZ.i];
+    var m = MATERIALS.filter(function (x) { return x.id === QZ.mid; })[0];
+    var dots = qs.map(function (_, k) { return '<i class="' + (k < QZ.i ? 'ok' : k === QZ.i ? 'on' : '') + '"></i>'; }).join('');
+    var opts = q.opcoes.map(function (o, k) {
+      return '<button type="button" class="qz-opt" data-qz="' + (k + 1) + '"><b aria-hidden="true">' + 'ABCDEF'.charAt(k) + '</b><span>' + esc(o) + '</span></button>';
+    }).join('');
+    var aviso = (QZ.primeira && QZ.i === 0)
+      ? '<p class="qz-note">Só a primeira tentativa vale estrelas (' + DATA.config.pontos.acerto + ' ★ por acerto). Se sair no meio, ela conta com as respostas dadas até ali.</p>'
+      : (!QZ.primeira && QZ.i === 0 ? '<p class="qz-note">Modo estudo: esta tentativa não muda as suas estrelas.</p>' : '');
+    openModal('<div class="qz">' +
+      '<p class="kicker">' + esc(m ? m.titulo : 'Questões') + '</p>' +
+      '<div class="qz-top"><span>Questão ' + (QZ.i + 1) + ' de ' + qs.length + '</span><span class="qz-dots" aria-hidden="true">' + dots + '</span></div>' +
+      aviso +
+      '<h2 id="modalTitle" class="qz-q">' + esc(q.pergunta) + '</h2>' +
+      '<div class="qz-opts" role="group" aria-label="Opções de resposta">' + opts + '</div>' +
+      '<div id="qzFeedback" class="qz-feedback" aria-live="polite"></div>' +
+      '<div class="modal-actions" id="qzActions"><button type="button" class="btn btn-ghost" data-action="close-modal">Sair</button></div>' +
+      '</div>', 'modal-quiz');
+  }
+  function answerQuiz(btn) {
+    if (!QZ || QZ.respondida) return;
+    var qs = QUIZ[QZ.mid], q = qs[QZ.i];
+    var escolha = +btn.getAttribute('data-qz'), certo = escolha === q.resposta;
+    QZ.respondida = true;
+    if (certo) QZ.acertos++;
+    Array.prototype.forEach.call(document.querySelectorAll('.qz-opt'), function (b) {
+      var n = +b.getAttribute('data-qz');
+      b.disabled = true;
+      if (n === q.resposta) { b.classList.add('is-right'); b.insertAdjacentHTML('beforeend', '<em>Correta</em>'); }
+      else if (n === escolha) { b.classList.add('is-wrong'); b.insertAdjacentHTML('beforeend', '<em>Sua resposta</em>'); }
+    });
+    document.getElementById('qzFeedback').innerHTML =
+      '<p class="qz-verdict ' + (certo ? 'ok' : 'bad') + '">' + (certo ? ic('check') + 'Acertou!' : 'Não foi dessa vez.') + '</p>' +
+      (q.explicacao ? '<p>' + esc(q.explicacao) + '</p>' : '');
+    var ultima = QZ.i === qs.length - 1;
+    document.getElementById('qzActions').innerHTML =
+      '<button type="button" class="btn btn-primary" data-action="quiz-next">' + (ultima ? 'Ver resultado' : 'Próxima questão') + ic('arrowR') + '</button>';
+    document.querySelector('[data-action="quiz-next"]').focus();
+  }
+  function nextQuiz() {
+    if (!QZ) return;
+    QZ.i++;
+    QZ.respondida = false;
+    if (QZ.i < QUIZ[QZ.mid].length) { renderQuizStep(); return; }
+    finishQuiz();
+  }
+  /* Registra a primeira tentativa (completa ou interrompida) e atualiza estrelas e card */
+  function registerQuiz(z, total) {
+    state.quiz[z.mid] = { acertos: z.acertos, total: total, em: Date.now() };
+    save();
+    logEvent('quiz_respondido', z.mid + ':' + z.acertos + '/' + total);
+    renderHeader();
+    var y = window.scrollY;
+    route(true);
+    window.scrollTo(0, y);
+    var pts = z.acertos * DATA.config.pontos.acerto;
+    if (pts) toast('+' + pts + ' ★');
+    announce('Questões registradas: ' + z.acertos + ' de ' + total + '.');
+  }
+  function finishQuiz() {
+    var z = QZ, total = QUIZ[z.mid].length;
+    QZ = null;
+    if (z.primeira) registerQuiz(z, total);
+    var reg = state.quiz[z.mid];
+    var titulo = z.acertos === total ? 'Gabaritou!' : (z.acertos / total >= 0.6 ? 'Mandou bem!' : 'Vale revisar o material');
+    openModal('<div class="qz qz-end">' +
+      '<p class="kicker">Resultado</p><h2 id="modalTitle">' + titulo + '</h2>' +
+      '<p class="qz-score"><b>' + z.acertos + '</b> de ' + total + '</p>' +
+      (z.primeira
+        ? '<p class="qz-pts">+' + (z.acertos * DATA.config.pontos.acerto) + ' ★</p>'
+        : '<p>Modo estudo: continua valendo a primeira tentativa (' + reg.acertos + ' de ' + reg.total + ').</p>') +
+      '<div class="modal-actions"><button type="button" class="btn btn-primary" data-action="close-modal">Fechar</button>' +
+      '<button type="button" class="btn btn-ghost" data-quiz="' + esc(z.mid) + '">Refazer para estudar</button></div></div>', 'modal-quiz');
+    lastFocus = main.querySelector('[data-quiz="' + z.mid + '"]') || lastFocus;
+  }
+  function abandonQuiz() {
+    var z = QZ;
+    QZ = null;
+    if (z.primeira && (z.i > 0 || z.respondida)) registerQuiz(z, QUIZ[z.mid].length);
+  }
+
   function togglePreview(btn) {
     var id = btn.getAttribute('data-preview');
     var box = document.getElementById('pv-' + id);
@@ -793,10 +917,11 @@
 
   /* ---------- Modais ---------- */
   var BG = ['.topbar', '#main', '.bottom-nav', '#a11yBtn'];
-  function openModal(html) {
-    lastFocus = document.activeElement;
+  function openModal(html, cls) {
+    // ao trocar o conteúdo de um modal já aberto, guarda o foco de antes do primeiro modal
+    if (!document.querySelector('#modalRoot .modal')) lastFocus = document.activeElement;
     var root = document.getElementById('modalRoot');
-    root.innerHTML = '<div class="backdrop" data-backdrop><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">' + html + '</div></div>';
+    root.innerHTML = '<div class="backdrop" data-backdrop><div class="modal' + (cls ? ' ' + cls : '') + '" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">' + html + '</div></div>';
     document.body.classList.add('has-modal');
     BG.forEach(function (s) { var el = document.querySelector(s); if (el) el.setAttribute('inert', ''); });
     var first = root.querySelector('.modal button, .modal a');
@@ -805,6 +930,7 @@
   function closeModal() {
     var root = document.getElementById('modalRoot');
     if (!root.firstChild) return;
+    if (QZ) abandonQuiz();
     root.innerHTML = '';
     document.body.classList.remove('has-modal');
     BG.forEach(function (s) { var el = document.querySelector(s); if (el) el.removeAttribute('inert'); });
@@ -860,6 +986,10 @@
     if (pv) { togglePreview(pv); return; }
     var sh = t.closest('[data-show]');
     if (sh) { togglePass(sh); return; }
+    var qz = t.closest('[data-quiz]');
+    if (qz) { openQuiz(qz.getAttribute('data-quiz')); return; }
+    var qo = t.closest('[data-qz]');
+    if (qo) { answerQuiz(qo); return; }
     if (t.hasAttribute && t.hasAttribute('data-backdrop')) { closeModal(); return; }
     var a = t.closest('[data-action]');
     if (!a) return;
@@ -888,6 +1018,7 @@
       case 'edit-pass': closeModal(); askNewPassword(); break;
       case 'reset-pass': resetPasswordFor(a.getAttribute('data-id')); break;
       case 'csv': downloadCsv(); break;
+      case 'quiz-next': nextQuiz(); break;
     }
   });
   // Clique com o botão do meio também conta como material aberto
@@ -1191,6 +1322,7 @@
         '<td class="g-prog">' + progressBar(s.done, s.total, 'Progresso de ' + nome, true) + '<span>' + s.pct + '%</span></td>' +
         '<td>' + s.done + '/' + s.total + '</td>' +
         '<td>' + s.opened + '/' + s.matTotal + '</td>' +
+        '<td>' + (s.respondidas ? s.acertos + '/' + s.respondidas + ' <span class="g-email">' + Math.round(s.acertos / s.respondidas * 100) + '% · ' + s.blocos + (s.blocos === 1 ? ' bloco' : ' blocos') + '</span>' : '—') + '</td>' +
         '<td>' + esc(seloNome(s.selo)) + '</td>' +
         '<td>' + dataHora(r.ultimo) + '</td></tr>';
     }).join('');
@@ -1201,7 +1333,7 @@
       (n
         ? '<div class="g-actions"><button type="button" class="btn btn-ghost" data-action="csv">Baixar planilha (CSV)</button></div>' +
           '<div class="table-wrap"><table class="g-table"><caption class="sr-only">Progresso por pessoa</caption>' +
-          '<thead><tr><th scope="col">Pessoa</th><th scope="col">Progresso</th><th scope="col">Dias</th><th scope="col">Materiais</th><th scope="col">Selo</th><th scope="col">Último acesso</th></tr></thead>' +
+          '<thead><tr><th scope="col">Pessoa</th><th scope="col">Progresso</th><th scope="col">Dias</th><th scope="col">Materiais</th><th scope="col">Questões</th><th scope="col">Selo</th><th scope="col">Último acesso</th></tr></thead>' +
           '<tbody>' + body + '</tbody></table></div>'
         : '<div class="empty">Ninguém entrou na trilha ainda. Assim que alguém fizer o primeiro acesso, aparece aqui.</div>');
   }
@@ -1222,6 +1354,10 @@
         return p ? 'Concluiu o planeta ' + p.nome + ' e ganhou o selo ' + seloNome(p) : 'Concluiu um planeta';
       case 'progresso_zerado': return 'Zerou o próprio progresso';
       case 'senha_redefinida': return 'A liderança cadastrou uma nova senha';
+      case 'quiz_respondido':
+        var partes = String(ev.ref || '').split(':');
+        m = MATERIALS.filter(function (x) { return x.id === partes[0]; })[0];
+        return 'Respondeu as questões de "' + (m ? m.titulo : partes[0]) + '": ' + (partes[1] || '').replace('/', ' de ') + ' acertos';
     }
     return ev.tipo;
   }
@@ -1248,6 +1384,16 @@
       '<div class="g-cards">' + statCard(s.pct + '%', 'da trilha concluída') + statCard(s.done + '/' + s.total, 'dias concluídos') +
       statCard(s.opened + '/' + s.matTotal, 'materiais abertos') + statCard(seloNome(s.selo), 'selo atual') + '</div>' +
       '<h2 class="section-title">Planetas</h2><div class="planet-rows">' + planetas + '</div>' +
+      (quizIds().length
+        ? '<h2 class="section-title">Questões por material</h2><div class="table-wrap"><table class="g-table"><caption class="sr-only">Acertos por material</caption>' +
+          '<thead><tr><th scope="col">Material</th><th scope="col">Dia</th><th scope="col">Acertos</th><th scope="col">Quando</th></tr></thead><tbody>' +
+          quizIds().map(function (id) {
+            var mm = MATERIALS.filter(function (x) { return x.id === id; })[0], q = st.quiz[id];
+            return '<tr><td>' + esc(mm.titulo) + '</td><td>' + esc(mm.nivel ? mm.nivel.dia : '') + '</td>' +
+              '<td>' + (q ? '<strong>' + q.acertos + '/' + q.total + '</strong>' : '—') + '</td>' +
+              '<td>' + (q ? dataHora(new Date(q.em).toISOString()) : 'Não respondeu') + '</td></tr>';
+          }).join('') + '</tbody></table></div>'
+        : '') +
       '<h2 class="section-title">Histórico</h2><ol class="timeline" id="timeline"><li>Carregando…</li></ol>';
     sb.from('eventos').select('tipo,ref,criado_em').eq('usuario_id', uid)
       .order('criado_em', { ascending: false }).limit(300)
@@ -1303,10 +1449,10 @@
   }
 
   function downloadCsv() {
-    var linhas = [['Nome', 'E-mail', 'Progresso (%)', 'Dias concluídos', 'Total de dias', 'Materiais abertos', 'Selo', 'Último acesso']];
+    var linhas = [['Nome', 'E-mail', 'Progresso (%)', 'Dias concluídos', 'Total de dias', 'Materiais abertos', 'Blocos de questões respondidos', 'Acertos', 'Questões respondidas', 'Selo', 'Último acesso']];
     GESTOR_ROWS.forEach(function (r) {
       var s = r.stats;
-      linhas.push([nomeDe(r.perfil), r.perfil.email, s.pct, s.done, s.total, s.opened, seloNome(s.selo), r.ultimo ? dataHora(r.ultimo) : '']);
+      linhas.push([nomeDe(r.perfil), r.perfil.email, s.pct, s.done, s.total, s.opened, s.blocos, s.acertos, s.respondidas, seloNome(s.selo), r.ultimo ? dataHora(r.ultimo) : '']);
     });
     var csv = linhas.map(function (l) {
       return l.map(function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; }).join(';');
@@ -1364,6 +1510,7 @@
     d.config = d.config || {};
     d.config.titulo = d.config.titulo || 'Trilha do Consultor JG';
     d.config.pontos = d.config.pontos || { material: 10, nivel: 30 };
+    if (d.config.pontos.acerto == null) d.config.pontos.acerto = 10;
     d.config.seloInicial = d.config.seloInicial || 'Decolagem';
     d.planetas = d.planetas || [];
     LEVELS = []; MATERIALS = [];
@@ -1388,6 +1535,29 @@
     return d;
   }
 
+  /* Questões ficam em data/questoes.json (opcional). Questão mal preenchida é ignorada. */
+  function loadQuiz() {
+    return fetch('data/questoes.json', { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.text() : '{}'; })
+      .then(function (txt) {
+        var raw;
+        try { raw = JSON.parse(txt); } catch (err) {
+          console.warn('data/questoes.json com erro de digitação:', err.message);
+          toast('As questões estão com erro no arquivo e foram desligadas.');
+          return;
+        }
+        Object.keys(raw).forEach(function (mid) {
+          if (mid.charAt(0) === '_' || !Array.isArray(raw[mid])) return;
+          var ok = raw[mid].filter(function (q) {
+            return q && q.pergunta && Array.isArray(q.opcoes) && q.opcoes.length >= 2 &&
+              q.resposta >= 1 && q.resposta <= q.opcoes.length;
+          });
+          if (ok.length) QUIZ[mid] = ok;
+        });
+      })
+      .catch(function () { /* sem questões: o site funciona normalmente */ });
+  }
+
   function showError(msg) {
     main.innerHTML = '<div class="error-box" role="alert"><h1 style="margin-top:0;font-size:1.3rem">Não foi possível carregar a trilha</h1>' + msg + '</div>';
   }
@@ -1407,7 +1577,7 @@
         showError('<p>O arquivo <code>data/trilha.json</code> tem um erro de digitação. Confira vírgulas, aspas e chaves perto do ponto indicado abaixo.</p><p><code>' + esc(err.message) + '</code></p><p>Dica: cole o conteúdo do arquivo em <strong>jsonlint.com</strong> para encontrar a linha exata.</p>');
         return;
       }
-      start();
+      return loadQuiz().then(start);
     })
     .catch(function () {
       showError('<p>O arquivo <code>data/trilha.json</code> não foi encontrado ou não pôde ser lido.</p><p>Se você abriu o <code>index.html</code> direto do computador (dando dois cliques), o navegador bloqueia a leitura do arquivo. Publique o site (GitHub Pages ou Vercel) ou use um servidor local, como explicado no LEIA-ME.</p>');

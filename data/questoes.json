@@ -1,0 +1,1884 @@
+{
+    "_instrucoes":  "Questões de cada material. A chave é o id do material (o mesmo do trilha.json). Cada questão tem: pergunta, opcoes (lista de alternativas), resposta (o número da alternativa certa: 1 = primeira, 2 = segunda...) e explicacao (aparece depois que a pessoa responde). Para tirar as questões de um material, apague o bloco inteiro dele.",
+    "quem-e-a-jg":  [
+                        {
+                            "pergunta":  "Em uma reunião, o secretário pergunta: \"Isso não é só mais uma plataforma de conteúdo?\". Qual resposta está alinhada ao posicionamento da JG?",
+                            "opcoes":  [
+                                           "Sim, mas com um acervo de conteúdo maior e mais atualizado que o das outras plataformas.",
+                                           "Não: o percurso muda conforme o estudante aprende, e a rede enxerga com dados onde agir.",
+                                           "Não: somos uma ferramenta de avaliação externa que substitui as provas aplicadas pela rede.",
+                                           "Sim, e o diferencial é que o conteúdo pode ser usado também fora do horário escolar."
+                                       ],
+                            "resposta":  2,
+                            "explicacao":  "O posicionamento diz que a JG não é uma plataforma de conteúdo: o percurso muda conforme o estudante aprende, e a rede enxerga com dados onde agir."
+                        },
+                        {
+                            "pergunta":  "Ao citar o dado de 4,2x mais aprendizado após intervenção anual, que condição a pessoa consultora deve mencionar junto?",
+                            "opcoes":  [
+                                           "Vale apenas para redes que usam a plataforma há mais de dois anos letivos.",
+                                           "Vale apenas para estudantes do Ensino Médio em preparação para o ENEM.",
+                                           "Vale para todos os estudantes cadastrados, independentemente do uso.",
+                                           "Vale para estudantes que fazem pelo menos 10 questões por semana."
+                                       ],
+                            "resposta":  4,
+                            "explicacao":  "O material traz a nota de que o 4,2x se refere a estudantes que fazem pelo menos 10 questões por semana, ou seja, a quem usa com regularidade."
+                        },
+                        {
+                            "pergunta":  "Uma Secretaria diz que sua prioridade é a alfabetização das crianças de 1º e 2º ano. Qual solução do portfólio responde diretamente a essa etapa?",
+                            "opcoes":  [
+                                           "Alfa, voltada à alfabetização no 1º e 2º ano.",
+                                           "Squad, voltado ao Ensino Fundamental do 3º ao 9º ano.",
+                                           "ALMEJA, voltado à EJA com preparação para o ENCCEJA.",
+                                           "Integra, voltado à educação inclusiva."
+                                       ],
+                            "resposta":  1,
+                            "explicacao":  "No portfólio por etapa, o Alfa atende a alfabetização no 1º e 2º ano; Squad, ALMEJA e Integra atendem outras etapas ou necessidades."
+                        },
+                        {
+                            "pergunta":  "Uma diretora de rede teme que a plataforma seja contratada e fique sem uso nas escolas. O que o material destaca para responder a essa preocupação?",
+                            "opcoes":  [
+                                           "Que a licença é barata o suficiente para não pesar caso o uso seja baixo.",
+                                           "Que o uso é obrigatório e controlado automaticamente pela própria plataforma.",
+                                           "Que a implementação vem junto: formação, suporte contínuo e ações de mobilização.",
+                                           "Que a rede deve contratar uma empresa à parte para treinar os professores."
+                                       ],
+                            "resposta":  3,
+                            "explicacao":  "O material afirma que a tecnologia só gera resultado quando é usada e, por isso, a implementação vem junto, com formação, suporte multicanal e engajamento ao longo do ano."
+                        },
+                        {
+                            "pergunta":  "A Secretaria quer que o programa tenha a cara da rede, com nome, cores e linguagem próprios. Qual oferta da JG atende a esse pedido?",
+                            "opcoes":  [
+                                           "Gestão 360, solução de gestão educacional da rede.",
+                                           "White label e Kit Institucional, com a identidade visual e o vocabulário da rede.",
+                                           "Arena, solução de olimpíadas e desafios para os estudantes.",
+                                           "Suporte multicanal, com chat integrado e atendimento via WhatsApp."
+                                       ],
+                            "resposta":  2,
+                            "explicacao":  "O White label e Kit Institucional coloca o programa com a identidade da rede: identidade visual, nomeação institucional das funcionalidades e textos no vocabulário oficial da rede."
+                        }
+                    ],
+    "pitch-30-segundos":  [
+                              {
+                                  "pergunta":  "Segundo o material, qual é o único objetivo do pitch de 30 segundos?",
+                                  "opcoes":  [
+                                                 "Apresentar todos os produtos da JG de forma rápida e organizada.",
+                                                 "Fechar a venda da plataforma já no primeiro contato com o gestor.",
+                                                 "Conseguir uma conversa de diagnóstico com a rede.",
+                                                 "Mostrar os principais números e prêmios conquistados pela JG."
+                                             ],
+                                  "resposta":  3,
+                                  "explicacao":  "O pitch de 30 segundos não vende a plataforma: ele abre a porta para a reunião, com o objetivo único de conseguir uma conversa de diagnóstico."
+                              },
+                              {
+                                  "pergunta":  "Dos 4 movimentos do pitch de 30 segundos, qual o material aponta como o mais importante?",
+                                  "opcoes":  [
+                                                 "O pedido, que propõe um próximo passo concreto e pequeno.",
+                                                 "O contexto da rede, que mostra que você pesquisou o município.",
+                                                 "O problema, que nomeia a dor na linguagem do gestor.",
+                                                 "Como a JG ajuda, que apresenta a solução em uma frase."
+                                             ],
+                                  "resposta":  1,
+                                  "explicacao":  "O material diz que o pedido é o movimento mais importante: um pitch sem pedido termina em \"que interessante\" e não vira oportunidade."
+                              },
+                              {
+                                  "pergunta":  "Ao ligar para uma rede com turmas heterogêneas e defasagem, a pessoa consultora quer usar uma prova curta. Qual é a forma correta segundo o material?",
+                                  "opcoes":  [
+                                                 "Citar os 4,2x e, logo depois, os 78% de engajamento para reforçar o argumento.",
+                                                 "Dizer que a JG vai aumentar o IDEB da rede a partir do primeiro ano.",
+                                                 "Citar o 4,2x mais aprendizado sem detalhes, para não estourar os 30 segundos.",
+                                                 "Citar o 4,2x mais aprendizado com uso regular, dizendo a condição junto."
+                                             ],
+                                  "resposta":  4,
+                                  "explicacao":  "Para defasagem e recomposição, a prova curta é o 4,2x mais aprendizado, e o material pede para sempre citar a condição (pelo menos 10 questões por semana) junto com o número."
+                              },
+                              {
+                                  "pergunta":  "Você encontra o prefeito de um município em um evento. Qual frase de valor o material sugere para esse interlocutor?",
+                                  "opcoes":  [
+                                                 "\"Dados que o professor usa no planejamento, com correção automática e atividades adaptativas.\"",
+                                                 "\"Apoiar a rede a melhorar os indicadores de aprendizagem do município com acompanhamento contínuo.\"",
+                                                 "\"Saber quais turmas precisam de apoio e manter os alunos engajados ao longo do ano.\"",
+                                                 "\"Uma plataforma com Squad, Calibra e GenieX para todas as etapas da rede.\""
+                                             ],
+                                  "resposta":  2,
+                                  "explicacao":  "Para o prefeito, o foco são as metas do município e o resultado visível, e a frase de valor sugerida fala em melhorar os indicadores de aprendizagem com acompanhamento contínuo."
+                              },
+                              {
+                                  "pergunta":  "Uma pessoa consultora termina o pitch dizendo \"qualquer coisa, me chama\". Qual ajuste o material recomenda?",
+                                  "opcoes":  [
+                                                 "Acrescentar mais números e prêmios antes de encerrar, para gerar interesse.",
+                                                 "Encerrar listando os produtos da JG, para o gestor escolher o que quer ver.",
+                                                 "Trocar por um pedido concreto e pequeno, como 30 minutos para entender a rede.",
+                                                 "Manter a frase, pois ela deixa o gestor à vontade para decidir depois."
+                                             ],
+                                  "resposta":  3,
+                                  "explicacao":  "O material lista terminar sem pedido ou com pedido vago como algo a evitar; o pedido deve propor um próximo passo concreto e pequeno, como uma conversa de 30 minutos."
+                              }
+                          ],
+    "pitch-base-b2g":  [
+                           {
+                               "pergunta":  "Segundo o Pitch Base Comercial B2G, como a conversa com a Secretaria deve começar?",
+                               "opcoes":  [
+                                              "Pela realidade da rede, perguntando quais desafios de aprendizagem a Secretaria acompanha.",
+                                              "Pela apresentação institucional da JG, com história, números e prêmios.",
+                                              "Pela demonstração das funcionalidades da plataforma, para gerar interesse.",
+                                              "Pela apresentação do case de maior resultado, para dar credibilidade."
+                                          ],
+                               "resposta":  1,
+                               "explicacao":  "O primeiro movimento é Entender: a abertura sugerida pergunta sobre a realidade e os desafios da rede antes de apresentar a JG."
+                           },
+                           {
+                               "pergunta":  "Em uma reunião, a secretária diz: \"Nossa rede já tem várias tecnologias\". Qual resposta segue a lógica do Pitch Base?",
+                               "opcoes":  [
+                                              "Explicar que a tecnologia da JG é mais moderna e completa que as atuais.",
+                                              "Propor substituir todas as ferramentas atuais pela plataforma da JG.",
+                                              "Dizer que o desafio é transformar os dados da rede em decisões pedagógicas.",
+                                              "Mostrar o ranking de prêmios de IA da JG para diferenciar a empresa."
+                                          ],
+                               "resposta":  3,
+                               "explicacao":  "Na conexão com o problema, o material diz que o desafio não é ter mais uma tecnologia, e sim transformar os dados que a rede já produz em informação para decisões pedagógicas."
+                           },
+                           {
+                               "pergunta":  "Ao apresentar a JG, o Pitch Base diz que a proposta é conectar três pontos. Quais são eles?",
+                               "opcoes":  [
+                                              "Conteúdo, avaliação e certificação dos estudantes.",
+                                              "Diagnóstico, personalização e acompanhamento da aprendizagem.",
+                                              "Infraestrutura, formação de professores e premiação.",
+                                              "Gamificação, olimpíadas e eventos de reconhecimento."
+                                          ],
+                               "resposta":  2,
+                               "explicacao":  "Na apresentação da JG, o material afirma que a proposta é conectar diagnóstico, personalização e acompanhamento da aprendizagem."
+                           },
+                           {
+                               "pergunta":  "Na etapa de evidências, como a pessoa consultora deve usar números e cases, segundo o Pitch Base?",
+                               "opcoes":  [
+                                              "Apresentar todos os números e cases disponíveis para mostrar a força da JG.",
+                                              "Priorizar os números institucionais, como usuários e instituições atendidas.",
+                                              "Evitar cases e falar apenas da tecnologia por trás da personalização.",
+                                              "Escolher o case conforme o desafio do município e mostrar a solução aplicada."
+                                          ],
+                               "resposta":  4,
+                               "explicacao":  "O material pede menos números e mais aplicação real: o case deve ser escolhido de acordo com o desafio apresentado pelo município."
+                           },
+                           {
+                               "pergunta":  "No fechamento, a secretária concorda em avançar. Qual próximo passo o Pitch Base sugere?",
+                               "opcoes":  [
+                                              "Levantar alunos, etapas, componentes, infraestrutura e objetivos para montar a proposta.",
+                                              "Enviar a mesma proposta padrão usada com os demais municípios.",
+                                              "Agendar uma demonstração completa de todas as funcionalidades da JG.",
+                                              "Enviar a lista de preços e pedir a assinatura do contrato na semana seguinte."
+                                          ],
+                               "resposta":  1,
+                               "explicacao":  "O fechamento propõe entender número de alunos, etapas prioritárias, componentes curriculares, infraestrutura e objetivos da Secretaria para estruturar uma proposta que faça sentido para o município."
+                           }
+                       ],
+    "mapa-produtos":  [
+                          {
+                              "pergunta":  "Em uma reunião, a secretária diz que muitas crianças do 1º e 2º ano não estão alfabetizadas na idade certa. Qual produto JG responde a esse problema, segundo o mapa?",
+                              "opcoes":  [
+                                             "Squad, a plataforma gamificada do 3º ao 9º ano do Ensino Fundamental",
+                                             "Domina, a formação continuada com cursos Light e Premium para educadores",
+                                             "Alfa, com trilha estruturada, avaliação de fluência leitora e caderno impresso",
+                                             "Arena, o módulo de olimpíadas e desafios pedagógicos entre escolas"
+                                         ],
+                              "resposta":  3,
+                              "explicacao":  "O mapa apresenta o Alfa como a solução de alfabetização para 1º e 2º ano, cujo problema resolvido é alfabetizar na idade certa, identificando o estágio real de cada criança."
+                          },
+                          {
+                              "pergunta":  "Segundo o mapa de produtos, o que diferencia a TRI (Teoria de Resposta ao Item) de uma correção tradicional?",
+                              "opcoes":  [
+                                             "Mede a proficiência pela dificuldade e discriminação do item, não só por acerto ou erro, e permite comparar períodos",
+                                             "Conta o total de acertos do aluno e o compara com a média da turma no mesmo bimestre",
+                                             "Ajusta automaticamente o ritmo de cada aula ao histórico de frequência do estudante",
+                                             "Gera rankings entre escolas a partir da quantidade de atividades concluídas na plataforma"
+                                         ],
+                              "resposta":  1,
+                              "explicacao":  "O material define a TRI como a medida da proficiência pela dificuldade e discriminação do item, não só por acerto ou erro, permitindo comparar períodos."
+                          },
+                          {
+                              "pergunta":  "Uma rede quer apoiar estudantes do Ensino Médio na preparação para o ENEM e o Provão Paulista. Qual produto o mapa indica?",
+                              "opcoes":  [
+                                             "Spark, com mais de 170 cursos alinhados ao CNCT",
+                                             "ALMEJA, com módulo de preparação para o ENCCEJA",
+                                             "Calibra, com avaliação diagnóstica digital e fígital",
+                                             "GenieX, com simulados, redação corrigida por IA e tutor inteligente"
+                                         ],
+                              "resposta":  4,
+                              "explicacao":  "O GenieX é a plataforma do Ensino Médio, cujo problema resolvido é preparar para ENEM, Provão Paulista e outros processos seletivos, com simulados, redação por IA e o Genie Bot."
+                          },
+                          {
+                              "pergunta":  "Uma secretaria tem pouca infraestrutura digital e pergunta se dá para fazer avaliação diagnóstica. O que o mapa diz sobre o formato “fígital” do Calibra?",
+                              "opcoes":  [
+                                             "É uma versão 100% online que dispensa qualquer aplicação em papel",
+                                             "É aplicação física com processamento digital, com consultoria e relatórios",
+                                             "É uma prova oral aplicada pelo professor e registrada depois em planilha",
+                                             "É um simulado impresso sem correção, usado apenas para treino dos alunos"
+                                         ],
+                              "resposta":  2,
+                              "explicacao":  "O mapa descreve dois formatos de avaliação diagnóstica: digital (100% online) e fígital, que é aplicação física com processamento digital, ambos com consultoria e relatórios."
+                          },
+                          {
+                              "pergunta":  "O secretário comenta que a rede tem muitos jovens e adultos fora da idade certa querendo concluir os estudos. Qual produto e fundamento se conectam a isso?",
+                              "opcoes":  [
+                                             "Integra, com motor adaptativo e recursos de acessibilidade digital",
+                                             "Spark, com trilhas por competências técnicas para o mundo do trabalho",
+                                             "ALMEJA, com trilhas individualizadas e preparação para o ENCCEJA",
+                                             "Squad, com Raio-X CAT e gamificação aplicada ao currículo"
+                                         ],
+                              "resposta":  3,
+                              "explicacao":  "O ALMEJA é a plataforma de EJA para estudantes em retomada ou com distorção idade-ano, com módulo de preparação para a certificação via ENCCEJA."
+                          }
+                      ],
+    "mapa-servicos":  [
+                          {
+                              "pergunta":  "A secretária teme que professores e famílias vejam o programa como “mais uma plataforma de fora”. Qual serviço JG trata disso, segundo o material?",
+                              "opcoes":  [
+                                             "Suporte técnico multicanal, com chat integrado e WhatsApp",
+                                             "White label e Kit Institucional, com a identidade própria da rede",
+                                             "Consultoria pedagógica, com análise de dados para orientar ações",
+                                             "Eventos, com lançamentos de programas e premiação de olimpíadas"
+                                         ],
+                              "resposta":  2,
+                              "explicacao":  "O White label e Kit resolvem o risco de o programa ser visto como plataforma externa, personalizando identidade visual, nomenclatura e comunicação com a marca da rede."
+                          },
+                          {
+                              "pergunta":  "Segundo o material, qual é a diferença entre o Domina e a Formação das plataformas?",
+                              "opcoes":  [
+                                             "São o mesmo serviço, oferecido em formato presencial ou online conforme a rede",
+                                             "Domina é serviço de suporte técnico; Formação das plataformas é produto de gestão",
+                                             "Domina atende só gestores; Formação das plataformas atende só estudantes",
+                                             "Domina é produto de desenvolvimento profissional; a Formação é serviço para o uso das soluções JG"
+                                         ],
+                              "resposta":  4,
+                              "explicacao":  "O material diz que são duas formações diferentes: o Domina é produto (cursos Light, Premium e trilhas) e a Formação das plataformas é serviço focado no uso qualificado das soluções JG."
+                          },
+                          {
+                              "pergunta":  "Uma diretora relata que os professores travam em dúvidas operacionais e deixam de usar a plataforma. Qual serviço responde a isso e como ele chega à escola?",
+                              "opcoes":  [
+                                             "Suporte técnico multicanal, com chat integrado à plataforma e atendimento via WhatsApp",
+                                             "Engajamento e mobilização, com brindes pedagógicos e ativações presenciais",
+                                             "White label, com textos e mensagens no vocabulário oficial da rede",
+                                             "Eventos, com devolutivas e análise de resultados ao longo da parceria"
+                                         ],
+                              "resposta":  1,
+                              "explicacao":  "O suporte técnico multicanal existe para reduzir barreiras de uso e dúvidas operacionais que travam a adesão, por meio de chat integrado e WhatsApp, ao longo de toda a parceria."
+                          },
+                          {
+                              "pergunta":  "Qual problema a Consultoria pedagógica resolve para a rede, segundo o mapa de serviços?",
+                              "opcoes":  [
+                                             "Instalar e validar dispositivos e conexão de internet nas escolas",
+                                             "Padronizar cores, ícones e nomes das plataformas com a marca da rede",
+                                             "Transformar dados e plataformas em ações pedagógicas alinhadas às prioridades da rede",
+                                             "Organizar competições interescolares e a premiação dos estudantes"
+                                         ],
+                              "resposta":  3,
+                              "explicacao":  "O material afirma que a consultoria pedagógica transforma dados e plataformas em ações pedagógicas alinhadas às prioridades da rede e apoiadas em evidências."
+                          },
+                          {
+                              "pergunta":  "No meio do ano, o gestor percebe queda no uso das soluções pelos estudantes. Qual serviço o material indica para reforçar o vínculo com o programa?",
+                              "opcoes":  [
+                                             "Formação das plataformas, com encontros síncronos e materiais assíncronos",
+                                             "Engajamento e mobilização, com brindes, campanhas de incentivo e ativações",
+                                             "Consultoria pedagógica, com alinhamento às diretrizes curriculares",
+                                             "White label, com integração conceitual a outras iniciativas do município"
+                                         ],
+                              "resposta":  2,
+                              "explicacao":  "O serviço de Engajamento e mobilização existe para reforçar o vínculo dos usuários e manter o uso ao longo do tempo, com brindes, campanhas e ativações."
+                          }
+                      ],
+    "formacao-plataformas":  [
+                                 {
+                                     "pergunta":  "Na formação, uma professora pergunta para que serve o Raio-X CAT no Squad. Qual a resposta correta segundo o material?",
+                                     "opcoes":  [
+                                                    "É a avaliação diagnóstica que identifica o que o estudante já sabe, no botão Minha Trilha",
+                                                    "É o ranking das batalhas entre turmas, exibido no botão Recompensa",
+                                                    "É o relatório de frequência da turma, disponível só para a gestão da rede",
+                                                    "É o assistente virtual que responde dúvidas dos estudantes durante as missões"
+                                                ],
+                                     "resposta":  1,
+                                     "explicacao":  "O material descreve o Raio-X CAT como avaliação diagnóstica interativa que identifica o que o estudante já sabe, localizada no botão Minha Trilha, para rever, nivelar e avançar."
+                                 },
+                                 {
+                                     "pergunta":  "Quais são as quatro ações que a Plataforma do Educador do Squad reúne em um único ambiente?",
+                                     "opcoes":  [
+                                                    "Matricular, corrigir, certificar e publicar notas no diário oficial",
+                                                    "Diagnosticar, competir, premiar e divulgar os resultados às famílias",
+                                                    "Planejar, aplicar, acompanhar e analisar, com dados em tempo real",
+                                                    "Cadastrar, imprimir, aplicar em papel e digitar os resultados depois"
+                                                ],
+                                     "resposta":  3,
+                                     "explicacao":  "Segundo o material, o professor tem em um único ambiente o necessário para planejar, aplicar, acompanhar e analisar, com cada interação gerando dados em tempo real."
+                                 },
+                                 {
+                                     "pergunta":  "Uma instituição de ensino profissional pergunta como seria o ciclo completo do estudante com as soluções JG. Qual sequência o material apresenta?",
+                                     "opcoes":  [
+                                                    "Aprender no Squad, praticar no Alfa, avaliar no Domina e certificar no Spark",
+                                                    "Aprender no Calibra, praticar no Spark, avaliar na Arena e certificar no Domina",
+                                                    "Aprender na Arena, praticar no Gestão 360, avaliar no Spark e certificar no Calibra",
+                                                    "Aprender no Spark, praticar na Arena, avaliar no Calibra e certificar no Gestão 360"
+                                                ],
+                                     "resposta":  4,
+                                     "explicacao":  "O material mostra o ciclo: aprender no Spark, praticar na Arena, avaliar no Calibra (por competências) e certificar no Gestão 360."
+                                 },
+                                 {
+                                     "pergunta":  "Um gestor pergunta se as escolas sem internet poderão usar as plataformas normalmente. O que o material de formação informa?",
+                                     "opcoes":  [
+                                                    "Que as plataformas funcionam offline e sincronizam os dados no fim do mês",
+                                                    "Que a plataforma funciona online, sendo necessário estar conectado à internet",
+                                                    "Que basta baixar o aplicativo uma vez para usar sem conexão o ano todo",
+                                                    "Que o acesso sem internet é liberado apenas para a Plataforma do Educador"
+                                                ],
+                                     "resposta":  2,
+                                     "explicacao":  "O material diz explicitamente que a plataforma funciona online e que é necessário estar conectado à internet para acessar."
+                                 },
+                                 {
+                                     "pergunta":  "Uma coordenadora pergunta como tirar mais proveito do Squad com a turma. Qual orientação o material dá sobre o ciclo de uso?",
+                                     "opcoes":  [
+                                                    "Repetir o ciclo ao longo do bimestre: quanto mais regular o uso, mais precisos os dados e as intervenções",
+                                                    "Aplicar o Raio-X CAT uma única vez por ano e deixar os estudantes livres no restante do tempo",
+                                                    "Usar a plataforma apenas na semana de provas, para não sobrecarregar os professores",
+                                                    "Priorizar as batalhas entre turmas e dispensar a leitura dos relatórios pelo professor"
+                                                ],
+                                     "resposta":  1,
+                                     "explicacao":  "A dica do material é que o ciclo diagnosticar-percorrer-desafiar-acompanhar-intervir se repete no bimestre, e o uso regular torna os dados mais precisos e as intervenções mais certeiras."
+                                 }
+                             ],
+    "biblioteca-provas":  [
+                              {
+                                  "pergunta":  "O site da JG cita \"+10 milhões de pessoas impactadas\". Na biblioteca, essa prova está como \"Validar\". O que a pessoa consultora deve fazer?",
+                                  "opcoes":  [
+                                                 "Usar o número normalmente, pois ele já está publicado no site oficial.",
+                                                 "Usar o número apenas em conversas informais, fora da proposta.",
+                                                 "Usar o número desde que cite o site como fonte.",
+                                                 "Não usar o número em reunião, proposta ou material até ser validado."
+                                             ],
+                                  "resposta":  4,
+                                  "explicacao":  "A biblioteca diz que um número marcado como \"Validar\" não vai para reunião, proposta ou material até alguém confirmar a fonte."
+                              },
+                              {
+                                  "pergunta":  "A secretária relata defasagem e turmas heterogêneas. Qual prova principal a biblioteca recomenda para essa dor?",
+                                  "opcoes":  [
+                                                 "Os 78% de estudantes engajados recorrentemente.",
+                                                 "O 4,2x mais aprendizado, sempre com a condição de uso.",
+                                                 "O selo iImpact LATAM, alinhado aos ODS da ONU.",
+                                                 "O TOP10 World Edtech Digest 2024."
+                                             ],
+                                  "resposta":  2,
+                                  "explicacao":  "Para defasagem e recomposição, a prova principal é o 4,2x mais aprendizado com a condição, tendo TRI, TEC e CAT como prova de apoio."
+                              },
+                              {
+                                  "pergunta":  "Você está em reunião com a equipe de compras e jurídico da prefeitura. Que tipo de prova a biblioteca sugere para esse público?",
+                                  "opcoes":  [
+                                                 "TRI, TEC e CAT, para mostrar a consistência técnica da solução.",
+                                                 "O case de Domingos Mourão, para mostrar resultado em sala de aula.",
+                                                 "Provas de solidez da empresa: instituições atendidas, tempo de existência e investidores.",
+                                                 "Os 78% de engajamento, para mostrar que os alunos usam a plataforma."
+                                             ],
+                                  "resposta":  3,
+                                  "explicacao":  "Para compras e jurídico, o que pesa é a solidez da empresa, e a prova sugerida é +5.000 instituições, tempo de existência e investidores."
+                              },
+                              {
+                                  "pergunta":  "O guia técnico, o site e o Pitch Base trazem números diferentes sobre o alcance da JG. Até haver uma decisão, qual fonte vale?",
+                                  "opcoes":  [
+                                                 "O guia técnico.",
+                                                 "O site, na página Quem Somos.",
+                                                 "O Pitch Base B2G.",
+                                                 "O maior número entre as três fontes."
+                                             ],
+                                  "resposta":  1,
+                                  "explicacao":  "Na seção de divergências, a biblioteca define que, até haver uma decisão, vale o guia técnico."
+                              },
+                              {
+                                  "pergunta":  "Uma pessoa consultora quer citar as redes públicas atendidas (como São José dos Campos e Serra) em uma reunião. Que cuidado a biblioteca pede?",
+                                  "opcoes":  [
+                                                 "Citar apenas redes do mesmo estado do município da reunião.",
+                                                 "Citar as redes junto com o número de alunos atendidos em cada uma.",
+                                                 "Pedir autorização por escrito ao secretário da rede antes de cada reunião.",
+                                                 "Confirmar se o contrato com a rede está ativo antes de citá-la."
+                                             ],
+                                  "resposta":  4,
+                                  "explicacao":  "Na matriz de provas, a ressalva das redes públicas atendidas é confirmar se o contrato está ativo antes de citar."
+                              }
+                          ],
+    "trilha-conceitos-educacionais":  [
+                                          {
+                                              "pergunta":  "Segundo a trilha, qual cadeia a pessoa consultora deve conseguir montar em qualquer conversa com a rede?",
+                                              "opcoes":  [
+                                                             "Produto, preço, desconto, proposta e assinatura do contrato",
+                                                             "Conceito, problema da rede, impacto para o gestor, pergunta e solução JG",
+                                                             "Indicador, ranking, comparação com vizinhos, crítica e substituição do sistema",
+                                                             "Definição, decoreba, prova, certificação e apresentação do catálogo"
+                                                         ],
+                                              "resposta":  2,
+                                              "explicacao":  "O material afirma que o objetivo não é decorar definições, e sim fazer a cadeia conceito, problema da rede, impacto para o gestor, pergunta e solução JG."
+                                          },
+                                          {
+                                              "pergunta":  "De acordo com a trilha, como é composto o IDEB?",
+                                              "opcoes":  [
+                                                             "Pela frequência escolar somada ao número de matrículas da rede",
+                                                             "Pela média das notas bimestrais registradas pelos professores",
+                                                             "Pelo resultado do Censo Escolar ponderado pelo número de escolas",
+                                                             "Pelo desempenho no SAEB combinado com a taxa de aprovação, em escala de 0 a 10"
+                                                         ],
+                                              "resposta":  4,
+                                              "explicacao":  "A trilha define o IDEB como índice que combina o desempenho no SAEB com a taxa de aprovação, em escala de 0 a 10, calculado a cada dois anos."
+                                          },
+                                          {
+                                              "pergunta":  "O secretário diz: “Se eu contratar a JG, vou ganhar mais VAAR?”. Qual a melhor postura segundo a trilha?",
+                                              "opcoes":  [
+                                                             "Explicar que a JG apoia o acompanhamento contínuo da aprendizagem e da equidade, sem prometer ganho de VAAR",
+                                                             "Garantir que a rede vai receber mais recursos do VAAR já no primeiro ano de contrato",
+                                                             "Dizer que o VAAR não tem relação com aprendizagem e mudar de assunto na reunião",
+                                                             "Prometer que a JG cuida da habilitação da rede ao VAAR junto ao governo federal"
+                                                         ],
+                                              "resposta":  1,
+                                              "explicacao":  "A trilha indica como solução JG o acompanhamento contínuo da aprendizagem e da equidade e orienta expressamente: não prometa ganho de VAAR."
+                                          },
+                                          {
+                                              "pergunta":  "A secretária conta que as avaliações do início do ano são em papel e o resultado demora a chegar. Que pergunta a trilha sugere para esse cenário?",
+                                              "opcoes":  [
+                                                             "“Qual é a meta da rede para o próximo IDEB?”",
+                                                             "“Em quantos sistemas a equipe precisa entrar hoje?”",
+                                                             "“Quanto tempo leva hoje entre aplicar uma avaliação e ter o resultado por aluno?”",
+                                                             "“Como a rede forma hoje os professores para usar tecnologia?”"
+                                                         ],
+                                              "resposta":  3,
+                                              "explicacao":  "No conceito de avaliação diagnóstica, a trilha cita relatos de avaliações em papel e demora nos resultados e sugere essa pergunta, conectando ao Raio-X e ao Calibra com resultado em tempo real."
+                                          },
+                                          {
+                                              "pergunta":  "Uma diretora diz que os professores não dão conta de alunos em níveis muito diferentes na mesma turma. A qual conceito e solução JG a trilha conecta isso?",
+                                              "opcoes":  [
+                                                             "Gestão educacional, com o Gestão 360 para unificar matrícula e frequência",
+                                                             "Aprendizagem adaptativa, com trilhas adaptativas do Squad, GenieX e ALMEJA",
+                                                             "VAAR, com acompanhamento das condicionalidades do Fundeb",
+                                                             "SAEB, com simulados e banco de questões da Prova Genial"
+                                                         ],
+                                              "resposta":  2,
+                                              "explicacao":  "A trilha diz que aprendizagem adaptativa aparece quando se fala de turmas heterogêneas e indica as trilhas adaptativas do Squad, GenieX e ALMEJA, com TEC e TRI por trás."
+                                          }
+                                      ],
+    "glossario-educacional":  [
+                                  {
+                                      "pergunta":  "Pelo critério do glossário, quando um conceito pode ser marcado como “Aferido”?",
+                                      "opcoes":  [
+                                                     "Quando a pessoa leu a definição e preencheu a data de estudo",
+                                                     "Quando a pessoa decorou a definição e a repetiu em voz alta",
+                                                     "Quando a pessoa consegue explicar, fazer uma pergunta comercial e conectar à JG",
+                                                     "Quando a pessoa consultou o glossário durante uma reunião com cliente"
+                                                 ],
+                                      "resposta":  3,
+                                      "explicacao":  "O critério sugerido é: aferido = consegue explicar + fazer pergunta comercial + conectar à JG, sem consultar o glossário."
+                                  },
+                                  {
+                                      "pergunta":  "Segundo o glossário, por que acompanhar a proficiência importa para a rede?",
+                                      "opcoes":  [
+                                                     "Permite acompanhar a evolução da aprendizagem para além de olhar aprovação ou reprovação",
+                                                     "Substitui a necessidade de avaliações externas como o SAEB",
+                                                     "Define sozinha o valor de recursos que a rede recebe da União",
+                                                     "Serve para medir a frequência dos estudantes nas aulas presenciais"
+                                                 ],
+                                      "resposta":  1,
+                                      "explicacao":  "O glossário diz que a proficiência permite acompanhar a evolução da aprendizagem para além de simplesmente olhar aprovação ou reprovação."
+                                  },
+                                  {
+                                      "pergunta":  "O secretário diz que os alunos acumulam defasagens e não acompanham a série. Qual pergunta comercial o glossário sugere para esse tema?",
+                                      "opcoes":  [
+                                                     "“Como o município tem acompanhado os indicadores relacionados ao VAAR?”",
+                                                     "“Quais são hoje as principais necessidades de formação dos professores?”",
+                                                     "“Como a Secretaria acompanha os dados das escolas e toma decisões?”",
+                                                     "“A rede já identificou quais habilidades apresentam maior defasagem?”"
+                                                 ],
+                                      "resposta":  4,
+                                      "explicacao":  "Para recomposição da aprendizagem, o glossário sugere essa pergunta e conecta à JG por diagnóstico das lacunas, trilhas personalizadas e acompanhamento da evolução."
+                                  },
+                                  {
+                                      "pergunta":  "Como o glossário define o VAAR?",
+                                      "opcoes":  [
+                                                     "Avaliação nacional que mede a aprendizagem em Português e Matemática",
+                                                     "Complementação da União vinculada a critérios de melhoria da gestão e dos resultados",
+                                                     "Documento que define as aprendizagens essenciais da educação básica",
+                                                     "Indicador que combina desempenho dos estudantes e fluxo escolar"
+                                                 ],
+                                      "resposta":  2,
+                                      "explicacao":  "O glossário define o VAAR como complementação da União vinculada a critérios de melhoria da gestão e dos resultados educacionais."
+                                  },
+                                  {
+                                      "pergunta":  "Em reunião, a secretária comenta que algumas escolas da rede aprendem muito menos que outras. Qual conceito do glossário se aplica e como ele se conecta à JG?",
+                                      "opcoes":  [
+                                                     "BNCC, conectada a conteúdos e alinhamento curricular",
+                                                     "Formação continuada, conectada à formação de professores",
+                                                     "Equidade educacional, conectada à personalização e às diferentes necessidades dos estudantes",
+                                                     "Gestão educacional, conectada à centralização de processos financeiros"
+                                                 ],
+                                      "resposta":  3,
+                                      "explicacao":  "O glossário diz que equidade educacional ajuda a enfrentar desigualdades de aprendizagem dentro da rede e a conecta à personalização e à identificação de diferentes necessidades."
+                                  }
+                              ],
+    "trilha-conceitos-comerciais":  [
+                                        {
+                                            "pergunta":  "Segundo a trilha, o que caracteriza a fase de discovery em uma venda da JG?",
+                                            "opcoes":  [
+                                                           "Apresentar a plataforma logo no início para despertar o interesse da Secretaria",
+                                                           "Entender problema, impacto, prioridade e decisão antes de apresentar qualquer solução",
+                                                           "Enviar a proposta comercial e esperar a resposta da equipe de compras da rede",
+                                                           "Confirmar o prazo de assinatura do contrato com o setor jurídico da prefeitura"
+                                                       ],
+                                            "resposta":  2,
+                                            "explicacao":  "A trilha define discovery como a fase de diagnóstico da venda: entender problema, impacto, prioridade e decisão antes de apresentar solução. Abrir a reunião mostrando a plataforma é apontado como erro comum."
+                                        },
+                                        {
+                                            "pergunta":  "Em uma reunião, a secretária de Educação diz: \"Não temos orçamento\". Segundo a trilha, qual é a melhor reação de quem conduz a conversa?",
+                                            "opcoes":  [
+                                                           "Rebater na hora com um argumento pronto sobre o retorno do investimento",
+                                                           "Encerrar a reunião e marcar a rede como oportunidade perdida no CRM",
+                                                           "Oferecer um desconto imediato para caber no recurso disponível da rede",
+                                                           "Perguntar se a falta de orçamento é para este ano ou de forma geral"
+                                                       ],
+                                            "resposta":  4,
+                                            "explicacao":  "A trilha trata a objeção como pista a investigar e dá como exemplo a pergunta \"é para este ano ou de forma geral?\". Rebater na hora com argumento pronto é o erro comum citado."
+                                        },
+                                        {
+                                            "pergunta":  "Qual é o erro comum que a trilha aponta ao explicar o conceito de B2G?",
+                                            "opcoes":  [
+                                                           "Tratar a Secretaria como um cliente privado, que decide e paga rápido",
+                                                           "Perguntar quem decide a compra antes de falar de preço com a rede",
+                                                           "Considerar o calendário político ao planejar a abordagem da Secretaria",
+                                                           "Respeitar as normas e a hierarquia que a rede pública precisa seguir"
+                                                       ],
+                                            "resposta":  1,
+                                            "explicacao":  "No B2G a compra segue lei, orçamento público e calendário político; por isso o erro comum é tratar a Secretaria como cliente privado que decide e paga rápido."
+                                        },
+                                        {
+                                            "pergunta":  "Qual frase expressa melhor uma proposta de valor da JG, segundo a trilha?",
+                                            "opcoes":  [
+                                                           "\"Nossa plataforma tem gamificação, inteligência artificial e muitos recursos.\"",
+                                                           "\"Temos o maior número de atividades e trilhas digitais do mercado.\"",
+                                                           "\"A Secretaria passa a saber, aluno por aluno, onde intervir.\"",
+                                                           "\"Oferecemos um pacote completo de funcionalidades a um preço justo.\""
+                                                       ],
+                                            "resposta":  3,
+                                            "explicacao":  "Proposta de valor é o resultado que o cliente ganha, dito na linguagem dele, e não a lista de funcionalidades. Falar de recursos como gamificação e IA sem ligar a uma dor é o erro comum."
+                                        },
+                                        {
+                                            "pergunta":  "O secretário pergunta: \"Em quanto tempo conseguimos assinar?\". A modalidade ainda não foi definida. Segundo a trilha, o que fazer?",
+                                            "opcoes":  [
+                                                           "Prometer uma data aproximada para manter o entusiasmo do secretário",
+                                                           "Não prometer prazo e definir o caminho com a coordenação e o jurídico da JG",
+                                                           "Sugerir por conta própria a modalidade mais rápida e informar o prazo",
+                                                           "Dizer que a assinatura depende apenas da aprovação da equipe pedagógica"
+                                                       ],
+                                            "resposta":  2,
+                                            "explicacao":  "A trilha aponta como erro comum prometer prazo de assinatura sem saber a modalidade, e indica que cada caso é definido com a coordenação comercial e o jurídico da JG."
+                                        }
+                                    ],
+    "glossario-comercial":  [
+                                {
+                                    "pergunta":  "Uma Secretaria que fez contato pelo site acabou de aceitar uma reunião com a JG. Segundo o glossário, como ela passa a ser classificada?",
+                                    "opcoes":  [
+                                                   "Lead, porque ainda não demonstrou nenhum interesse na solução",
+                                                   "Oportunidade fechada, porque já existe uma conversa marcada",
+                                                   "Prospect, porque é um lead que já demonstrou algum interesse",
+                                                   "Churn, porque ainda não renovou nenhum contrato com a JG"
+                                               ],
+                                    "resposta":  3,
+                                    "explicacao":  "O glossário define prospect como lead que já demonstrou algum interesse e dá como exemplo na JG a Secretaria que aceitou uma reunião."
+                                },
+                                {
+                                    "pergunta":  "Em uma reunião, o secretário pergunta se a JG garante que a rede vai ganhar mais recursos do VAAR. Qual é a postura correta segundo o glossário?",
+                                    "opcoes":  [
+                                                   "Tratar o VAAR como fonte possível de recurso, sem prometer ganho",
+                                                   "Garantir o ganho, já que o VAAR está ligado a indicadores de aprendizagem",
+                                                   "Dizer que o VAAR não tem relação com resultados e mudar de assunto",
+                                                   "Prometer o ganho só se a rede contratar todas as soluções da JG"
+                                               ],
+                                    "resposta":  1,
+                                    "explicacao":  "O glossário descreve o VAAR como fonte possível de recurso e orienta explicitamente a nunca prometer ganho de VAAR."
+                                },
+                                {
+                                    "pergunta":  "Segundo o glossário, como a JG orienta fazer o follow-up depois de uma reunião?",
+                                    "opcoes":  [
+                                                   "Como cobrança, lembrando a rede de que a proposta aguarda resposta",
+                                                   "Só quando o cliente pedir, para não parecer insistente demais",
+                                                   "Por telefone, sem registro, para manter a conversa informal",
+                                                   "Sempre com resumo e próximo passo, nunca como cobrança"
+                                               ],
+                                    "resposta":  4,
+                                    "explicacao":  "Na JG, o follow-up é feito sempre com resumo e próximo passo, nunca como cobrança, para manter a oportunidade andando."
+                                },
+                                {
+                                    "pergunta":  "Uma pessoa consultora quer abordar um município, mas desconfia que um parceiro já está nele. Segundo o glossário, como se evita conflito de canal?",
+                                    "opcoes":  [
+                                                   "Fazendo o primeiro contato antes do parceiro para garantir a conta",
+                                                   "Com o registro da oportunidade no PRM ou no CRM",
+                                                   "Deixando a Secretaria escolher quem prefere que a atenda",
+                                                   "Oferecendo à rede condições melhores que as do parceiro"
+                                               ],
+                                    "resposta":  2,
+                                    "explicacao":  "O glossário define conflito de canal como parceiro e venda direta disputando o mesmo cliente e diz que ele é evitado com o registro da oportunidade no PRM ou no CRM."
+                                },
+                                {
+                                    "pergunta":  "Segundo o glossário, qual é o papel de um patrocinador interno na venda da JG?",
+                                    "opcoes":  [
+                                                   "Assinar o contrato e emitir o empenho em nome da prefeitura",
+                                                   "Revender a solução da JG em regiões novas, pelo Programa de Partners",
+                                                   "Defender a solução dentro da Secretaria e levar a JG às discussões internas",
+                                                   "Conferir os documentos jurídicos, fiscais e técnicos na fase de habilitação"
+                                               ],
+                                    "resposta":  3,
+                                    "explicacao":  "Patrocinador interno é a pessoa do cliente que defende a solução dentro da organização e leva a JG às reuniões em que o consultor não está."
+                                }
+                            ],
+    "ciclo-compra-publico":  [
+                                 {
+                                     "pergunta":  "Segundo o mapa do ciclo de compra público, em quais etapas a pessoa consultora tem mais influência sobre a venda?",
+                                     "opcoes":  [
+                                                    "Compra, contrato e implantação",
+                                                    "Identificação, modalidade e compra",
+                                                    "Modalidade, compra e contrato",
+                                                    "Diagnóstico, orçamento e formalização"
+                                                ],
+                                     "resposta":  4,
+                                     "explicacao":  "O material diz que as etapas 2, 3 e 4 (diagnóstico, orçamento e formalização) são onde o consultor tem mais influência, pois quando o edital sai necessidade, escopo e orçamento já foram definidos."
+                                 },
+                                 {
+                                     "pergunta":  "A equipe técnica da Secretaria pede que a JG escreva o Estudo Técnico Preliminar e o Termo de Referência. Segundo o material, como agir?",
+                                     "opcoes":  [
+                                                    "Redigir os documentos completos para acelerar o processo da rede",
+                                                    "Fornecer informações técnicas e deixar a rede escrever os documentos",
+                                                    "Recusar qualquer apoio, pois a JG não pode participar dessa etapa",
+                                                    "Pedir ao jurídico da JG que assine os documentos junto com a rede"
+                                                ],
+                                     "resposta":  2,
+                                     "explicacao":  "A documentação da etapa 4 é da rede: a JG fornece informações técnicas (escopo, etapas, número de alunos, referências de preço), mas não escreve os documentos oficiais, pois isso gera risco de questionamento."
+                                 },
+                                 {
+                                     "pergunta":  "Segundo o calendário do orçamento, o que a pessoa consultora deve fazer no segundo semestre?",
+                                     "opcoes":  [
+                                                    "Garantir que a solução entre na previsão orçamentária do ano seguinte",
+                                                    "Fechar apenas oportunidades que já estão na LOA do ano corrente",
+                                                    "Esperar a publicação do edital para começar a conversar com a rede",
+                                                    "Pausar a prospecção, pois o orçamento só é planejado no início do ano"
+                                                ],
+                                     "resposta":  1,
+                                     "explicacao":  "No segundo semestre a LOA do ano seguinte é elaborada e enviada à Câmara; o papel do consultor é garantir que a solução entre na previsão orçamentária."
+                                 },
+                                 {
+                                     "pergunta":  "Uma pessoa consultora conversou só com a equipe pedagógica, e a compra travou. Segundo o material, como esse erro poderia ser evitado?",
+                                     "opcoes":  [
+                                                    "Enviando a proposta antes de confirmar a fonte de recurso",
+                                                    "Esperando a etapa de contrato para falar com o jurídico",
+                                                    "Mapeando as personas desde o diagnóstico",
+                                                    "Prometendo uma data de assinatura ao secretário"
+                                                ],
+                                     "resposta":  3,
+                                     "explicacao":  "Conversar só com o pedagógico faz a compra travar em finanças, compras ou jurídico; o material orienta mapear as personas desde o diagnóstico."
+                                 },
+                                 {
+                                     "pergunta":  "Por que o primeiro ano de mandato de uma nova gestão é apontado como boa janela para mostrar a JG?",
+                                     "opcoes":  [
+                                                    "Porque é quando a LOA do ano corrente é votada pela Câmara",
+                                                    "Porque a nova gestão elabora o seu PPA nesse período",
+                                                    "Porque a lei dispensa licitação no primeiro ano de gestão",
+                                                    "Porque o orçamento do ano já está todo comprometido"
+                                                ],
+                                     "resposta":  2,
+                                     "explicacao":  "O PPA define o planejamento de médio prazo a cada quatro anos, e no primeiro ano de mandato a nova gestão elabora o seu PPA, o que o material aponta como boa janela."
+                                 }
+                             ],
+    "modelos-contratacao":  [
+                                {
+                                    "pergunta":  "Qual é a principal diferença entre pregão e concorrência para a proposta da JG, segundo o guia?",
+                                    "opcoes":  [
+                                                   "No pregão a disputa é por preço; na concorrência a proposta técnica forte faz diferença",
+                                                   "No pregão a proposta técnica é decisiva; na concorrência só o preço é considerado",
+                                                   "Pregão e concorrência dispensam edital quando a solução é inovadora",
+                                                   "Pregão é usado para pilotos; concorrência, para termos de cooperação"
+                                               ],
+                                    "resposta":  1,
+                                    "explicacao":  "O pregão é decidido por menor preço ou maior desconto, e a proposta técnica pesa pouco; a concorrência pode considerar técnica e preço, valorizando a proposta técnica."
+                                },
+                                {
+                                    "pergunta":  "Em uma reunião, alguém da área de compras pergunta: \"A solução de vocês é exclusiva? Daria para contratar por inexigibilidade?\". O que o guia orienta?",
+                                    "opcoes":  [
+                                                   "Confirmar a exclusividade para acelerar a contratação direta",
+                                                   "Dizer que a inexigibilidade não se aplica a soluções educacionais",
+                                                   "Não afirmar exclusividade sem orientação da coordenação e do jurídico",
+                                                   "Sugerir que a rede faça a comprovação sem envolver a equipe da JG"
+                                               ],
+                                    "resposta":  3,
+                                    "explicacao":  "O guia orienta não afirmar que a JG é exclusiva sem orientação da coordenação e do jurídico, já que a comprovação de exclusividade é questionada com frequência por órgãos de controle."
+                                },
+                                {
+                                    "pergunta":  "Uma rede quer aderir a uma ata da JG registrada em outro município. Segundo o guia, o que precisa ser verdade para a adesão funcionar?",
+                                    "opcoes":  [
+                                                   "A rede precisa ter participado do registro de preços original",
+                                                   "A ata deve estar vigente e o escopo da rede deve corresponder ao registrado",
+                                                   "A rede precisa publicar um edital de inovação antes de aderir",
+                                                   "Basta a Secretaria aprovar, pois a adesão não tem limite de quantidade"
+                                               ],
+                                    "resposta":  2,
+                                    "explicacao":  "A adesão depende de ata vigente, tem limites de quantidade e só funciona se a necessidade da rede corresponder ao que foi registrado na ata."
+                                },
+                                {
+                                    "pergunta":  "Segundo o guia, como a pessoa consultora deve tratar um piloto feito por termo de cooperação?",
+                                    "opcoes":  [
+                                                   "Como uma venda concluída, já que gera receita direta para a JG",
+                                                   "Como um favor à rede, sem necessidade de critérios de sucesso",
+                                                   "Como substituto do contrato, dispensando uma contratação futura",
+                                                   "Como etapa da venda, com critérios de sucesso e próximo passo combinados"
+                                               ],
+                                    "resposta":  4,
+                                    "explicacao":  "O termo de cooperação não gera receita direta, mas pode gerar case e relacionamento; o guia orienta tratar pilotos e cooperações como etapa de uma venda, com critérios de sucesso e próximo passo combinados desde o início."
+                                },
+                                {
+                                    "pergunta":  "Um edital de pregão da rede foi publicado e a pessoa consultora tem dúvidas sobre um item. Segundo o guia, como deve proceder?",
+                                    "opcoes":  [
+                                                   "Ligar para a comissão de contratação para esclarecer informalmente",
+                                                   "Pedir ao secretário que altere o item a favor da JG",
+                                                   "Usar os canais oficiais, como pedidos de esclarecimento",
+                                                   "Ignorar a dúvida e enviar a proposta assim mesmo"
+                                               ],
+                                    "resposta":  3,
+                                    "explicacao":  "Durante o processo licitatório, toda comunicação sobre o edital passa pelos canais oficiais, como pedidos de esclarecimento, sem contato indevido com a comissão."
+                                }
+                            ],
+    "icp-b2g":  [
+                    {
+                        "pergunta":  "Um município somou 13 pontos na pontuação do ICP e não tem nenhum sinal de exclusão. Segundo o material, o que fazer?",
+                        "opcoes":  [
+                                       "Nutrir com conteúdo e eventos e esperar um gatilho",
+                                       "Prospectar ativamente agora, com pesquisa completa antes do contato",
+                                       "Monitorar e revisar a classificação a cada semestre",
+                                       "Registrar no CRM como fora do ICP, com data de recontato"
+                                   ],
+                        "resposta":  2,
+                        "explicacao":  "Municípios com 12 a 16 pontos e sem sinal de exclusão são classe A: prospecção ativa agora, com pesquisa completa antes do contato."
+                    },
+                    {
+                        "pergunta":  "Um município classe B acaba de nomear um novo secretário de Educação. Segundo o ICP, o que muda?",
+                        "opcoes":  [
+                                       "Ele cai para classe C até o novo secretário completar um ano",
+                                       "Nada muda, pois gatilhos só valem para municípios classe A",
+                                       "Ele sai do ICP, porque início de gestão trava contratações",
+                                       "Ele sobe para a fila de prospecção ativa, pois há um gatilho ativo"
+                                   ],
+                        "resposta":  4,
+                        "explicacao":  "Novo secretário de Educação é um dos gatilhos listados, e um gatilho ativo sobe um município B para a fila de prospecção ativa."
+                    },
+                    {
+                        "pergunta":  "Um município está no último ano de mandato, sem nenhum processo de compra em andamento. Segundo o ICP, o que a pessoa consultora deve fazer?",
+                        "opcoes":  [
+                                       "Descartar o município definitivamente da base de prospecção",
+                                       "Prospectar com urgência antes que a gestão termine",
+                                       "Registrar no CRM com o motivo e uma data de recontato",
+                                       "Oferecer um piloto gratuito para manter o relacionamento"
+                                   ],
+                        "resposta":  3,
+                        "explicacao":  "Último ano de mandato sem processo em andamento tira o município da prospecção ativa, mas fora do ICP não quer dizer descartado: registra-se no CRM com o motivo e uma data de recontato."
+                    },
+                    {
+                        "pergunta":  "Segundo o ICP, por que o meio de mandato é o momento político prioritário?",
+                        "opcoes":  [
+                                       "Porque início de gestão ainda organiza a casa e fim de mandato trava contratações",
+                                       "Porque é o único período em que a lei permite contratar soluções educacionais",
+                                       "Porque no meio do mandato o IDEB é sempre divulgado pelo Inep",
+                                       "Porque nesse período a rede não precisa de fonte de recurso definida"
+                                   ],
+                        "resposta":  1,
+                        "explicacao":  "O material explica que o início de gestão ainda organiza a casa e o fim de mandato trava contratações, por isso o meio de mandato com prioridade educacional declarada é o perfil prioritário."
+                    },
+                    {
+                        "pergunta":  "Na pesquisa prévia, a pessoa consultora não sabe se a Secretaria é orientada a dados nem se terá acesso ao decisor. Como pontuar esses critérios?",
+                        "opcoes":  [
+                                       "Pontuar 0 nos dois, até que a rede confirme as informações",
+                                       "Pontuar 2 nos dois, para não prejudicar a classificação inicial",
+                                       "Deixar os critérios em branco e não classificar o município",
+                                       "Registrar como \"a confirmar\" e pontuar 1 em cada um"
+                                   ],
+                        "resposta":  4,
+                        "explicacao":  "Esses dois critérios dependem de conversa com a rede; o material orienta registrá-los como \"a confirmar\" na pesquisa prévia e pontuar 1."
+                    }
+                ],
+    "mapa-personas":  [
+                          {
+                              "pergunta":  "Segundo o Mapa de personas, qual papel na compra cabe ao(à) Secretário(a) de Educação e qual pergunta essa persona faz sobre a JG?",
+                              "opcoes":  [
+                                             "Aprova e dá prioridade; pergunta se a solução é boa para o município e para a gestão",
+                                             "Decide; pergunta se a solução melhora os resultados da rede",
+                                             "Influencia e valida; pergunta se a solução cabe no currículo e na rotina das escolas",
+                                             "Viabiliza a contratação; pergunta se existe um caminho legal e seguro para contratar"
+                                         ],
+                              "resposta":  2,
+                              "explicacao":  "O material define o(a) Secretário(a) de Educação como quem decide, com a pergunta \"Isso melhora os resultados da minha rede?\"."
+                          },
+                          {
+                              "pergunta":  "Em uma reunião, a coordenação pedagógica diz: \"Os professores não vão usar\". Qual argumento da JG o material indica para essa persona?",
+                              "opcoes":  [
+                                             "Diagnóstico de conectividade (Mapeia) e suporte multicanal para as escolas",
+                                             "Documentação completa e caminho de contratação definido com o jurídico da JG",
+                                             "Trilhas adaptativas alinhadas à BNCC, com formação incluída",
+                                             "Visão da rede por habilidade, turma e escola para decidir onde intervir"
+                                         ],
+                              "resposta":  3,
+                              "explicacao":  "Para a coordenação pedagógica, cuja objeção provável é \"Os professores não vão usar\", o argumento JG é trilhas adaptativas alinhadas à BNCC, com formação incluída."
+                          },
+                          {
+                              "pergunta":  "A equipe de tecnologia da Secretaria afirma: \"Nossa internet não aguenta\". Qual prova o Mapa de personas sugere usar nessa conversa?",
+                              "opcoes":  [
+                                             "TRI, TEC e CAT, além do diagnóstico Mapeia",
+                                             "Case de uma rede parecida com a do cliente",
+                                             "Mais de 5.000 instituições, quase 9 anos e investidores",
+                                             "Indicador de 78% de engajamento dos professores"
+                                         ],
+                              "resposta":  1,
+                              "explicacao":  "O material indica, para a objeção \"Nossa internet não aguenta\" da equipe de tecnologia, a prova TRI, TEC e CAT e o diagnóstico Mapeia."
+                          },
+                          {
+                              "pergunta":  "Segundo o material, o que indica que uma oportunidade ainda não está qualificada?",
+                              "opcoes":  [
+                                             "A pessoa consultora ainda não apresentou a plataforma ao(à) prefeito(a)",
+                                             "O município ainda não recebeu a proposta comercial formal da JG",
+                                             "A pessoa consultora só conversa com uma persona da Secretaria",
+                                             "A equipe de compras ainda não definiu a modalidade de licitação"
+                                         ],
+                              "resposta":  3,
+                              "explicacao":  "O material afirma: se você só conversa com uma persona, a oportunidade ainda não está qualificada."
+                          },
+                          {
+                              "pergunta":  "Até a 2ª reunião, a pessoa consultora quer mapear a decisão sem constranger o cliente. Qual pergunta o material recomenda?",
+                              "opcoes":  [
+                                             "\"Você tem autonomia para assinar esse contrato sozinho(a)?\"",
+                                             "\"Além de você, quem mais participa de uma decisão como essa?\"",
+                                             "\"Posso falar diretamente com o prefeito sobre essa proposta?\"",
+                                             "\"Qual valor a Secretaria tem disponível para fechar ainda este mês?\""
+                                         ],
+                              "resposta":  2,
+                              "explicacao":  "\"Além de você, quem mais participa de uma decisão como essa?\" está entre as perguntas que não constrangem, listadas para mapear a decisão até a 2ª reunião."
+                          }
+                      ],
+    "dores-por-persona":  [
+                              {
+                                  "pergunta":  "Segundo o material Dores por persona, como o cliente costuma revelar a sua dor na conversa?",
+                                  "opcoes":  [
+                                                 "Declarando a dor de forma direta, como \"minha dor é falta de dados\"",
+                                                 "Por meio de sinais, frases que a pessoa consultora precisa reconhecer e investigar",
+                                                 "Somente nos documentos oficiais da Secretaria enviados após a reunião",
+                                                 "Apenas quando a pessoa consultora apresenta os produtos da JG"
+                                             ],
+                                  "resposta":  2,
+                                  "explicacao":  "O material diz que o cliente não diz a dor, ele dá sinais; o consultor reconhece o sinal e investiga com uma pergunta."
+                              },
+                              {
+                                  "pergunta":  "A coordenadora pedagógica comenta: \"Quando o resultado chega, o bimestre já acabou.\" Qual é a melhor pergunta para investigar, segundo o material?",
+                                  "opcoes":  [
+                                                 "\"Vocês já conhecem o Raio-X e a correção automatizada da JG?\"",
+                                                 "\"Como os professores organizam hoje o atendimento a níveis diferentes?\"",
+                                                 "\"Como foi a última formação de tecnologia da rede?\"",
+                                                 "\"Quanto tempo leva entre aplicar a avaliação e ter o resultado por aluno?\""
+                                             ],
+                                  "resposta":  4,
+                                  "explicacao":  "A frase é o sinal da dor \"dados que chegam tarde\", e o material indica investigar perguntando quanto tempo leva entre aplicar a avaliação e ter o resultado por aluno."
+                              },
+                              {
+                                  "pergunta":  "O prefeito diz: \"Não quero problema com o Tribunal de Contas.\" Que dor esse sinal indica e qual a conexão JG prevista?",
+                                  "opcoes":  [
+                                                 "Risco de contratação questionada; caminho de contratação definido com o jurídico da JG",
+                                                 "Comparação com vizinhos; diagnóstico da rede e case de município parecido",
+                                                 "Pressão por entregas no mandato; programa com indicadores acompanhados e eventos",
+                                                 "Processo longo; cronograma de contratação planejado em conjunto com a Secretaria"
+                                             ],
+                                  "resposta":  1,
+                                  "explicacao":  "Para o(a) prefeito(a), essa frase é o sinal da dor \"risco de contratação questionada\", conectada ao caminho de contratação definido com o jurídico da JG."
+                              },
+                              {
+                                  "pergunta":  "No exercício de escuta ativa do material, qual é o critério de sucesso esperado da pessoa consultora?",
+                                  "opcoes":  [
+                                                 "Apresentar o produto JG certo logo após ouvir a frase do cliente",
+                                                 "Citar de memória as 21 dores das 7 personas na ordem do material",
+                                                 "Reconhecer o sinal e responder com pergunta, não com apresentação de produto",
+                                                 "Identificar a persona e já propor uma demonstração da plataforma"
+                                             ],
+                                  "resposta":  3,
+                                  "explicacao":  "O critério da aferição é reconhecer o sinal e responder com pergunta; só se fala da JG se a dor for confirmada."
+                              },
+                              {
+                                  "pergunta":  "Um(a) professor(a) diz: \"Já tivemos plataforma que ninguém usou.\" Segundo o material, qual pergunta investiga essa dor?",
+                                  "opcoes":  [
+                                                 "\"Quantos níveis diferentes você tem na sua turma?\"",
+                                                 "\"O que fez a última plataforma não dar certo?\"",
+                                                 "\"Quanto tempo por semana vai para correção e planejamento?\"",
+                                                 "\"Como os alunos acessam computadores ou tablets hoje?\""
+                                             ],
+                                  "resposta":  2,
+                                  "explicacao":  "A frase é o sinal da dor \"tecnologia que dá trabalho\", e a pergunta indicada é \"O que fez a última plataforma não dar certo?\"."
+                              }
+                          ],
+    "roteiro-discovery":  [
+                              {
+                                  "pergunta":  "Segundo o Roteiro de discovery, se ao sair da reunião faltou alguma das sete respostas do checklist, qual deve ser o próximo passo?",
+                                  "opcoes":  [
+                                                 "Enviar a proposta e completar as informações durante a negociação",
+                                                 "Agendar uma demonstração completa da plataforma para toda a equipe",
+                                                 "Marcar outra conversa de diagnóstico, e não enviar a proposta",
+                                                 "Encerrar a oportunidade no CRM e nutrir o contato com conteúdo"
+                                             ],
+                                  "resposta":  3,
+                                  "explicacao":  "O material diz: \"Faltou alguma? O próximo passo é outra conversa de diagnóstico, não a proposta.\""
+                              },
+                              {
+                                  "pergunta":  "Qual é a orientação do roteiro sobre o tempo de fala da pessoa consultora durante a reunião de discovery?",
+                                  "opcoes":  [
+                                                 "Falar menos de 30% do tempo da reunião",
+                                                 "Falar cerca de metade do tempo, equilibrando com o cliente",
+                                                 "Falar mais na abertura para apresentar bem a plataforma",
+                                                 "Falar pelo menos 30% do tempo para conduzir o SPIN"
+                                             ],
+                                  "resposta":  1,
+                                  "explicacao":  "O roteiro afirma que, na reunião, o consultor fala menos de 30% do tempo."
+                              },
+                              {
+                                  "pergunta":  "Nos primeiros 5 minutos da reunião, a pessoa consultora quer seguir o roteiro. O que ela deve fazer na abertura?",
+                                  "opcoes":  [
+                                                 "Mostrar rapidamente a plataforma para gerar interesse logo no início",
+                                                 "Apresentar cases e prêmios da JG antes de fazer qualquer pergunta",
+                                                 "Perguntar sobre orçamento e modalidade de contratação da Secretaria",
+                                                 "Apresentar a JG em uma frase, confirmar o tempo e fazer uma pergunta aberta"
+                                             ],
+                                  "resposta":  4,
+                                  "explicacao":  "A abertura é de 5 minutos, sem plataforma: agradecer, apresentar a JG em uma frase, dizer que o objetivo é entender a rede, confirmar o tempo e fazer a primeira pergunta aberta."
+                              },
+                              {
+                                  "pergunta":  "Ao checar a qualificação B2G no roteiro, a pessoa consultora confirmou só 2 dos 5 itens. O que o material orienta?",
+                                  "opcoes":  [
+                                                 "Avançar para demonstração e fechar os itens pendentes depois",
+                                                 "Não fazer proposta; voltar ao diagnóstico ou nutrir a oportunidade",
+                                                 "Enviar uma proposta simplificada para acelerar a decisão",
+                                                 "Marcar uma conversa para fechar o que falta e já enviar a proposta"
+                                             ],
+                                  "resposta":  2,
+                                  "explicacao":  "Com 0 a 2 itens confirmados, o roteiro orienta: não faça proposta; volte ao diagnóstico ou nutra."
+                              },
+                              {
+                                  "pergunta":  "Entre as práticas listadas em \"O que evitar\" no Roteiro de discovery, qual está correta?",
+                                  "opcoes":  [
+                                                 "Fazer perguntas de Implicação antes das perguntas de Situação",
+                                                 "Registrar a reunião no CRM só depois da segunda conversa",
+                                                 "Apresentar a plataforma antes do bloco de Necessidade",
+                                                 "Resumir a dor do cliente e pedir confirmação no fechamento"
+                                             ],
+                                  "resposta":  3,
+                                  "explicacao":  "O roteiro lista como algo a evitar apresentar a plataforma antes do bloco de Necessidade; resumir a dor e pedir confirmação é, ao contrário, parte do fechamento."
+                              }
+                          ],
+    "banco-perguntas-persona":  [
+                                    {
+                                        "pergunta":  "Segundo o Banco de perguntas por persona, como a pessoa consultora deve preparar as perguntas antes de uma reunião?",
+                                        "opcoes":  [
+                                                       "Fazer todas as 56 perguntas para não deixar nenhuma lacuna",
+                                                       "Escolher de 4 a 6 perguntas das personas que estarão na sala",
+                                                       "Usar apenas as perguntas de Necessidade, que abrem espaço para a JG",
+                                                       "Preparar 10 perguntas por persona, independentemente de quem participa"
+                                                   ],
+                                        "resposta":  2,
+                                        "explicacao":  "O material orienta escolher de 4 a 6 perguntas das personas que estarão na sala, pois ninguém faz todas."
+                                    },
+                                    {
+                                        "pergunta":  "No método SPIN do material, como deve ser tratado o bloco de Situação?",
+                                        "opcoes":  [
+                                                       "Bastante, pois é o centro do diagnóstico",
+                                                       "No fim, pois abre espaço para a JG",
+                                                       "Com cuidado, pois é o que cria urgência",
+                                                       "Pouco: o que der para pesquisar antes, não pergunte"
+                                                   ],
+                                        "resposta":  4,
+                                        "explicacao":  "Para Situação, o material indica \"Pouco: o que der para pesquisar antes, não pergunte\"; Problema é o centro do diagnóstico."
+                                    },
+                                    {
+                                        "pergunta":  "A pessoa consultora vai conversar com o(a) prefeito(a). Qual orientação o material dá para essa conversa?",
+                                        "opcoes":  [
+                                                       "Conversa curta: 3 ou 4 perguntas, no máximo",
+                                                       "Priorizar perguntas técnicas sobre conectividade e LGPD",
+                                                       "Explorar todos os blocos SPIN com pelo menos 6 perguntas",
+                                                       "Focar em perguntas sobre currículo e formação docente"
+                                                   ],
+                                        "resposta":  1,
+                                        "explicacao":  "Para o(a) prefeito(a), o material orienta conversa curta, com 3 ou 4 perguntas, no máximo, focada em entregas, visibilidade e segurança."
+                                    },
+                                    {
+                                        "pergunta":  "O cliente responde de forma genérica: \"Temos dificuldades na aprendizagem.\" Qual pergunta coringa o material recomenda?",
+                                        "opcoes":  [
+                                                       "\"Por que isso virou prioridade agora?\"",
+                                                       "\"Entre tudo isso, o que é mais urgente para vocês?\"",
+                                                       "\"Pode me dar um exemplo de uma escola ou turma em que isso acontece?\"",
+                                                       "\"Deixa eu ver se entendi: [resumo]. É isso?\""
+                                                   ],
+                                        "resposta":  3,
+                                        "explicacao":  "Para resposta genérica, a pergunta coringa indicada é pedir um exemplo de uma escola ou turma em que isso acontece."
+                                    },
+                                    {
+                                        "pergunta":  "Na conversa com a equipe de tecnologia, qual é o objetivo indicado pelo Banco de perguntas?",
+                                        "opcoes":  [
+                                                       "Convencer a equipe de que a plataforma JG é superior às atuais",
+                                                       "Achar riscos de implantação cedo, não convencer",
+                                                       "Obter a aprovação final da compra antes da Secretaria",
+                                                       "Definir a modalidade de contratação junto com o jurídico"
+                                                   ],
+                                        "resposta":  2,
+                                        "explicacao":  "O material diz que, com a equipe de tecnologia, o objetivo é achar riscos de implantação cedo, não convencer."
+                                    }
+                                ],
+    "criterios-qualificacao":  [
+                                   {
+                                       "pergunta":  "Segundo os Critérios de qualificação, quando um critério pode ser considerado confirmado?",
+                                       "opcoes":  [
+                                                      "Quando a pessoa consultora tem boa percepção de que ele existe",
+                                                      "Quando o cliente disse ou mostrou algo que dá para registrar no CRM",
+                                                      "Quando o gestor comercial aprova a oportunidade no pipeline",
+                                                      "Quando o município aparece em notícias sobre investimento em educação"
+                                                  ],
+                                       "resposta":  2,
+                                       "explicacao":  "O material diz que um critério só conta quando o cliente disse ou mostrou algo registrável no CRM; \"acho que tem orçamento\" não conta."
+                                   },
+                                   {
+                                       "pergunta":  "Quais são os dois critérios eliminatórios, obrigatórios para uma oportunidade ser qualificada?",
+                                       "opcoes":  [
+                                                      "Orçamento identificado e decisor envolvido",
+                                                      "Prazo definido e caminho de contratação identificado",
+                                                      "Prioridade da gestão e orçamento aprovado",
+                                                      "Dor confirmada e encaixe no ICP"
+                                                  ],
+                                       "resposta":  4,
+                                       "explicacao":  "Os eliminatórios são dor confirmada e encaixe no ICP (município A ou B, sem sinal de exclusão); sem eles não há qualificação, mesmo com orçamento."
+                                   },
+                                   {
+                                       "pergunta":  "Uma oportunidade tem os dois eliminatórios ok e 3 dos 5 critérios B2G confirmados. Segundo o material, o que fazer?",
+                                       "opcoes":  [
+                                                      "Avançar para demonstração e combinar como fechar os pendentes",
+                                                      "Montar a proposta e validar o escopo com o decisor antes de enviar",
+                                                      "Voltar ao diagnóstico, sem demonstração completa nem proposta",
+                                                      "Desqualificar a oportunidade e nutrir com conteúdo"
+                                                  ],
+                                       "resposta":  1,
+                                       "explicacao":  "Eliminatórios ok mais 3 ou 4 critérios B2G colocam a oportunidade como Qualificada: avance para demonstração e combine como fechar os pendentes."
+                                   },
+                                   {
+                                       "pergunta":  "No primeiro contato, o cliente pede: \"Manda uma proposta.\" Qual é a melhor resposta segundo o material?",
+                                       "opcoes":  [
+                                                      "Enviar a proposta no mesmo dia para não perder o interesse",
+                                                      "Enviar só uma faixa de preço para o cliente comparar",
+                                                      "Pedir uma conversa de diagnóstico antes de enviar valor",
+                                                      "Agendar uma demonstração completa sem fazer discovery"
+                                                  ],
+                                       "resposta":  3,
+                                       "explicacao":  "O material trata esse pedido como sinal de alerta (cotação para comparar ou cumprir rito) e orienta pedir uma conversa de diagnóstico antes de enviar valor."
+                                   },
+                                   {
+                                       "pergunta":  "A rede reconhece a dor, mas o tema não é urgente para a gestão. Segundo \"Desqualificar não é perder\", qual é o próximo passo?",
+                                       "opcoes":  [
+                                                      "Pausar 90 dias e tentar outro contato na rede",
+                                                      "Revisar a classificação do município no semestre seguinte",
+                                                      "Buscar indicação de um parceiro ou de rede próxima",
+                                                      "Nutrir com conteúdo e acompanhar gatilhos"
+                                                  ],
+                                       "resposta":  4,
+                                       "explicacao":  "O motivo \"Não é prioridade\" (dor reconhecida, sem urgência para a gestão) tem como próximo passo nutrir com conteúdo e acompanhar gatilhos."
+                                   }
+                               ],
+    "treinamento-spin":  [
+                             {
+                                 "pergunta":  "Segundo o Treinamento SPIN, qual tipo de pergunta mais diferencia um bom consultor, por transformar uma dor reconhecida em uma dor urgente?",
+                                 "opcoes":  [
+                                                "Situação, porque mostra domínio sobre os dados da rede",
+                                                "Implicação, porque faz o cliente medir o custo de não resolver",
+                                                "Necessidade, porque apresenta logo o valor da solução da JG",
+                                                "Problema, porque confirma a dor que a JG já sabe resolver"
+                                            ],
+                                 "resposta":  2,
+                                 "explicacao":  "O material afirma que a Implicação é a pergunta que mais diferencia um bom consultor: ela faz o cliente medir o custo de não resolver e torna a dor urgente."
+                             },
+                             {
+                                 "pergunta":  "Em uma reunião, a pessoa consultora pergunta à secretária: \"Quantas escolas a rede tem hoje?\". Segundo o treinamento, qual é o problema dessa pergunta?",
+                                 "opcoes":  [
+                                                "É uma pergunta de Implicação feita cedo demais na conversa",
+                                                "É uma pergunta de Necessidade que soa como pitch disfarçado",
+                                                "É uma pergunta de Problema fechada, que termina em sim ou não",
+                                                "É uma pergunta de Situação sobre algo que dava para pesquisar antes"
+                                            ],
+                                 "resposta":  4,
+                                 "explicacao":  "O erro comum nas perguntas de Situação é perguntar o que dá para pesquisar antes, como o número de escolas; muitas delas cansam o cliente e parecem interrogatório."
+                             },
+                             {
+                                 "pergunta":  "A secretária contou que o resultado da avaliação chega quando o bimestre já acabou. Qual pergunta é de Implicação, segundo o material?",
+                                 "opcoes":  [
+                                                "\"E o que isso significa para a meta do IDEB nos Anos Finais?\"",
+                                                "\"Como a Secretaria acompanha hoje a evolução dos alunos?\"",
+                                                "\"A JG resolveria isso com dados semanais, não é?\"",
+                                                "\"Que avaliações a rede aplica além do SAEB?\""
+                                            ],
+                                 "resposta":  1,
+                                 "explicacao":  "Na sequência de exemplo do treinamento, depois da dor do resultado tardio, a pergunta de Implicação explora a consequência para a meta do IDEB nos Anos Finais."
+                             },
+                             {
+                                 "pergunta":  "Qual é o erro comum associado às perguntas de Necessidade, segundo o Treinamento SPIN?",
+                                 "opcoes":  [
+                                                "Fazê-las no fim da conversa, quando o cliente já está cansado",
+                                                "Usá-las para que o próprio cliente diga o valor de resolver",
+                                                "Fazê-las antes de o problema estar claro, soando como pitch disfarçado",
+                                                "Combiná-las com perguntas de Implicação na mesma conversa"
+                                            ],
+                                 "resposta":  3,
+                                 "explicacao":  "O material diz que fazer a pergunta de Necessidade antes de o problema estar claro é um erro, pois ela soa como pitch disfarçado."
+                             },
+                             {
+                                 "pergunta":  "Segundo a ficha do observador do treinamento, como é uma boa conversa em termos de tipos de pergunta?",
+                                 "opcoes":  [
+                                                "Muitas perguntas de Situação e uma de Necessidade no fim",
+                                                "Poucas perguntas de Situação e pelo menos duas de Implicação",
+                                                "Uma pergunta de cada tipo, sempre na ordem S, P, I e N",
+                                                "Perguntas de Problema e Necessidade, evitando a Implicação"
+                                            ],
+                                 "resposta":  2,
+                                 "explicacao":  "A ficha do observador afirma que uma boa conversa tem poucas perguntas de Situação e pelo menos duas de Implicação."
+                             }
+                         ],
+    "roteiro-primeira-reuniao":  [
+                                     {
+                                         "pergunta":  "Segundo o roteiro, qual é o objetivo principal da primeira reunião com a rede?",
+                                         "opcoes":  [
+                                                        "Apresentar o institucional completo e enviar a proposta comercial",
+                                                        "Fechar a venda enquanto o interesse do cliente ainda está alto",
+                                                        "Criar confiança, entender o contexto e sair com próximo passo marcado",
+                                                        "Mostrar todas as funcionalidades da plataforma em uma demonstração"
+                                                    ],
+                                         "resposta":  3,
+                                         "explicacao":  "O roteiro diz que a primeira reunião não é para vender, e sim para criar confiança, entender o contexto da rede e sair com um próximo passo marcado."
+                                     },
+                                     {
+                                         "pergunta":  "Logo no início da reunião, o secretário pede: \"Mostra logo a plataforma\". Qual é a melhor reação segundo o roteiro?",
+                                         "opcoes":  [
+                                                        "Pedir para fazer duas perguntas antes e depois mostrar só uma tela ligada à resposta",
+                                                        "Abrir a apresentação institucional completa para contextualizar a JG",
+                                                        "Explicar que a plataforma só é mostrada em uma segunda reunião",
+                                                        "Fazer um tour por todas as funcionalidades para não perder o interesse"
+                                                    ],
+                                         "resposta":  1,
+                                         "explicacao":  "O roteiro orienta responder que mostra, sim, mas pedir duas perguntas antes, e depois mostrar só uma tela ligada à resposta."
+                                     },
+                                     {
+                                         "pergunta":  "Na etapa \"Entender a rede\" da primeira reunião, qual orientação o roteiro dá a quem conduz a conversa?",
+                                         "opcoes":  [
+                                                        "Apresentar dois cases para ilustrar os desafios mais comuns",
+                                                        "Falar menos de 30% do tempo e priorizar o diagnóstico",
+                                                        "Usar o pitch de 30 segundos antes de cada pergunta feita",
+                                                        "Passar logo para a estimativa de preço se o cliente pedir"
+                                                    ],
+                                         "resposta":  2,
+                                         "explicacao":  "Na etapa 4 a pessoa consultora deve falar menos de 30% do tempo; se a conversa render, pode trocar a etapa 5 por mais perguntas, pois um bom diagnóstico vale mais."
+                                     },
+                                     {
+                                         "pergunta":  "A reunião foi encurtada para 15 minutos. Segundo o roteiro, o que fazer?",
+                                         "opcoes":  [
+                                                        "Cumprir todas as sete etapas, reduzindo o tempo de cada uma",
+                                                        "Apresentar o pitch de 2 minutos e enviar o material por e-mail",
+                                                        "Remarcar a reunião, pois 15 minutos não permitem diagnóstico",
+                                                        "Fazer a conexão, uma pergunta de dor e combinar o próximo passo"
+                                                    ],
+                                         "resposta":  4,
+                                         "explicacao":  "Para reunião encurtada para 15 minutos, o roteiro indica conexão, uma pergunta de dor e próximo passo, sem tentar encaixar o resto."
+                                     },
+                                     {
+                                         "pergunta":  "No meio da reunião, a pessoa interlocutora pergunta: \"Quanto custa?\". Qual é a resposta recomendada pelo roteiro?",
+                                         "opcoes":  [
+                                                        "Informar uma faixa de preço média praticada com outras redes",
+                                                        "Dizer que preço só é discutido depois da demonstração completa",
+                                                        "Dizer que depende do desenho para a rede e pedir para conhecer a rede",
+                                                        "Oferecer um desconto inicial para manter o interesse da Secretaria"
+                                                    ],
+                                         "resposta":  3,
+                                         "explicacao":  "O roteiro sugere dizer que depende do desenho para a rede (etapas, número de alunos e serviços), pedir que contem sobre a rede e trazer uma estimativa na próxima conversa."
+                                     }
+                                 ],
+    "roteiro-demonstracao":  [
+                                 {
+                                     "pergunta":  "Segundo o Roteiro de demonstração, o que fazer com uma funcionalidade que não se conecta a nenhuma dor levantada pelo cliente?",
+                                     "opcoes":  [
+                                                    "Mostrá-la rapidamente no fim, para garantir",
+                                                    "Deixá-la de fora da demo, mesmo sendo boa",
+                                                    "Apresentá-la só se sobrar tempo na etapa de Gestão",
+                                                    "Enviá-la depois por e-mail junto com o follow-up"
+                                                ],
+                                     "resposta":  2,
+                                     "explicacao":  "O roteiro diz que cada tela responde a algo que o cliente disse; se uma funcionalidade não se conecta a nenhuma dor, ela fica de fora, mesmo sendo boa."
+                                 },
+                                 {
+                                     "pergunta":  "A demonstração será para o secretário de Educação, presente na sala. Como o roteiro orienta ajustar a ordem da demo?",
+                                     "opcoes":  [
+                                                    "Começar pelo Estudante para mostrar o engajamento dos alunos",
+                                                    "Pular a abertura e ir direto para o case de outra rede",
+                                                    "Manter a ordem padrão e apenas encurtar a etapa do Professor",
+                                                    "Inverter: começar pela Gestão e descer até o aluno"
+                                                ],
+                                     "resposta":  4,
+                                     "explicacao":  "O material orienta que, com secretário ou prefeito na sala, a ordem seja invertida: começar pela Gestão e descer até o aluno."
+                                 },
+                                 {
+                                     "pergunta":  "A rede relata dificuldade em saber em que estágio está cada criança do 1º e 2º ano. Segundo o roteiro, o que mostrar?",
+                                     "opcoes":  [
+                                                    "JG Alfa: trilha, fluência leitora e níveis de Silábico a Letrado",
+                                                    "GenieX: simulados, redação corrigida por IA e cronograma adaptativo",
+                                                    "Batalhas e Liga das Estrelas, para aumentar o engajamento",
+                                                    "Prova Genial e simulados SAEB, com relatório por habilidade"
+                                                ],
+                                     "resposta":  1,
+                                     "explicacao":  "Para a dor de alfabetização, o roteiro indica mostrar o JG Alfa, com trilha, fluência leitora e níveis de Silábico a Letrado."
+                                 },
+                                 {
+                                     "pergunta":  "Durante a demo, o cliente desvia para preço. Qual é a resposta sugerida pelo roteiro?",
+                                     "opcoes":  [
+                                                    "Apresentar a tabela de preços e voltar à demonstração",
+                                                    "Dizer que depende do desenho e que antes quer confirmar se resolve",
+                                                    "Encerrar a demo e marcar uma reunião só para falar de valores",
+                                                    "Oferecer um desconto caso a rede feche ainda este ano"
+                                                ],
+                                     "resposta":  2,
+                                     "explicacao":  "Na lista de imprevistos, quando o cliente desvia para preço, a resposta é: \"Depende do desenho para a rede. Antes, quero confirmar se isso resolve.\""
+                                 },
+                                 {
+                                     "pergunta":  "Segundo o roteiro, o que deve acontecer se ainda não houve diagnóstico com a rede?",
+                                     "opcoes":  [
+                                                    "Fazer uma demo completa para despertar o interesse da rede",
+                                                    "Mostrar apenas a etapa de Gestão para o decisor",
+                                                    "Não fazer a demo e voltar para as perguntas de diagnóstico",
+                                                    "Fazer a demo com dados fictícios e diagnosticar depois"
+                                                ],
+                                     "resposta":  3,
+                                     "explicacao":  "O material afirma que, sem diagnóstico feito, não há demo: é preciso voltar para as perguntas."
+                                 }
+                             ],
+    "matriz-objecoes":  [
+                            {
+                                "pergunta":  "Segundo a Matriz de objeções, qual é a regra antes de responder a uma objeção do cliente?",
+                                "opcoes":  [
+                                               "Responder logo, para mostrar segurança e domínio",
+                                               "Investigar o que está por trás antes de responder",
+                                               "Encaminhar a objeção direto para a coordenação",
+                                               "Concordar com o cliente e mudar de assunto"
+                                           ],
+                                "resposta":  2,
+                                "explicacao":  "A matriz explica que uma objeção quase nunca é o que parece, e a regra é investigar antes de responder."
+                            },
+                            {
+                                "pergunta":  "A secretária diz: \"Já temos avaliação própria\". Segundo a matriz, qual é a melhor pergunta para investigar?",
+                                "opcoes":  [
+                                               "\"Quanto vocês pagam hoje por essa avaliação?\"",
+                                               "\"Vocês aceitariam trocar a avaliação pela da JG?\"",
+                                               "\"Quem decide sobre as avaliações da rede?\"",
+                                               "\"O que fazem com o resultado? Quanto tempo leva para chegar ao professor?\""
+                                           ],
+                                "resposta":  4,
+                                "explicacao":  "A matriz sugere perguntar o que a rede faz com o resultado e quanto tempo leva para chegar ao professor, para depois mostrar o que vem depois da avaliação."
+                            },
+                            {
+                                "pergunta":  "A objeção \"Estamos em fim de mandato\" pertence a qual categoria da matriz?",
+                                "opcoes":  [
+                                               "Momento",
+                                               "Decisão",
+                                               "Risco de implantação",
+                                               "Processo e segurança"
+                                           ],
+                                "resposta":  1,
+                                "explicacao":  "Na matriz, \"Estamos em fim de mandato\" está na categoria Momento, ao lado de \"Só no ano que vem\" e \"Agora não é prioridade\"."
+                            },
+                            {
+                                "pergunta":  "O cliente diz: \"O estado já fornece\". Segundo a matriz, qual é o próximo passo indicado?",
+                                "opcoes":  [
+                                               "Propor a substituição completa do programa estadual",
+                                               "Encerrar a oportunidade e recontatar no próximo mandato",
+                                               "Posicionar a JG como complemento ao programa do estado",
+                                               "Pedir uma conversa técnica sobre segurança e LGPD"
+                                           ],
+                                "resposta":  3,
+                                "explicacao":  "Para \"O estado já fornece\", a matriz indica investigar o que o programa estadual cobre e posicionar a JG como complemento."
+                            },
+                            {
+                                "pergunta":  "Surgiu uma objeção que não está na matriz. O que o material orienta fazer?",
+                                "opcoes":  [
+                                               "Ignorá-la, pois as 15 objeções da matriz cobrem os casos relevantes",
+                                               "Registrá-la no CRM e avisar a área de Sales Enablement",
+                                               "Responder com a fala da objeção mais parecida da matriz",
+                                               "Pedir ao cliente que envie a objeção por escrito à JG"
+                                           ],
+                                "resposta":  2,
+                                "explicacao":  "O material diz que, quando aparecer uma objeção que não está na matriz, ela deve ser registrada no CRM e a área de Sales Enablement avisada para incluí-la."
+                            }
+                        ],
+    "respostas-investigacao":  [
+                                   {
+                                       "pergunta":  "Segundo o documento, quais são os quatro passos para lidar com toda objeção, na ordem?",
+                                       "opcoes":  [
+                                                      "Investigar, responder, negociar e fechar",
+                                                      "Rebater, explicar, comprovar e avançar",
+                                                      "Acolher, investigar, responder e avançar",
+                                                      "Acolher, responder, investigar e encerrar"
+                                                  ],
+                                       "resposta":  3,
+                                       "explicacao":  "O método do documento tem quatro passos: acolher, investigar, responder ao que foi descoberto e avançar com um próximo passo."
+                                   },
+                                   {
+                                       "pergunta":  "Diante da objeção \"É caro\", a pessoa consultora descobre que o escopo ficou grande demais. Qual resposta o documento sugere?",
+                                       "opcoes":  [
+                                                      "Começar por uma etapa ou um grupo de escolas e ampliar com os resultados",
+                                                      "Oferecer um desconto para manter o escopo completo da proposta",
+                                                      "Comparar a JG com soluções mais simples e mostrar que é mais barata",
+                                                      "Sugerir que a rede espere o próximo ano para ter mais orçamento"
+                                                  ],
+                                       "resposta":  1,
+                                       "explicacao":  "Quando o escopo ficou grande demais, a resposta-base é começar por uma etapa ou um grupo de escolas e ampliar com os resultados."
+                                   },
+                                   {
+                                       "pergunta":  "Por que o documento recomenda evitar dizer \"Vocês vão aumentar o IDEB\" ao cliente?",
+                                       "opcoes":  [
+                                                      "Porque o IDEB não é um indicador relevante para as redes",
+                                                      "Porque soa como crítica à gestão atual da Secretaria",
+                                                      "Porque o tema deve ser tratado só com o jurídico",
+                                                      "Porque é uma promessa que a JG não controla"
+                                                  ],
+                                       "resposta":  4,
+                                       "explicacao":  "O documento diz que essa frase é uma promessa que a JG não controla; prefira dizer que a solução ajuda a acompanhar e agir sobre a aprendizagem."
+                                   },
+                                   {
+                                       "pergunta":  "O cliente pergunta sobre exigências jurídicas e de LGPD e a pessoa consultora não sabe a resposta técnica. O que fazer, segundo o documento?",
+                                       "opcoes":  [
+                                                      "Garantir que a JG atende a todas as exigências e seguir adiante",
+                                                      "Não improvisar, dizer que vai trazer quem sabe e marcar a conversa",
+                                                      "Dizer que isso não é problema, pois outras redes já contrataram",
+                                                      "Pedir que a rede envie as exigências e responder por e-mail sozinho"
+                                                  ],
+                                       "resposta":  2,
+                                       "explicacao":  "Nas objeções de processo e segurança, o documento orienta não improvisar: dizer que vai trazer quem sabe e marcar a conversa técnica."
+                                   },
+                                   {
+                                       "pergunta":  "Na primeira objeção de preço, por que o documento recomenda não oferecer desconto logo?",
+                                       "opcoes":  [
+                                                      "Porque descontos só podem ser dados após a assinatura do contrato",
+                                                      "Porque a rede pública é proibida de negociar valores",
+                                                      "Porque ensina o cliente a negociar só pelo preço",
+                                                      "Porque o desconto deve ser oferecido pelo decisor"
+                                                  ],
+                                       "resposta":  3,
+                                       "explicacao":  "Segundo o documento, dar desconto na primeira objeção de preço ensina o cliente a negociar só pelo preço; o melhor é investigar e rever o escopo."
+                                   }
+                               ],
+    "roteiro-proximo-passo":  [
+                                  {
+                                      "pergunta":  "Segundo o roteiro, qual destas frases é um próximo passo de verdade?",
+                                      "opcoes":  [
+                                                     "\"Vou pensar e te retorno assim que possível\"",
+                                                     "\"Vamos nos falando ao longo das próximas semanas\"",
+                                                     "\"Me manda uma proposta para eu analisar com calma\"",
+                                                     "\"Dia 12, às 14h, demonstração para o secretário e a equipe pedagógica\""
+                                                 ],
+                                      "resposta":  4,
+                                      "explicacao":  "Próximo passo é uma ação concreta, com data, combinada com o cliente; a demonstração no dia 12, às 14h, com participantes definidos, é o exemplo do roteiro."
+                                  },
+                                  {
+                                      "pergunta":  "Qual item do checklist do bom próximo passo o roteiro aponta como o mais esquecido?",
+                                      "opcoes":  [
+                                                     "Data e horário definidos",
+                                                     "Compromisso do cliente",
+                                                     "Participantes do lado da JG",
+                                                     "Confirmação por e-mail no dia seguinte"
+                                                 ],
+                                      "resposta":  2,
+                                      "explicacao":  "O roteiro diz que o item mais esquecido é o compromisso do cliente: se só a JG tem tarefa, o cliente ainda não está envolvido de verdade."
+                                  },
+                                  {
+                                      "pergunta":  "Ao propor o próximo passo no fim da reunião, como o roteiro recomenda tratar a data?",
+                                      "opcoes":  [
+                                                     "Oferecer duas opções de data, como terça às 10h ou quinta às 14h",
+                                                     "Perguntar ao cliente quando fica bom para ele, sem pressionar",
+                                                     "Esperar o cliente sugerir uma data por e-mail após a reunião",
+                                                     "Combinar \"semana que vem\" e definir o dia depois por mensagem"
+                                                 ],
+                                      "resposta":  1,
+                                      "explicacao":  "O roteiro orienta oferecer duas datas, pois o cliente escolhe entre opções em vez de adiar a decisão."
+                                  },
+                                  {
+                                      "pergunta":  "A oportunidade está no estágio \"Qualificada\". Segundo o roteiro, qual é o próximo passo típico?",
+                                      "opcoes":  [
+                                                     "Assinatura e reunião de início da implantação",
+                                                     "Reunião de ajuste de escopo e condições",
+                                                     "Demonstração para quem decide e para quem usa",
+                                                     "Primeira reunião ou discovery com a equipe"
+                                                 ],
+                                      "resposta":  3,
+                                      "explicacao":  "Na tabela de estágios, o próximo passo típico da oportunidade Qualificada é a demonstração para quem decide e para quem usa, levando a Pronta para proposta."
+                                  },
+                                  {
+                                      "pergunta":  "No fim da reunião, a coordenadora diz: \"Vou ver com a equipe\". Qual é a melhor resposta segundo o roteiro?",
+                                      "opcoes":  [
+                                                     "\"Combinado, fico aguardando o seu retorno quando puder.\"",
+                                                     "\"Faz sentido eu participar dessa conversa? Se não, falamos na quinta?\"",
+                                                     "\"Então já te mando a proposta para facilitar a decisão.\"",
+                                                     "\"Posso falar direto com o secretário para agilizar?\""
+                                                 ],
+                                      "resposta":  2,
+                                      "explicacao":  "O roteiro sugere transformar \"Vou ver com a equipe\" em passo concreto: oferecer participar da conversa ou marcar a quinta para saber o retorno."
+                                  }
+                              ],
+    "manual-crm":  [
+                       {
+                           "pergunta":  "Segundo a regra de ouro do Manual de uso do CRM, um registro de oportunidade está completo quando qualquer pessoa do time consegue responder a quais perguntas?",
+                           "opcoes":  [
+                                          "Qual o valor da proposta, qual a modalidade de contratação, quem assina e quando o contrato começa",
+                                          "Quem é o lead, em que etapa está, o que aconteceu até agora e qual é o próximo passo",
+                                          "Quantos alunos a rede tem, qual o IDEB, qual o produto de interesse e qual o RRA estimado",
+                                          "Quem trouxe o lead, quantas reuniões houve, quem participou e qual concorrente está na disputa"
+                                      ],
+                           "resposta":  2,
+                           "explicacao":  "O manual diz que o CRM precisa responder rapidamente: quem é o lead, em que etapa está, o que aconteceu até agora e qual é o próximo passo. Se alguém não consegue responder às quatro, o registro está incompleto."
+                       },
+                       {
+                           "pergunta":  "Uma rede tem 10 mil alunos, mas o escopo previsto começa com 3 mil licenças. Como a pessoa consultora deve calcular o RRA no CRM?",
+                           "opcoes":  [
+                                          "Usar o total de 10 mil alunos, porque o RRA mostra o potencial completo da rede",
+                                          "Usar a média entre o total da rede e as licenças previstas, para não subestimar o valor",
+                                          "Deixar o RRA em branco até a rede confirmar a expansão para todos os alunos",
+                                          "Usar as 3 mil licenças previstas, conferindo antes se o preço informado é mensal ou anual"
+                                      ],
+                           "resposta":  4,
+                           "explicacao":  "O manual orienta diferenciar o total de alunos da rede do escopo de licenças: o RRA usa as licenças, não o total da rede. Também pede conferir se o preço é mensal ou anual antes de calcular."
+                       },
+                       {
+                           "pergunta":  "Um parceiro trouxe uma oportunidade que será conduzida por você. Como ela deve ficar registrada no CRM?",
+                           "opcoes":  [
+                                          "Uma única oportunidade, com o funil de origem de quem trouxe e você como responsável",
+                                          "Duas oportunidades: uma no funil do parceiro e outra no seu Kanban, para cada um acompanhar",
+                                          "Uma oportunidade com o parceiro como responsável, já que foi ele quem trouxe o lead",
+                                          "Uma oportunidade com origem Comercial, porque é o time comercial que conduz a negociação"
+                                      ],
+                           "resposta":  1,
+                           "explicacao":  "Origem e responsável são campos diferentes. O manual pede para não duplicar: manter uma só oportunidade, com a origem de quem trouxe e o responsável de quem conduz."
+                       },
+                       {
+                           "pergunta":  "Uma oportunidade já em Negociação tem uma nova reunião marcada com a Secretaria. O que fazer no CRM, segundo o manual?",
+                           "opcoes":  [
+                                          "Voltar a oportunidade para Reunião Agendada até que o encontro aconteça",
+                                          "Mover para Contratação, já que nova reunião indica que o fechamento está próximo",
+                                          "Manter a oportunidade na etapa atual e criar uma tarefa para a reunião",
+                                          "Registrar apenas uma nota com a data da reunião, sem alterar etapa nem criar tarefa"
+                                      ],
+                           "resposta":  3,
+                           "explicacao":  "A etapa representa o avanço real da negociação. O manual aponta como certo manter na etapa atual e criar uma tarefa, e como errado voltar para Reunião Agendada."
+                       },
+                       {
+                           "pergunta":  "Qual destes registros de próximo passo está de acordo com o que o Manual de uso do CRM considera um registro claro?",
+                           "opcoes":  [
+                                          "Aguardando retorno do secretário sobre a proposta enviada",
+                                          "Ligar para o secretário em 30/10 se não houver resposta sobre a proposta",
+                                          "Acompanhar a proposta com a Secretaria nos próximos dias",
+                                          "Ver com a equipe a melhor forma de retomar o contato com a rede"
+                                      ],
+                           "resposta":  2,
+                           "explicacao":  "O manual pede próximo passo com ação, pessoa e data, e cita como exemplo claro ligar para o secretário em 30/10. Expressões como aguardando retorno, acompanhar e ver com a equipe são vagas."
+                       }
+                   ],
+    "criterios-funil":  [
+                            {
+                                "pergunta":  "Qual é a regra geral do documento Critérios de entrada e saída do funil para mudar uma oportunidade de etapa?",
+                                "opcoes":  [
+                                               "Mudar a etapa sempre que acontecer uma nova interação com o cliente",
+                                               "Mudar a etapa quando a coordenação aprovar o avanço na reunião semanal",
+                                               "Mudar só quando o critério de saída estiver cumprido e registrado no CRM",
+                                               "Mudar quando o cliente demonstrar interesse claro em seguir com a JG"
+                                           ],
+                                "resposta":  3,
+                                "explicacao":  "A regra é só mudar a etapa quando o critério de saída estiver cumprido e registrado. Se não há evidência no CRM, a oportunidade ainda não avançou."
+                            },
+                            {
+                                "pergunta":  "No discovery, a dor foi confirmada, mas o escopo ainda não foi validado pelo decisor. Segundo a matriz, onde a oportunidade deve ficar?",
+                                "opcoes":  [
+                                               "Em Reunião, até haver escopo validado pelo decisor, eliminatórios ok e os 5 critérios B2G confirmados",
+                                               "Em Proposta, pois a dor confirmada já é suficiente para enviar a proposta ao cliente",
+                                               "Em Negociação, já que o escopo ainda será ajustado com o decisor",
+                                               "Em Perdido com motivo sem acesso ao decisor, para reativar quando houver novo contato"
+                                           ],
+                                "resposta":  1,
+                                "explicacao":  "A saída de Reunião exige dor confirmada, os 2 eliminatórios ok e os 5 critérios B2G confirmados, com escopo validado pelo decisor. Sem a validação do decisor, ela ainda não chega à Proposta."
+                            },
+                            {
+                                "pergunta":  "Depois de receber a proposta, a Secretaria pede para reduzir o escopo e discutir condições. Qual o passo correto no CRM?",
+                                "opcoes":  [
+                                               "Manter em Proposta até o cliente assinar, pois o pedido de ajuste ainda não é acordo",
+                                               "Mover para Contratação, porque o pedido de ajuste mostra intenção de compra",
+                                               "Voltar para Reunião, já que o escopo precisa ser validado de novo com o decisor",
+                                               "Mover para Negociação e registrar nota com os pontos em negociação e a modalidade provável"
+                                           ],
+                                "resposta":  4,
+                                "explicacao":  "A Proposta avança quando o cliente discute a proposta, pedindo ajuste de escopo ou condições. Em Negociação, a evidência é a nota com os pontos negociados e a modalidade de contratação provável."
+                            },
+                            {
+                                "pergunta":  "A rede informa que contratou outra solução. Que motivo de perda e que data de reativação a matriz indica?",
+                                "opcoes":  [
+                                               "Não é prioridade, com reativação quando surgir um gatilho na rede",
+                                               "Optou por concorrente, com reativação de 3 a 6 meses antes do fim do contrato",
+                                               "Sem resposta, com reativação 90 dias depois do último contato",
+                                               "Fora do ICP, com reativação na revisão semestral do ICP"
+                                           ],
+                                "resposta":  2,
+                                "explicacao":  "Para quem contratou outra solução, o motivo é Optou por concorrente, e a reativação é de 3 a 6 meses antes do fim do contrato."
+                            },
+                            {
+                                "pergunta":  "Na reunião semanal com a coordenação, por quais oportunidades a pessoa consultora deve começar, segundo o documento?",
+                                "opcoes":  [
+                                               "Pelas oportunidades de maior RRA, porque têm mais impacto na meta do mês",
+                                               "Pelas oportunidades mais recentes, para garantir que foram bem cadastradas",
+                                               "Pelas oportunidades com sinal de alerta, porque são elas que precisam de ajuda",
+                                               "Pelas oportunidades em Contratação, que estão mais perto de virar contrato"
+                                           ],
+                                "resposta":  3,
+                                "explicacao":  "O documento orienta começar pelas oportunidades com sinal de alerta, pois são as que precisam de ajuda."
+                            }
+                        ],
+    "templates-follow-up":  [
+                                {
+                                    "pergunta":  "Quais são os três campos que, segundo os Templates de follow-up, devem ser sempre personalizados para a mensagem não parecer automática?",
+                                    "opcoes":  [
+                                                   "O nome, a dor nas palavras do cliente e o próximo passo com data",
+                                                   "O nome, o cargo da pessoa e o produto da JG mais indicado",
+                                                   "O município, o IDEB da rede e o valor estimado da proposta",
+                                                   "A saudação, o case de rede parecida e a assinatura com telefone"
+                                               ],
+                                    "resposta":  1,
+                                    "explicacao":  "A primeira regra do material é personalizar sempre o nome, a dor nas palavras do cliente e o próximo passo com data, porque mensagem genérica parece automática."
+                                },
+                                {
+                                    "pergunta":  "Depois do discovery, você quer devolver ao cliente o resumo do diagnóstico e alguns materiais. Qual canal o material recomenda para isso?",
+                                    "opcoes":  [
+                                                   "WhatsApp, porque é o canal mais rápido e o cliente lê na hora",
+                                                   "Ligação telefônica, para conferir o diagnóstico em tempo real",
+                                                   "E-mail, porque é o canal para registrar resumo, materiais e proposta",
+                                                   "Convite de calendário, com o resumo na descrição do evento"
+                                               ],
+                                    "resposta":  3,
+                                    "explicacao":  "O material indica WhatsApp para confirmar e lembrar, e e-mail para registrar resumo, materiais e proposta. O WhatsApp pode avisar que o e-mail foi enviado."
+                                },
+                                {
+                                    "pergunta":  "Segundo os templates, o que a pessoa consultora deve fazer no momento em que envia a proposta ao cliente?",
+                                    "opcoes":  [
+                                                   "Enviar a proposta e aguardar uma semana antes de qualquer novo contato",
+                                                   "Combinar, já no envio, a data e o horário da conversa sobre a proposta",
+                                                   "Pedir que o cliente encaminhe a proposta ao jurídico no mesmo dia",
+                                                   "Enviar junto um desconto para acelerar a decisão da Secretaria"
+                                               ],
+                                    "resposta":  2,
+                                    "explicacao":  "A orientação é nunca enviar a proposta e esperar: no envio, combina-se quando vão conversar sobre ela, como mostra o modelo de e-mail."
+                                },
+                                {
+                                    "pergunta":  "O cliente parou de responder e já recebeu os três contatos espaçados (3, 7 e 14 dias), sem retorno. Qual o próximo passo?",
+                                    "opcoes":  [
+                                                   "Enviar um quarto contato perguntando se houve alguma novidade",
+                                                   "Mover a oportunidade para Negociação e aguardar o retorno do cliente",
+                                                   "Ligar todos os dias até conseguir falar com a pessoa",
+                                                   "Registrar no CRM, pausar por 90 dias e tentar outro contato na rede"
+                                               ],
+                                    "resposta":  4,
+                                    "explicacao":  "O material pede registrar cada tentativa no CRM e, sem resposta depois do terceiro contato, pausar por 90 dias e tentar outro contato na rede, passando para a Reativação de oportunidades."
+                                },
+                                {
+                                    "pergunta":  "Por que os templates recomendam evitar frases como \u0027só passando para lembrar\u0027 ou \u0027conseguiu ver?\u0027",
+                                    "opcoes":  [
+                                                   "Porque são informais demais para uma Secretaria de Educação",
+                                                   "Porque cobram sem acrescentar nada, e o follow-up deve fazer o processo avançar",
+                                                   "Porque o cliente pode interpretar como pressão para baixar o preço",
+                                                   "Porque só devem ser usadas depois do terceiro contato sem resposta"
+                                               ],
+                                    "resposta":  2,
+                                    "explicacao":  "Follow-up não é cobrança, é avanço de processo: cada mensagem lembra o combinado, entrega algo útil e confirma o próximo passo. Essas frases cobram sem acrescentar nada."
+                                }
+                            ],
+    "reativacao-oportunidades":  [
+                                     {
+                                         "pergunta":  "Qual é a regra de ouro para reativar uma oportunidade parada ou perdida, segundo o material?",
+                                         "opcoes":  [
+                                                        "Reativar todas as oportunidades a cada 30 dias, para manter o contato vivo",
+                                                        "Reativar apenas oportunidades perdidas por orçamento, que têm mais chance",
+                                                        "Reativar sempre com o mesmo contato, para não confundir a Secretaria",
+                                                        "Só reativar com um motivo novo, como resultado, gatilho, mudança na rede ou case"
+                                                    ],
+                                         "resposta":  4,
+                                         "explicacao":  "A regra de ouro é só reativar com um motivo novo: um resultado, um gatilho, uma mudança na rede ou um case parecido. Perguntar se tem novidade não é motivo."
+                                     },
+                                     {
+                                         "pergunta":  "O município trocou de secretário de Educação. Quando o material recomenda abordar a nova gestão?",
+                                         "opcoes":  [
+                                                        "Nos primeiros 60 dias, enquanto a nova gestão monta o plano e define prioridades",
+                                                        "Só depois de seis meses, quando a nova gestão já estiver estabilizada",
+                                                        "Apenas no próximo ciclo orçamentário, no segundo semestre",
+                                                        "Somente quando o novo secretário procurar a JG por iniciativa própria"
+                                                    ],
+                                         "resposta":  1,
+                                         "explicacao":  "Nova gestão é uma janela: o novo secretário está montando o plano e procurando o que entregar. O material indica abordar nos primeiros 60 dias."
+                                     },
+                                     {
+                                         "pergunta":  "Uma rede que optou por um concorrente está perto de renovar o contrato e abriu conversa pelo WhatsApp. Como conduzir, segundo o material?",
+                                         "opcoes":  [
+                                                        "Apontar as falhas da solução atual para mostrar que a JG é superior",
+                                                        "Enviar logo a proposta da JG com preço menor que o do concorrente",
+                                                        "Perguntar o que funciona na solução atual e o que falta, explorando a lacuna antes de apresentar a JG",
+                                                        "Esperar o fim do contrato para só então apresentar a JG à rede"
+                                                    ],
+                                         "resposta":  3,
+                                         "explicacao":  "O material pede não falar mal da solução escolhida e diz que a pergunta sobre o que falta é a porta de entrada; a lacuna deve ser explorada antes de apresentar a JG."
+                                     },
+                                     {
+                                         "pergunta":  "Antes de mandar qualquer mensagem de reativação, o que a pessoa consultora deve fazer?",
+                                         "opcoes":  [
+                                                        "Pedir autorização da coordenação para retomar o contato com a rede",
+                                                        "Ler o histórico no CRM: quem participou, qual era a dor e por que parou",
+                                                        "Criar uma nova oportunidade no CRM para registrar a retomada",
+                                                        "Atualizar o valor da proposta anterior com o preço vigente"
+                                                    ],
+                                         "resposta":  2,
+                                         "explicacao":  "O material orienta, antes de qualquer mensagem, ler o histórico da oportunidade no CRM: quem participou, qual era a dor e por que parou."
+                                     },
+                                     {
+                                         "pergunta":  "Passados 90 dias, você tentou de novo o mesmo contato de um lead que parou de responder, e ele seguiu sem retorno. Qual o próximo passo?",
+                                         "opcoes":  [
+                                                        "Encerrar a oportunidade em definitivo e excluir o histórico do CRM",
+                                                        "Esperar mais 90 dias e repetir a mesma mensagem ao mesmo contato",
+                                                        "Enviar a mensagem ao prefeito, pedindo que cobre a Secretaria",
+                                                        "Procurar outra pessoa da rede, citando a conversa anterior e um motivo para retomar"
+                                                    ],
+                                         "resposta":  4,
+                                         "explicacao":  "Para lead que parou de responder, o material diz para tentar de novo após 90 dias e, sem resposta, procurar outra pessoa da rede, como no modelo de e-mail para outro contato."
+                                     }
+                                 ],
+    "checklist-pre-reuniao":  [
+                                  {
+                                      "pergunta":  "Você vai para uma segunda conversa com a mesma rede. Como usar o Checklist pré-reunião nesse caso?",
+                                      "opcoes":  [
+                                                     "Refazer toda a pesquisa da rede, pois os dados podem ter mudado desde a primeira",
+                                                     "Revisar o histórico no CRM e ir direto ao objetivo, já que a pesquisa está feita",
+                                                     "Pular o checklist, que só é necessário antes da primeira reunião",
+                                                     "Usar só a parte de logística, porque objetivo e hipóteses já foram definidos"
+                                                 ],
+                                      "resposta":  2,
+                                      "explicacao":  "O checklist diz que não é preciso marcar tudo em toda reunião: numa segunda conversa, a pesquisa já está feita, então revise o histórico no CRM e vá direto ao objetivo."
+                                  },
+                                  {
+                                      "pergunta":  "Na parte de objetivo, hipóteses e roteiro, o que o checklist pede que a pessoa consultora prepare?",
+                                      "opcoes":  [
+                                                     "Uma apresentação institucional completa e a lista de todos os produtos da JG",
+                                                     "Uma proposta preliminar com valores para deixar com o cliente",
+                                                     "Um roteiro com 15 a 20 perguntas para cobrir todas as personas da rede",
+                                                     "O objetivo em uma frase, 2 ou 3 hipóteses de dor e de 4 a 6 perguntas escolhidas"
+                                                 ],
+                                      "resposta":  4,
+                                      "explicacao":  "O checklist pede escrever o objetivo em uma frase, 2 ou 3 hipóteses de dor a partir de Dores por persona e escolher de 4 a 6 perguntas no Banco de perguntas por persona."
+                                  },
+                                  {
+                                      "pergunta":  "Amanhã você faz uma demonstração. Segundo o checklist, o que levar para essa reunião?",
+                                      "opcoes":  [
+                                                     "Ambiente de demonstração testado, plano B em vídeo ou prints e um case ligado à dor",
+                                                     "Tour completo pela plataforma, mostrando todas as telas disponíveis",
+                                                     "Proposta revisada e caminho de contratação provável, para fechar no mesmo dia",
+                                                     "Roteiro de discovery e dados públicos da rede, deixando a plataforma fechada"
+                                                 ],
+                                      "resposta":  1,
+                                      "explicacao":  "Para a demonstração, o checklist indica levar ambiente testado, plano B (vídeo ou prints) e case ligado à dor, deixando fechadas as telas que não respondem à dor levantada."
+                                  },
+                                  {
+                                      "pergunta":  "Na reunião de proposta, o que o checklist orienta deixar fechado, ou seja, não oferecer ao cliente?",
+                                      "opcoes":  [
+                                                     "O resumo de uma página da proposta",
+                                                     "O caminho de contratação provável",
+                                                     "Descontos não autorizados pela coordenação",
+                                                     "Os cases de redes parecidas com a do cliente"
+                                                 ],
+                                      "resposta":  3,
+                                      "explicacao":  "Na tabela do que levar, a reunião de proposta tem como item a deixar fechado os descontos não autorizados pela coordenação."
+                                  },
+                                  {
+                                      "pergunta":  "Sobre o próximo passo, o que o checklist pede que esteja definido antes de a reunião começar?",
+                                      "opcoes":  [
+                                                     "Nada: o próximo passo deve surgir naturalmente durante a conversa",
+                                                     "O próximo passo que você vai propor e duas opções de data",
+                                                     "A data de assinatura do contrato, para orientar a negociação",
+                                                     "Uma lista de follow-ups automáticos já programados no CRM"
+                                                 ],
+                                      "resposta":  2,
+                                      "explicacao":  "Um dos itens do checklist é ter definido o próximo passo que vai propor e ter duas opções de data."
+                                  }
+                              ],
+    "checklist-pos-reuniao":  [
+                                  {
+                                      "pergunta":  "Segundo o Checklist pós-reunião, quais são os quatro passos depois de uma reunião, e quando fazê-los?",
+                                      "opcoes":  [
+                                                     "Enviar proposta, atualizar o valor, avisar a coordenação e agendar a próxima reunião, em até uma semana",
+                                                     "Ligar para o decisor, mandar o case, atualizar a etapa e pedir feedback ao cliente, no dia seguinte",
+                                                     "Anotar, mandar o follow-up, registrar no CRM e se autoavaliar, no mesmo dia, de preferência em até duas horas",
+                                                     "Registrar no CRM, aguardar retorno do cliente, mandar o follow-up e revisar o pipeline, no fim da semana"
+                                                 ],
+                                      "resposta":  3,
+                                      "explicacao":  "O checklist define quatro passos: anotar, mandar o follow-up, registrar no CRM e se autoavaliar, no mesmo dia, de preferência em até duas horas."
+                                  },
+                                  {
+                                      "pergunta":  "A reunião terminou sem próximo passo combinado. O que o checklist orienta fazer?",
+                                      "opcoes":  [
+                                                     "Propor um próximo passo por mensagem, usando o Roteiro de próximo passo",
+                                                     "Aguardar o cliente entrar em contato, para não parecer insistente",
+                                                     "Mover a oportunidade para Perdido com o motivo não é prioridade",
+                                                     "Marcar a oportunidade como parada e revisar só na revisão semanal"
+                                                 ],
+                                      "resposta":  1,
+                                      "explicacao":  "Se a reunião terminou sem próximo passo, o checklist diz que é o momento de propor um, por mensagem, usando o Roteiro de próximo passo."
+                                  },
+                                  {
+                                      "pergunta":  "Na reunião, apareceu a diretora de compras da Secretaria, que você ainda não conhecia. O que registrar depois, segundo o checklist?",
+                                      "opcoes":  [
+                                                     "Só uma menção a ela na nota, sem cadastro, até que ela participe de outra reunião",
+                                                     "Uma nova oportunidade ligada a ela, separada da oportunidade atual",
+                                                     "Apenas o e-mail dela no follow-up, para que receba o resumo",
+                                                     "Cadastrar o contato ligado à empresa e à oportunidade e atualizar o Mapa de stakeholders"
+                                                 ],
+                                      "resposta":  4,
+                                      "explicacao":  "O checklist pede cadastrar os contatos novos, ligados à empresa e à oportunidade, e atualizar o Mapa de stakeholders se apareceu alguém novo."
+                                  },
+                                  {
+                                      "pergunta":  "Por que o checklist pede anotar a dor principal com as palavras exatas do cliente?",
+                                      "opcoes":  [
+                                                     "Porque a coordenação usa essas frases para calcular o RRA da oportunidade",
+                                                     "Porque as palavras do cliente valem mais que o seu resumo e entram no follow-up, na proposta e no CRM",
+                                                     "Porque o jurídico da rede exige a transcrição literal da reunião",
+                                                     "Porque assim não é preciso registrar a nota da reunião no CRM"
+                                                 ],
+                                      "resposta":  2,
+                                      "explicacao":  "O material afirma que as palavras do cliente valem mais que o seu resumo e que elas entram no follow-up, na proposta e no CRM."
+                                  },
+                                  {
+                                      "pergunta":  "Na autoavaliação, você percebe que falou mais de 30% do tempo. O que o checklist sugere para a próxima reunião?",
+                                      "opcoes":  [
+                                                     "Apresentar a JG logo no início, para depois deixar o cliente falar",
+                                                     "Reduzir a duração da reunião para no máximo 30 minutos",
+                                                     "Fazer uma pergunta e esperar a resposta inteira antes de falar",
+                                                     "Levar outra pessoa do time para conduzir parte da conversa"
+                                                 ],
+                                      "resposta":  3,
+                                      "explicacao":  "Para quem não falou menos de 30% do tempo, a orientação é fazer uma pergunta e esperar a resposta inteira antes de falar. Um \u0027não\u0027 na autoavaliação não é erro: é o ponto para treinar."
+                                  }
+                              ],
+    "mapa-stakeholders":  [
+                              {
+                                  "pergunta":  "Qual a diferença entre o Mapa de personas e o Mapa de stakeholders, segundo o material?",
+                                  "opcoes":  [
+                                                 "O de personas é usado na proposta; o de stakeholders, só na contratação",
+                                                 "O de stakeholders identifica as pessoas reais de uma oportunidade, sua influência e o que pensam da JG",
+                                                 "O de stakeholders lista os concorrentes da JG em cada rede municipal",
+                                                 "O de personas registra pessoas reais; o de stakeholders, os papéis típicos de uma venda"
+                                             ],
+                                  "resposta":  2,
+                                  "explicacao":  "O Mapa de personas descreve papéis típicos; o Mapa de stakeholders identifica as pessoas reais de uma oportunidade específica, quanto cada uma influencia a decisão e o que pensa da JG."
+                              },
+                              {
+                                  "pergunta":  "Após a segunda reunião, só a coordenadora pedagógica conhece a JG e ela está muito animada. Como o material avalia essa situação?",
+                                  "opcoes":  [
+                                                 "A oportunidade está segura, pois a coordenação está no quadrante gerenciar de perto",
+                                                 "É o cenário ideal para enviar a proposta, aproveitando o entusiasmo",
+                                                 "Basta manter o contato só com ela, que levará a JG aos demais",
+                                                 "A oportunidade está em risco: é preciso envolver outras pessoas, sobretudo quem decide"
+                                             ],
+                                  "resposta":  4,
+                                  "explicacao":  "O material diz que uma oportunidade em que só uma pessoa conhece a JG está em risco, mesmo que ela esteja animada; se o mapa tem uma pessoa só, a oportunidade ainda não está qualificada."
+                              },
+                              {
+                                  "pergunta":  "Prefeito, compras, jurídico e controladoria costumam estar no quadrante manter satisfeito. Qual a estratégia indicada para eles?",
+                                  "opcoes":  [
+                                                 "Resumos curtos e objetivos, resposta rápida e antecipação de riscos, nos marcos de proposta e contratação",
+                                                 "Envolver em todas as etapas: discovery, demonstração e validação do escopo",
+                                                 "Ouvir na demonstração ou no piloto e usar o que disserem como prova de adesão",
+                                                 "Conversa técnica pontual, apenas quando surgir dúvida sobre conectividade ou LGPD"
+                                             ],
+                                  "resposta":  1,
+                                  "explicacao":  "Para o quadrante manter satisfeito, o material indica resumos curtos e objetivos, responder rápido e antecipar riscos de processo, com contato nos marcos de proposta e contratação."
+                              },
+                              {
+                                  "pergunta":  "Durante a venda, a equipe de tecnologia da rede levanta dúvidas sobre conectividade nas escolas. O que isso significa, segundo o mapa?",
+                                  "opcoes":  [
+                                                 "Nada muda: a equipe de tecnologia tem pouco interesse e segue só em monitorar",
+                                                 "A dúvida deve ser repassada ao cliente para resolver depois da contratação",
+                                                 "A equipe de tecnologia sobe de quadrante, pois pode vetar a compra se a infraestrutura não comportar",
+                                                 "A equipe de tecnologia passa a ser a decisora e substitui o secretário no mapa"
+                                             ],
+                                  "resposta":  3,
+                                  "explicacao":  "A equipe de tecnologia fica em monitorar quando não há risco, mas sobe de quadrante se surgir dúvida sobre conectividade ou LGPD, pois pode vetar a compra."
+                              },
+                              {
+                                  "pergunta":  "Ao revisar o mapa, você vê uma pessoa com poder alto que resiste à JG. Qual ação o material recomenda?",
+                                  "opcoes":  [
+                                                 "Concentrar o esforço em quem apoia a JG, para compensar a resistência",
+                                                 "Planejar uma conversa só com essa pessoa",
+                                                 "Retirar a pessoa do mapa, já que ela não apoia a JG",
+                                                 "Pedir à coordenadora que convença essa pessoa em seu nome"
+                                             ],
+                                  "resposta":  2,
+                                  "explicacao":  "O checklist de atualização diz: se há alguém resistindo com poder alto, planeje uma conversa só com essa pessoa. O material também alerta que entusiasmo sem poder não fecha contrato."
+                              }
+                          ],
+    "checklist-prontidao":  [
+                                {
+                                    "pergunta":  "Quando e por quem o Checklist de prontidão é preenchido?",
+                                    "opcoes":  [
+                                                   "No último dia da semana 3, pela pessoa responsável pela formação junto com o consultor",
+                                                   "No primeiro dia de trabalho, pelo próprio consultor, como autoavaliação",
+                                                   "Ao fim do primeiro mês, pela coordenação comercial sem a presença do consultor",
+                                                   "Depois do primeiro contrato fechado, pelo cliente atendido pelo consultor"
+                                               ],
+                                    "resposta":  1,
+                                    "explicacao":  "O checklist é preenchido no último dia da semana 3, depois das atividades de aferição, pela pessoa responsável pela formação junto com o consultor."
+                                },
+                                {
+                                    "pergunta":  "Um consultor explica muito bem como calcular o RRA, mas nunca fez o cálculo numa atividade da trilha ou da aferição. O item pode ser marcado?",
+                                    "opcoes":  [
+                                                   "Sim, porque a explicação correta mostra que ele domina o conceito",
+                                                   "Sim, desde que a coordenação comercial concorde com a marcação",
+                                                   "Não: o item só é marcado quando foi demonstrado numa atividade; saber explicar não basta",
+                                                   "Não: itens de ferramentas só são marcados depois do primeiro contrato"
+                                               ],
+                                    "resposta":  3,
+                                    "explicacao":  "Cada item só é marcado quando foi demonstrado numa atividade da trilha ou da aferição. O material diz que saber explicar não basta: é preciso ter feito."
+                                },
+                                {
+                                    "pergunta":  "Um consultor tem 2 itens pendentes no checklist e média 3,2 na aferição. Qual é a decisão sugerida pelo material?",
+                                    "opcoes":  [
+                                                   "Liberado, porque a média da aferição está acima de 3,0",
+                                                   "Plano de reforço, porque há itens pendentes no checklist",
+                                                   "Nova aferição imediata, antes de qualquer decisão",
+                                                   "Liberado com ressalvas, com acompanhamento nas primeiras reuniões e plano para os pendentes"
+                                               ],
+                                    "resposta":  4,
+                                    "explicacao":  "Liberado exige todos os itens marcados. Com até 3 itens pendentes, a decisão é liberado com ressalvas: conduz reuniões com alguém acompanhando as primeiras e um plano para os pendentes."
+                                },
+                                {
+                                    "pergunta":  "O que acontece com um consultor que fica com mais de 3 itens pendentes ou aferição abaixo de 2,5?",
+                                    "opcoes":  [
+                                                   "É liberado com ressalvas e assume a carteira com acompanhamento semanal",
+                                                   "Entra em plano de reforço: uma semana extra focada nos pendentes e depois nova aferição",
+                                                   "É desligado da trilha e encaminhado para outra área da empresa",
+                                                   "Refaz toda a trilha desde a semana 1, sem nova aferição"
+                                               ],
+                                    "resposta":  2,
+                                    "explicacao":  "Nessa situação, a decisão é plano de reforço: uma semana extra focada nos itens pendentes, depois nova aferição. O material ressalta que os limites devem ser validados com a coordenação comercial."
+                                },
+                                {
+                                    "pergunta":  "Qual destas atitudes mostra que o consultor está pronto no uso de provas e dados, segundo o checklist?",
+                                    "opcoes":  [
+                                                   "Afirmar que a JG garante ganho de recurso do VAAR para a rede",
+                                                   "Atribuir só à JG o resultado do IDEB de Domingos Mourão",
+                                                   "Citar o 4,2x com fonte e informar que vale para quem faz 10 questões por semana",
+                                                   "Usar o 4,2x como resultado médio esperado para qualquer rede"
+                                               ],
+                                    "resposta":  3,
+                                    "explicacao":  "O checklist pede usar provas sempre com fonte e condição, como o 4,2x só para quem faz 10 questões por semana. Também pede não atribuir o case só à JG e não prometer ganho de recurso do VAAR."
+                                }
+                            ]
+}

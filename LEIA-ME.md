@@ -18,6 +18,7 @@ Você não precisa mexer em nenhum outro arquivo.
 | `index.html` | Estrutura da página | Não |
 | `css/style.css` | Cores e visual | Não |
 | `js/app.js` | Funcionamento (telas, pontos, progresso) | Não |
+| `js/config.js` | Endereço e chave pública do login (Supabase) | Não |
 | `servidor-local.ps1` | Testar o site no seu computador (Windows) | Não |
 | `LEIA-ME.md` | Este guia | — |
 
@@ -165,10 +166,41 @@ O GitHub **não avisa** se uma vírgula ficar faltando. Se tiver dúvida, valide
 
 ---
 
+## 6. Questões de cada material
+
+As questões ficam em **`data/questoes.json`**, separadas por material (a chave é o mesmo `id` do material no `trilha.json`). Cada questão tem:
+
+```json
+{ "pergunta": "Qual etapa…?", "opcoes": ["Primeira", "Segunda", "Terceira", "Quarta"], "resposta": 2, "explicacao": "Porque…" }
+```
+
+- `resposta` é o **número** da alternativa certa: 1 = primeira, 2 = segunda, e assim por diante.
+- `explicacao` aparece logo depois que a pessoa responde.
+- **Trocar uma questão:** edite o texto entre aspas.
+- **Tirar as questões de um material:** apague o bloco inteiro dele (do `"id": [` até o `]` correspondente).
+- **Pontos:** cada acerto vale o número em `"acerto"` no `trilha.json` (hoje, 10 estrelas). Só a **primeira tentativa** vale pontos; refazer é modo estudo.
+- Se o arquivo tiver erro de digitação, o site continua funcionando, só que **sem** as questões. Valide em jsonlint.com.
+
+⚠️ Não mude o `id` de um material que já tem respostas: a nota da pessoa fica guardada por esse id.
+
+---
+
+## 7. Login e painel do gestor
+
+- Para entrar, a pessoa usa o e-mail **@jovensgenios.com** e uma senha. No primeiro acesso, ela mesma cria a senha em "Primeiro acesso? Criar minha senha".
+- Esqueceu a senha? O gestor cadastra uma nova no painel (nome da pessoa → **Cadastrar nova senha**).
+- O progresso fica salvo **na conta**, e não só no navegador: dá para continuar em qualquer aparelho.
+- Quem é gestor vê o botão **PAINEL DO GESTOR** embaixo do avatar, com o andamento de todos e o histórico com datas.
+- Para incluir um gestor, veja o fim do arquivo **COMO-ATIVAR-O-LOGIN.md** (fica na pasta *Trilha Consultor JG*, fora desta).
+- Se um dia quiser desligar o login, apague o arquivo `js/config.js`: o site volta a funcionar sem login, com o progresso salvo só no navegador.
+
+---
+
 ## Perguntas frequentes
 
 **O progresso do consultor some?**
-O progresso fica salvo **só no navegador e no aparelho** que a pessoa usou. Trocar de computador, usar janela anônima ou limpar os dados do navegador faz o progresso recomeçar. Atualizar o site **não** apaga o progresso de ninguém (desde que os `id` não mudem).
+Não. Com o login ativo, o progresso fica salvo na conta da pessoa. Atualizar o site **não** apaga o progresso de ninguém (desde que os `id` não mudem).
+
 
 **O material abre com "Você precisa de acesso".**
 O arquivo no Drive não está compartilhado como *Qualquer pessoa com o link → Leitor*.
