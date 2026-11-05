@@ -108,34 +108,91 @@
     return null;
   }
 
-  /* ---------- Progresso (localStorage) ---------- */
+  /* ---------- Login (Supabase) ---------- */
+  var CFG = window.JG_CONFIG || {};
+  var LOGIN_ON = !!(CFG.supabaseUrl && CFG.supabaseKey);
+  var sb = (LOGIN_ON && window.supabase)
+    ? window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseKey, { auth: { flowType: 'pkce', detectSessionInUrl: true, persistSession: true } })
+    : null;
+  var USER = null;    // usuário logado
+  var PERFIL = null;  // { nome, email, gestor }
+
+  /* ---------- Progresso: na conta (Supabase) e uma cópia no navegador ---------- */
   function defaultState() { return { avatar: 0, font: 0, done: {}, opened: {}, rewarded: {} }; }
-  function loadState() {
-    try {
-      var s = JSON.parse(localStorage.getItem(STORE_KEY));
-      if (s && typeof s === 'object') {
-        var d = defaultState();
-        for (var k in d) if (s[k] != null) d[k] = s[k];
-        return d;
-      }
-    } catch (e) { /* navegador sem armazenamento: segue sem salvar */ }
-    return defaultState();
+  function normalize(s) {
+    var d = defaultState();
+    if (s && typeof s === 'object') for (var k in d) if (s[k] != null) d[k] = s[k];
+    return d;
   }
-  var state = loadState();
+  function readState(key) {
+    try {
+      var s = JSON.parse(localStorage.getItem(key));
+      return (s && typeof s === 'object') ? normalize(s) : null;
+    } catch (e) { return null; /* navegador sem armazenamento */ }
+  }
+  function storeKey() { return USER ? 'jg-trilha-v2:' + USER.id : STORE_KEY; }
+  var state = LOGIN_ON ? defaultState() : (readState(STORE_KEY) || defaultState());
+
   function save() {
-    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) { /* ignora */ }
+    try { localStorage.setItem(storeKey(), JSON.stringify(state)); } catch (e) { /* ignora */ }
+    scheduleSync();
+  }
+  var syncTimer = null;
+  function scheduleSync() {
+    if (!sb || !USER) return;
+    clearTimeout(syncTimer);
+    syncTimer = setTimeout(pushProgress, 800);
+  }
+  function pushProgress() {
+    clearTimeout(syncTimer);
+    syncTimer = null;
+    if (!sb || !USER) return Promise.resolve();
+    return sb.from('progresso')
+      .upsert({ usuario_id: USER.id, estado: state, atualizado_em: new Date().toISOString() })
+      .then(function (r) { if (r.error) console.warn('Progresso não sincronizado:', r.error.message); });
+  }
+  // Se a pessoa fechar a aba logo depois de marcar algo, envia o que estava pendente
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden' && syncTimer) pushProgress();
+  });
+  /* Histórico com data, para o painel do gestor */
+  function logEvent(tipo, ref) {
+    if (!sb || !USER) return;
+    sb.from('eventos').insert({ usuario_id: USER.id, tipo: tipo, ref: ref || null })
+      .then(function (r) { if (r.error) console.warn('Evento não registrado:', r.error.message); });
+  }
+  /* Junta dois progressos: o que foi concluído em qualquer um deles continua concluído */
+  function mergeStates(base, extra) {
+    var out = normalize(base);
+    ['done', 'opened', 'rewarded'].forEach(function (k) {
+      var src = extra[k] || {};
+      for (var id in src) if (!out[k][id] || src[id] < out[k][id]) out[k][id] = src[id];
+    });
+    return out;
   }
 
   /* ---------- Regras de pontos e selos ---------- */
-  function points() {
-    var c = DATA.config.pontos, p = 0, seen = {};
-    MATERIALS.forEach(function (m) {
-      if (!seen[m.id] && state.opened[m.id]) p += c.material;
-      seen[m.id] = true;
-    });
-    LEVELS.forEach(function (l) { if (state.done[l.id]) p += c.nivel; });
-    return p;
+  function materialIds() {
+    var seen = {};
+    MATERIALS.forEach(function (m) { seen[m.id] = true; });
+    return Object.keys(seen);
   }
+  /* Resumo de um progresso qualquer (o seu, ou o de um consultor no painel do gestor) */
+  function statsOf(st) {
+    var c = DATA.config.pontos;
+    var done = LEVELS.filter(function (l) { return st.done[l.id]; }).length;
+    var opened = materialIds().filter(function (id) { return st.opened[id]; }).length;
+    var selo = null;
+    DATA.planetas.forEach(function (p) {
+      if (p.niveis.length && p.niveis.every(function (n) { return st.done[n.id]; })) selo = p;
+    });
+    return {
+      done: done, total: LEVELS.length, opened: opened, matTotal: materialIds().length, selo: selo,
+      pct: LEVELS.length ? Math.round((done / LEVELS.length) * 100) : 0,
+      pts: opened * c.material + done * c.nivel
+    };
+  }
+  function points() { return statsOf(state).pts; }
   function planetDone(p) { return p.niveis.filter(function (n) { return state.done[n.id]; }).length; }
   function planetComplete(p) { return p.niveis.length > 0 && planetDone(p) === p.niveis.length; }
   function planetsCompleted() { return DATA.planetas.filter(planetComplete).length; }
@@ -319,6 +376,7 @@
     pts.innerHTML = STAR + '<span>' + p.toLocaleString('pt-BR') + '</span>';
     pts.setAttribute('aria-label', p + ' estrelas');
     pts.setAttribute('role', 'img');
+    document.getElementById('gestorLink').hidden = !(PERFIL && PERFIL.gestor);
   }
 
   /* ---------- Cards de material ---------- */
@@ -588,9 +646,13 @@
       '<li><strong>+' + c.pontos.nivel + ' estrelas</strong> por nível concluído</li></ul>' +
       '<p>Selos:</p><ul>' + selos + '</ul>' +
       '<p>Ao concluir todos os níveis de um planeta, você recebe uma recompensa e conquista o selo daquele planeta.</p></div>' +
-      '<div class="icard warn"><h2><span class="badge-num">!</span>Onde fica o progresso</h2>' +
-      '<p>O seu progresso fica salvo <strong>só neste navegador, neste aparelho</strong>. Não há cadastro nem login.</p>' +
-      '<p>Se você trocar de computador, usar outro navegador, abrir uma janela anônima ou limpar os dados de navegação, o progresso não vai junto.</p></div>' +
+      (LOGIN_ON
+        ? '<div class="icard warn"><h2><span class="badge-num">!</span>Onde fica o progresso</h2>' +
+          '<p>O seu progresso fica salvo <strong>na sua conta</strong>. Entre com o mesmo e-mail @jovensgenios.com em qualquer computador ou celular e continue de onde parou.</p>' +
+          '<p>A liderança acompanha o andamento da trilha: quais dias você concluiu e quais materiais abriu.</p></div>'
+        : '<div class="icard warn"><h2><span class="badge-num">!</span>Onde fica o progresso</h2>' +
+          '<p>O seu progresso fica salvo <strong>só neste navegador, neste aparelho</strong>. Não há cadastro nem login.</p>' +
+          '<p>Se você trocar de computador, usar outro navegador, abrir uma janela anônima ou limpar os dados de navegação, o progresso não vai junto.</p></div>') +
       '</div></section>';
   }
 
@@ -599,15 +661,17 @@
   }
 
   /* ---------- Roteamento ---------- */
-  var NAV_OF = { inicio: 'inicio', planeta: 'inicio', nivel: 'inicio', trilha: 'trilha', biblioteca: 'biblioteca', 'como-funciona': 'como-funciona' };
-  var TITLES = { trilha: 'Minha trilha', biblioteca: 'Biblioteca', 'como-funciona': 'Como funciona' };
+  var NAV_OF = { inicio: 'inicio', planeta: 'inicio', nivel: 'inicio', trilha: 'trilha', biblioteca: 'biblioteca', 'como-funciona': 'como-funciona', gestor: 'gestor' };
+  var TITLES = { trilha: 'Minha trilha', biblioteca: 'Biblioteca', 'como-funciona': 'Como funciona', gestor: 'Painel do gestor' };
 
   function route(keepPosition) {
+    if (LOGIN_ON && !USER) return; // sem login, a tela de entrada fica no lugar
     var parts = (location.hash.replace(/^#\/?/, '') || 'inicio').split('/');
     var page = NAV_OF[parts[0]] ? parts[0] : 'inicio';
     var arg = decodeURIComponent(parts[1] || '');
     var html, title = '';
-    if (page === 'planeta') { html = renderPlanet(arg); var pp = DATA.planetas[homeIdx]; title = pp ? pp.nome : ''; }
+    if (page === 'gestor') html = '<section class="wrap page" id="gestorPage"><p class="small">Carregando o acompanhamento…</p></section>';
+    else if (page === 'planeta') { html = renderPlanet(arg); var pp = DATA.planetas[homeIdx]; title = pp ? pp.nome : ''; }
     else if (page === 'nivel') { html = renderLevel(arg); var lv = LEVELS.filter(function (l) { return l.id === arg; })[0]; title = lv ? lv.tema : ''; }
     else if (page === 'trilha') html = renderProgress();
     else if (page === 'biblioteca') html = renderLibrary();
@@ -618,6 +682,7 @@
     main.innerHTML = html;
     main.setAttribute('data-page', page);
     if (page === 'biblioteca') bindLibrary();
+    if (page === 'gestor') loadGestor(arg);
 
     var nav = NAV_OF[page];
     Array.prototype.forEach.call(document.querySelectorAll('[data-nav]'), function (a) {
@@ -653,6 +718,7 @@
     if (state.opened[id]) return;
     state.opened[id] = Date.now();
     save();
+    logEvent('material_aberto', id);
     renderHeader();
     var pts = DATA.config.pontos.material;
     toast('+' + pts + ' ★');
@@ -683,6 +749,7 @@
     var nowDone = !state.done[id];
     if (nowDone) state.done[id] = Date.now(); else delete state.done[id];
     save();
+    logEvent(nowDone ? 'nivel_concluido' : 'nivel_desmarcado', id);
     renderHeader();
     var y = window.scrollY;
     route(true);
@@ -696,6 +763,7 @@
       if (planetDone(p) === p.niveis.length && !state.rewarded[p.id]) {
         state.rewarded[p.id] = Date.now();
         save();
+        logEvent('planeta_concluido', p.id);
         setTimeout(function () { openReward(p); }, 350);
       }
     } else {
@@ -742,9 +810,17 @@
     var opts = AVATARS.map(function (a, i) {
       return '<button type="button" class="avatar-opt" data-action="pick-avatar" data-i="' + i + '" aria-pressed="' + (i === state.avatar) + '">' + avatarSVG(i) + esc(a.nome) + '</button>';
     }).join('');
-    openModal('<p class="kicker">Seu perfil</p><h2 id="modalTitle">Escolha o seu avatar</h2>' +
+    var conta = USER
+      ? '<p class="account-line">Conectado como <strong>' + esc((PERFIL && PERFIL.nome) || USER.email) + '</strong><br>' + esc(USER.email) + '</p>'
+      : '';
+    var extra = USER
+      ? (PERFIL && PERFIL.gestor ? '<a class="btn btn-ghost" href="#/gestor" data-action="close-modal">Painel do gestor</a>' : '') +
+        '<button type="button" class="btn btn-ghost" data-action="edit-name">Mudar meu nome</button>' +
+        '<button type="button" class="btn btn-danger-solid" data-action="logout">Sair da conta</button>'
+      : '';
+    openModal('<p class="kicker">Seu perfil</p><h2 id="modalTitle">Escolha o seu avatar</h2>' + conta +
       '<div class="avatar-grid">' + opts + '</div>' +
-      '<div class="modal-actions"><button type="button" class="btn btn-ghost" data-action="close-modal">Fechar</button></div>');
+      '<div class="modal-actions">' + extra + '<button type="button" class="btn btn-ghost" data-action="close-modal">Fechar</button></div>');
   }
   function openReward(p) {
     var next = DATA.planetas[p.index + 1];
@@ -794,9 +870,14 @@
       case 'reset': confirmReset(); break;
       case 'do-reset':
         state.done = {}; state.opened = {}; state.rewarded = {}; save();
+        logEvent('progresso_zerado');
         closeModal(); renderHeader(); route(true); announce('Progresso zerado.');
         break;
       case 'close-modal': closeModal(); break;
+      case 'logout': closeModal(); sb.auth.signOut(); break;
+      case 'edit-name': closeModal(); askName(); break;
+      case 'login-voltar': renderLogin(); break;
+      case 'csv': downloadCsv(); break;
     }
   });
   // Clique com o botão do meio também conta como material aberto
@@ -840,6 +921,327 @@
   }, { passive: true });
 
   window.addEventListener('hashchange', function () { closeModal(); route(); });
+
+  /* ---------- Tela de entrada (link mágico por e-mail) ---------- */
+  var EMAIL_JG = /^[^@\s]+@jovensgenios\.com$/i;
+
+  function authErrorText(err) {
+    var m = (err && err.message) || '';
+    if (/rate|seconds|too many|security purposes/i.test(m)) return 'Muitas tentativas seguidas. Espere um minuto e tente de novo.';
+    if (/database error|jovensgenios/i.test(m)) return 'Somente e-mails @jovensgenios.com podem acessar a trilha.';
+    if (/expired|invalid|not found/i.test(m)) return 'Esse código expirou ou não está certo. Confira o e-mail ou peça um novo.';
+    return 'Não foi possível entrar agora (' + m + '). Tente de novo em instantes.';
+  }
+  function readAuthError() {
+    var src = location.search + '&' + location.hash.replace(/^#/, '');
+    var m = src.match(/error_description=([^&]+)/);
+    if (!m) return null;
+    var d = decodeURIComponent(m[1].replace(/\+/g, ' '));
+    return /expired|invalid/i.test(d) ? 'Esse link expirou ou já foi usado. Peça um novo abaixo.' : 'Não foi possível entrar: ' + d;
+  }
+  /* Tira do endereço os dados que o link do e-mail traz, deixando só a rota da trilha */
+  function cleanAuthUrl() {
+    if (location.search || /^#(?!\/)/.test(location.hash)) {
+      history.replaceState(null, '', location.pathname + (/^#\//.test(location.hash) ? location.hash : '#/inicio'));
+    }
+  }
+
+  function loginShell(inner) {
+    document.body.classList.add('is-locked');
+    main.setAttribute('data-page', 'login');
+    main.innerHTML = '<section class="login"><div class="login-card">' +
+      '<div class="login-planet">' + planetSVG(DATA.planetas[0], 'login') + '</div>' + inner + '</div></section>';
+    document.title = 'Entrar · ' + DATA.config.titulo;
+  }
+  function renderLogin(msg) {
+    loginShell('<p class="kicker">Jovens Gênios</p><h1>' + esc(DATA.config.titulo) + '</h1>' +
+      '<p class="login-lead">Entre com o seu e-mail da JG. Vamos enviar um link de acesso, sem senha.</p>' +
+      '<form id="loginForm" class="login-form" novalidate>' +
+      '<label for="loginEmail">Seu e-mail @jovensgenios.com</label>' +
+      '<input id="loginEmail" type="email" autocomplete="email" inputmode="email" placeholder="nome@jovensgenios.com" required>' +
+      '<button class="btn-done" type="submit">Receber link de acesso</button>' +
+      '</form>' +
+      '<p id="loginMsg" class="login-msg" role="alert">' + (msg ? esc(msg) : '') + '</p>');
+    var form = document.getElementById('loginForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      var out = document.getElementById('loginMsg');
+      if (!EMAIL_JG.test(email)) { out.textContent = 'Use o seu e-mail @jovensgenios.com.'; return; }
+      var btn = form.querySelector('button');
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: location.origin + location.pathname } })
+        .then(function (r) {
+          if (r.error) throw r.error;
+          renderCodeStep(email);
+        })
+        .catch(function (err) {
+          btn.disabled = false;
+          btn.textContent = 'Receber link de acesso';
+          out.textContent = authErrorText(err);
+        });
+    });
+  }
+  function renderCodeStep(email) {
+    loginShell('<p class="kicker">Quase lá</p><h1>Confira o seu e-mail</h1>' +
+      '<p class="login-lead">Enviamos um link de acesso para <strong>' + esc(email) + '</strong>. ' +
+      'Abra o e-mail <strong>neste aparelho e neste navegador</strong> e clique no link. Se não aparecer, olhe a caixa de spam.</p>' +
+      '<form id="codeForm" class="login-form" novalidate>' +
+      '<label for="loginCode">Ou digite o código que veio no e-mail</label>' +
+      '<input id="loginCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="123456" required>' +
+      '<button class="btn-done" type="submit">Entrar</button>' +
+      '</form>' +
+      '<p id="loginMsg" class="login-msg" role="alert"></p>' +
+      '<button type="button" class="link-btn" data-action="login-voltar">Usar outro e-mail ou pedir um novo link</button>');
+    var form = document.getElementById('codeForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var code = document.getElementById('loginCode').value.replace(/\D/g, '');
+      var out = document.getElementById('loginMsg');
+      if (code.length < 6) { out.textContent = 'Digite o código completo, só com números.'; return; }
+      var btn = form.querySelector('button');
+      btn.disabled = true;
+      sb.auth.verifyOtp({ email: email, token: code, type: 'email' })
+        .then(function (r) { if (r.error) throw r.error; /* o restante acontece em onAuthStateChange */ })
+        .catch(function (err) { btn.disabled = false; out.textContent = authErrorText(err); });
+    });
+    document.getElementById('loginCode').focus();
+  }
+
+  /* Depois do login: carrega perfil e progresso da conta e junta com o que havia no navegador */
+  function afterLogin(user) {
+    USER = user;
+    main.innerHTML = '<p class="loading">Carregando a sua trilha…</p>';
+    Promise.all([
+      sb.from('perfis').select('id,email,nome,gestor').eq('id', user.id).maybeSingle(),
+      sb.from('progresso').select('estado').eq('usuario_id', user.id).maybeSingle()
+    ]).then(function (res) {
+      if (USER !== user) return; // saiu da conta no meio do carregamento
+      var err = res[0].error || res[1].error;
+      if (err) {
+        showError('<p>Você entrou, mas o banco de dados da trilha ainda não está pronto.</p><p><code>' + esc(err.message) + '</code></p>');
+        return;
+      }
+      PERFIL = res[0].data || { id: user.id, email: user.email, nome: null, gestor: false };
+      var remote = res[1].data ? normalize(res[1].data.estado) : null;
+      var legacy = readState(STORE_KEY); // progresso de antes do login, neste navegador
+      var base = remote || readState(storeKey()) || legacy || defaultState();
+      state = legacy ? mergeStates(base, legacy) : base;
+      try { localStorage.removeItem(STORE_KEY); } catch (e) { /* ignora */ }
+      save();
+      if (!remote || legacy) pushProgress();
+      try {
+        if (!sessionStorage.getItem('jg-acesso')) { sessionStorage.setItem('jg-acesso', '1'); logEvent('acesso'); }
+      } catch (e) { logEvent('acesso'); }
+      document.body.classList.remove('is-locked');
+      firstRender = true;
+      applyFont();
+      renderHeader();
+      route();
+      if (!PERFIL.nome) askName();
+    });
+  }
+
+  function sugestaoNome(email) {
+    return email.split('@')[0].split(/[._-]+/).filter(Boolean).map(function (w) {
+      return w.charAt(0).toUpperCase() + w.slice(1);
+    }).join(' ');
+  }
+  function askName() {
+    if (!USER) return;
+    var atual = (PERFIL && PERFIL.nome) || sugestaoNome(USER.email);
+    openModal('<p class="kicker">Boas-vindas!</p><h2 id="modalTitle">Qual é o seu nome?</h2>' +
+      '<p>É assim que a liderança vai ver você no acompanhamento da trilha.</p>' +
+      '<form id="nameForm" class="login-form">' +
+      '<label class="sr-only" for="nameInput">Seu nome</label>' +
+      '<input id="nameInput" type="text" autocomplete="name" maxlength="80" required value="' + esc(atual) + '">' +
+      '<div class="modal-actions"><button type="submit" class="btn btn-primary">Salvar</button>' +
+      '<button type="button" class="btn btn-ghost" data-action="close-modal">Agora não</button></div>' +
+      '<p id="nameMsg" class="login-msg" role="alert"></p></form>');
+    var input = document.getElementById('nameInput');
+    input.focus();
+    input.select();
+    document.getElementById('nameForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nome = input.value.trim().replace(/\s+/g, ' ');
+      if (!nome) return;
+      sb.from('perfis').update({ nome: nome }).eq('id', USER.id).then(function (r) {
+        if (r.error) { document.getElementById('nameMsg').textContent = 'Não foi possível salvar agora. Tente de novo.'; return; }
+        PERFIL.nome = nome;
+        closeModal();
+        announce('Nome salvo.');
+      });
+    });
+  }
+
+  /* ---------- Painel do gestor ---------- */
+  var GESTOR_ROWS = [];
+  function nomeDe(p) { return p.nome || sugestaoNome(p.email); }
+  function dataHora(iso) {
+    return iso ? new Date(iso).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' }) : 'Nunca';
+  }
+  function statCard(valor, rotulo) { return '<div class="stat"><b>' + esc(valor) + '</b><span>' + esc(rotulo) + '</span></div>'; }
+
+  function loadGestor(uid) {
+    var box = document.getElementById('gestorPage');
+    if (!box) return;
+    if (!PERFIL || !PERFIL.gestor) {
+      box.innerHTML = '<h1>Área restrita</h1><p class="lead">Só a liderança acessa o painel do gestor.</p>' +
+        '<a class="back" href="#/inicio">' + ic('arrowL') + 'Voltar ao início</a>';
+      return;
+    }
+    Promise.all([
+      sb.from('perfis').select('id,email,nome,gestor,criado_em'),
+      sb.from('progresso').select('usuario_id,estado,atualizado_em'),
+      sb.from('ultimo_acesso').select('usuario_id,ultimo')
+    ]).then(function (res) {
+      var err = res[0].error || res[1].error || res[2].error;
+      if (err) throw err;
+      var prog = {}, last = {};
+      res[1].data.forEach(function (r) { prog[r.usuario_id] = r; });
+      res[2].data.forEach(function (r) { last[r.usuario_id] = r.ultimo; });
+      GESTOR_ROWS = res[0].data.map(function (p) {
+        var st = normalize(prog[p.id] && prog[p.id].estado);
+        return { perfil: p, estado: st, stats: statsOf(st), ultimo: last[p.id] || (prog[p.id] && prog[p.id].atualizado_em) || null };
+      }).sort(function (a, b) { return nomeDe(a.perfil).localeCompare(nomeDe(b.perfil), 'pt-BR'); });
+      if (uid) renderGestorPessoa(uid); else renderGestorLista();
+    }).catch(function (e) {
+      var b = document.getElementById('gestorPage');
+      if (b) b.innerHTML = '<div class="error-box" role="alert">Não foi possível carregar o painel: ' + esc(e.message) + '</div>';
+    });
+  }
+
+  function renderGestorLista() {
+    var box = document.getElementById('gestorPage');
+    if (!box) return;
+    var rows = GESTOR_ROWS, n = rows.length;
+    var media = n ? Math.round(rows.reduce(function (s, r) { return s + r.stats.pct; }, 0) / n) : 0;
+    var concluiram = rows.filter(function (r) { return r.stats.done === r.stats.total; }).length;
+    var semana = rows.filter(function (r) { return r.ultimo && Date.now() - new Date(r.ultimo).getTime() < 7 * 864e5; }).length;
+    var body = rows.map(function (r) {
+      var s = r.stats, nome = nomeDe(r.perfil);
+      return '<tr>' +
+        '<td><a href="#/gestor/' + esc(r.perfil.id) + '"><strong>' + esc(nome) + '</strong></a>' +
+        '<span class="g-email">' + esc(r.perfil.email) + (r.perfil.gestor ? ' · gestor' : '') + '</span></td>' +
+        '<td class="g-prog">' + progressBar(s.done, s.total, 'Progresso de ' + nome, true) + '<span>' + s.pct + '%</span></td>' +
+        '<td>' + s.done + '/' + s.total + '</td>' +
+        '<td>' + s.opened + '/' + s.matTotal + '</td>' +
+        '<td>' + esc(seloNome(s.selo)) + '</td>' +
+        '<td>' + dataHora(r.ultimo) + '</td></tr>';
+    }).join('');
+    box.innerHTML = '<p class="kicker">Liderança</p><h1>Painel do gestor</h1>' +
+      '<p class="lead">O andamento de cada pessoa na trilha. Clique no nome para ver o histórico com datas.</p>' +
+      '<div class="g-cards">' + statCard(n, n === 1 ? 'pessoa com acesso' : 'pessoas com acesso') + statCard(media + '%', 'média de conclusão') +
+      statCard(concluiram, 'concluíram a trilha') + statCard(semana, 'acessaram nos últimos 7 dias') + '</div>' +
+      (n
+        ? '<div class="g-actions"><button type="button" class="btn btn-ghost" data-action="csv">Baixar planilha (CSV)</button></div>' +
+          '<div class="table-wrap"><table class="g-table"><caption class="sr-only">Progresso por pessoa</caption>' +
+          '<thead><tr><th scope="col">Pessoa</th><th scope="col">Progresso</th><th scope="col">Dias</th><th scope="col">Materiais</th><th scope="col">Selo</th><th scope="col">Último acesso</th></tr></thead>' +
+          '<tbody>' + body + '</tbody></table></div>'
+        : '<div class="empty">Ninguém entrou na trilha ainda. Assim que alguém fizer o primeiro acesso, aparece aqui.</div>');
+  }
+
+  function eventText(ev) {
+    var m, l, p;
+    switch (ev.tipo) {
+      case 'acesso': return 'Entrou na trilha';
+      case 'material_aberto':
+        m = MATERIALS.filter(function (x) { return x.id === ev.ref; })[0];
+        return 'Abriu o material "' + (m ? m.titulo : ev.ref) + '"';
+      case 'nivel_concluido':
+      case 'nivel_desmarcado':
+        l = LEVELS.filter(function (x) { return x.id === ev.ref; })[0];
+        return (ev.tipo === 'nivel_concluido' ? 'Concluiu ' : 'Desmarcou ') + (l ? l.dia + ': ' + l.tema : ev.ref);
+      case 'planeta_concluido':
+        p = DATA.planetas.filter(function (x) { return x.id === ev.ref; })[0];
+        return p ? 'Concluiu o planeta ' + p.nome + ' e ganhou o selo ' + seloNome(p) : 'Concluiu um planeta';
+      case 'progresso_zerado': return 'Zerou o próprio progresso';
+    }
+    return ev.tipo;
+  }
+
+  function renderGestorPessoa(uid) {
+    var box = document.getElementById('gestorPage');
+    if (!box) return;
+    var back = '<a class="back" href="#/gestor">' + ic('arrowL') + 'Voltar ao painel</a>';
+    var r = GESTOR_ROWS.filter(function (x) { return x.perfil.id === uid; })[0];
+    if (!r) { box.innerHTML = back + '<h1>Pessoa não encontrada</h1>'; return; }
+    var s = r.stats, st = r.estado;
+    var planetas = DATA.planetas.map(function (pl) {
+      var d = pl.niveis.filter(function (n) { return st.done[n.id]; }).length;
+      return '<div class="prow">' +
+        '<span class="prow-planet">' + planetSVG(pl, 'g' + pl.index) + '</span>' +
+        '<span><strong>' + esc(pl.nome) + '</strong><span class="small">' + esc(pl.periodo) + '</span>' +
+        progressBar(d, pl.niveis.length, 'Níveis concluídos em ' + pl.nome) + '</span>' +
+        '<span class="prow-count">' + d + '/' + pl.niveis.length + ' níveis</span></div>';
+    }).join('');
+    box.innerHTML = back +
+      '<p class="kicker">Acompanhamento</p><h1>' + esc(nomeDe(r.perfil)) + '</h1>' +
+      '<p class="lead">' + esc(r.perfil.email) + ' · último acesso: ' + dataHora(r.ultimo) + '</p>' +
+      '<div class="g-cards">' + statCard(s.pct + '%', 'da trilha concluída') + statCard(s.done + '/' + s.total, 'dias concluídos') +
+      statCard(s.opened + '/' + s.matTotal, 'materiais abertos') + statCard(seloNome(s.selo), 'selo atual') + '</div>' +
+      '<h2 class="section-title">Planetas</h2><div class="planet-rows">' + planetas + '</div>' +
+      '<h2 class="section-title">Histórico</h2><ol class="timeline" id="timeline"><li>Carregando…</li></ol>';
+    sb.from('eventos').select('tipo,ref,criado_em').eq('usuario_id', uid)
+      .order('criado_em', { ascending: false }).limit(300)
+      .then(function (res) {
+        var tl = document.getElementById('timeline');
+        if (!tl) return;
+        if (res.error) { tl.innerHTML = '<li>Não foi possível carregar o histórico.</li>'; return; }
+        tl.innerHTML = res.data.length
+          ? res.data.map(function (ev) {
+            return '<li><time datetime="' + esc(ev.criado_em) + '">' + dataHora(ev.criado_em) + '</time><span>' + esc(eventText(ev)) + '</span></li>';
+          }).join('')
+          : '<li>Sem registros ainda.</li>';
+      });
+  }
+
+  function downloadCsv() {
+    var linhas = [['Nome', 'E-mail', 'Progresso (%)', 'Dias concluídos', 'Total de dias', 'Materiais abertos', 'Selo', 'Último acesso']];
+    GESTOR_ROWS.forEach(function (r) {
+      var s = r.stats;
+      linhas.push([nomeDe(r.perfil), r.perfil.email, s.pct, s.done, s.total, s.opened, seloNome(s.selo), r.ultimo ? dataHora(r.ultimo) : '']);
+    });
+    var csv = linhas.map(function (l) {
+      return l.map(function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; }).join(';');
+    }).join('\r\n');
+    var url = URL.createObjectURL(new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' }));
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'acompanhamento-trilha-jg.csv';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  /* ---------- Início: com login, a trilha só abre depois de entrar ---------- */
+  function start() {
+    if (!LOGIN_ON) { renderHeader(); route(); return; }
+    if (!sb) {
+      showError('<p>Não foi possível carregar o sistema de login. Confira a internet e recarregue a página.</p>');
+      return;
+    }
+    var urlErr = readAuthError();
+    sb.auth.onAuthStateChange(function (event, session) {
+      // a biblioteca pede para não chamar o Supabase direto dentro deste aviso
+      setTimeout(function () {
+        if (session && (!USER || USER.id !== session.user.id)) afterLogin(session.user);
+        else if (!session && USER) {
+          USER = null; PERFIL = null; state = defaultState();
+          closeModal();
+          renderLogin('Você saiu da sua conta.');
+        }
+      }, 0);
+    });
+    sb.auth.getSession().then(function (r) {
+      cleanAuthUrl();
+      var session = r.data && r.data.session;
+      if (session) { if (!USER) afterLogin(session.user); return; }
+      renderLogin(urlErr || (r.error ? 'O link não funcionou. Abra o link no mesmo navegador em que pediu o acesso, ou use o código que veio no e-mail.' : ''));
+    });
+  }
 
   /* ---------- Estrelas do fundo ---------- */
   function makeStars() {
@@ -901,8 +1303,7 @@
         showError('<p>O arquivo <code>data/trilha.json</code> tem um erro de digitação. Confira vírgulas, aspas e chaves perto do ponto indicado abaixo.</p><p><code>' + esc(err.message) + '</code></p><p>Dica: cole o conteúdo do arquivo em <strong>jsonlint.com</strong> para encontrar a linha exata.</p>');
         return;
       }
-      renderHeader();
-      route();
+      start();
     })
     .catch(function () {
       showError('<p>O arquivo <code>data/trilha.json</code> não foi encontrado ou não pôde ser lido.</p><p>Se você abriu o <code>index.html</code> direto do computador (dando dois cliques), o navegador bloqueia a leitura do arquivo. Publique o site (GitHub Pages ou Vercel) ou use um servidor local, como explicado no LEIA-ME.</p>');
