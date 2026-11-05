@@ -41,6 +41,7 @@
     inbox: '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>',
     video: '<rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4V8z"/>',
     eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    mail: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',
     external: '<path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
     ppt: '<rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/><path d="M8 12V9M12 12V7M16 12v-2"/>',
     pdf: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>',
@@ -377,6 +378,9 @@
     pts.setAttribute('aria-label', p + ' estrelas');
     pts.setAttribute('role', 'img');
     document.getElementById('gestorLink').hidden = !(PERFIL && PERFIL.gestor);
+    var sair = document.getElementById('logoutBtn');
+    sair.hidden = !USER;
+    if (USER) sair.setAttribute('aria-label', 'Sair da conta ' + USER.email);
   }
 
   /* ---------- Cards de material ---------- */
@@ -953,35 +957,57 @@
   function loginShell(inner) {
     document.body.classList.add('is-locked');
     main.setAttribute('data-page', 'login');
-    main.innerHTML = '<section class="login"><div class="login-card">' +
-      '<div class="login-planet">' + planetSVG(DATA.planetas[0], 'login') + '</div>' + inner + '</div></section>';
+    // os planetas da trilha em arco, ao lado do cartão de entrada
+    var n = DATA.planetas.length;
+    var orbit = DATA.planetas.map(function (p, i) {
+      var d = i - (n - 1) / 2;
+      return '<li style="--i:' + i + ';--d2:' + (d * d) + '">' +
+        '<span class="lo-planet">' + planetSVG(p, 'lo' + i) + '</span>' +
+        '<span class="lo-name">' + esc(p.nome) + '</span>' +
+        '<span class="lo-week">' + esc(String(p.periodo || '').split(' · ')[0]) + '</span></li>';
+    }).join('');
+    main.innerHTML = '<section class="login">' +
+      '<div class="login-hero">' +
+      '<p class="kicker">Jovens Gênios · Onboarding comercial</p>' +
+      '<h1 class="login-title">Sua jornada <span class="hl">começa aqui.</span></h1>' +
+      '<p class="login-sub">Do primeiro pitch à primeira reunião real: a sua trilha de entrada no time comercial, com o progresso salvo na sua conta.</p>' +
+      '<div class="login-orbit">' +
+      '<svg class="lo-path" viewBox="0 0 500 120" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M40 112 Q250 -40 460 112"/></svg>' +
+      '<ol aria-label="Planetas da trilha">' + orbit + '</ol></div>' +
+      '</div>' +
+      '<div class="login-card">' + inner + '</div></section>';
     document.title = 'Entrar · ' + DATA.config.titulo;
   }
   function senhaCampo(id, label, auto) {
     return '<label for="' + id + '">' + label + '</label>' +
-      '<span class="pass-wrap"><input id="' + id + '" type="password" autocomplete="' + auto + '" required>' +
+      '<span class="pass-wrap field">' + ic('lock') + '<input id="' + id + '" type="password" autocomplete="' + auto + '" required>' +
       '<button type="button" class="pass-toggle" data-show="' + id + '" aria-label="Mostrar senha" aria-pressed="false">' + ic('eye') + '</button></span>';
   }
   /* modo: 'entrar' ou 'criar' (primeiro acesso) */
   function renderLogin(msg, modo) {
     modo = modo || 'entrar';
     var criar = modo === 'criar';
-    loginShell('<p class="kicker">Jovens Gênios</p><h1>' + esc(DATA.config.titulo) + '</h1>' +
+    var anterior = document.getElementById('loginEmail'); // mantém o e-mail ao trocar de aba
+    var emailAntes = anterior ? anterior.value : '';
+    function aba(m, rotulo) {
+      return '<button type="button" data-action="login-' + m + '" aria-pressed="' + (modo === m) + '">' + rotulo + '</button>';
+    }
+    loginShell('<h2 class="login-card-title">' + (criar ? 'Criar minha conta' : 'Entrar na trilha') + '</h2>' +
+      '<div class="login-tabs" role="group" aria-label="Tipo de acesso">' + aba('entrar', 'Entrar') + aba('criar', 'Primeiro acesso') + '</div>' +
       '<p class="login-lead">' + (criar
-        ? 'Primeiro acesso: use o seu e-mail da JG e crie uma senha.'
-        : 'Entre com o seu e-mail da JG e a sua senha.') + '</p>' +
+        ? 'Use o seu e-mail @jovensgenios.com e crie uma senha para os próximos acessos.'
+        : 'Use o seu e-mail @jovensgenios.com e a sua senha.') + '</p>' +
       '<form id="loginForm" class="login-form" novalidate>' +
-      '<label for="loginEmail">Seu e-mail @jovensgenios.com</label>' +
-      '<input id="loginEmail" type="email" autocomplete="username" inputmode="email" placeholder="nome@jovensgenios.com" required>' +
+      '<label for="loginEmail">E-mail</label>' +
+      '<span class="field">' + ic('mail') + '<input id="loginEmail" type="email" autocomplete="username" inputmode="email" placeholder="nome@jovensgenios.com" required value="' + esc(emailAntes) + '"></span>' +
       senhaCampo('loginSenha', criar ? 'Crie uma senha (mínimo ' + SENHA_MIN + ' caracteres)' : 'Senha', criar ? 'new-password' : 'current-password') +
       (criar ? senhaCampo('loginSenha2', 'Repita a senha', 'new-password') : '') +
       '<button class="btn-done" type="submit">' + (criar ? 'Criar conta e entrar' : 'Entrar') + '</button>' +
       '</form>' +
       '<p id="loginMsg" class="login-msg" role="alert">' + (msg ? esc(msg) : '') + '</p>' +
-      (criar
-        ? '<button type="button" class="link-btn" data-action="login-entrar">Já tenho conta: entrar</button>'
-        : '<button type="button" class="link-btn" data-action="login-criar">Primeiro acesso? Criar minha senha</button>' +
-          '<p class="login-help">Esqueceu a senha? Peça para a liderança cadastrar uma nova no painel do gestor.</p>'));
+      '<p class="login-help">' + (criar
+        ? 'Já tem conta? Use a aba <strong>Entrar</strong>.'
+        : 'Esqueceu a senha? Peça para a liderança cadastrar uma nova.') + '</p>');
     var form = document.getElementById('loginForm');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -1014,7 +1040,7 @@
           out.textContent = authErrorText(err);
         });
     });
-    document.getElementById('loginEmail').focus();
+    document.getElementById(emailAntes ? 'loginSenha' : 'loginEmail').focus();
   }
   function togglePass(btn) {
     var input = document.getElementById(btn.getAttribute('data-show'));
