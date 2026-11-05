@@ -816,6 +816,7 @@
     var extra = USER
       ? (PERFIL && PERFIL.gestor ? '<a class="btn btn-ghost" href="#/gestor" data-action="close-modal">Painel do gestor</a>' : '') +
         '<button type="button" class="btn btn-ghost" data-action="edit-name">Mudar meu nome</button>' +
+        '<button type="button" class="btn btn-ghost" data-action="edit-pass">Mudar minha senha</button>' +
         '<button type="button" class="btn btn-danger-solid" data-action="logout">Sair da conta</button>'
       : '';
     openModal('<p class="kicker">Seu perfil</p><h2 id="modalTitle">Escolha o seu avatar</h2>' + conta +
@@ -853,6 +854,8 @@
     if (op) { markOpened(op.getAttribute('data-open')); return; }
     var pv = t.closest('[data-preview]');
     if (pv) { togglePreview(pv); return; }
+    var sh = t.closest('[data-show]');
+    if (sh) { togglePass(sh); return; }
     if (t.hasAttribute && t.hasAttribute('data-backdrop')) { closeModal(); return; }
     var a = t.closest('[data-action]');
     if (!a) return;
@@ -876,7 +879,10 @@
       case 'close-modal': closeModal(); break;
       case 'logout': closeModal(); sb.auth.signOut(); break;
       case 'edit-name': closeModal(); askName(); break;
-      case 'login-voltar': renderLogin(); break;
+      case 'login-entrar': renderLogin(); break;
+      case 'login-criar': renderLogin('', 'criar'); break;
+      case 'edit-pass': closeModal(); askNewPassword(); break;
+      case 'reset-pass': resetPasswordFor(a.getAttribute('data-id')); break;
       case 'csv': downloadCsv(); break;
     }
   });
@@ -922,24 +928,22 @@
 
   window.addEventListener('hashchange', function () { closeModal(); route(); });
 
-  /* ---------- Tela de entrada (link mágico por e-mail) ---------- */
+  /* ---------- Tela de entrada (e-mail @jovensgenios.com + senha) ---------- */
   var EMAIL_JG = /^[^@\s]+@jovensgenios\.com$/i;
+  var SENHA_MIN = 8;
 
   function authErrorText(err) {
     var m = (err && err.message) || '';
+    if (/invalid login credentials/i.test(m)) return 'E-mail ou senha incorretos. Confira e tente de novo.';
+    if (/already registered|already been registered|already exists/i.test(m)) return 'Esse e-mail já tem conta. Use a opção Entrar.';
+    if (/email not confirmed/i.test(m)) return 'Seu cadastro ainda não foi liberado. Avise a liderança.';
+    if (/signups? not allowed|signup is disabled/i.test(m)) return 'O cadastro de novas contas está fechado. Fale com a liderança.';
+    if (/password/i.test(m) && /(short|least|weak|characters)/i.test(m)) return 'A senha precisa ter pelo menos ' + SENHA_MIN + ' caracteres.';
     if (/rate|seconds|too many|security purposes/i.test(m)) return 'Muitas tentativas seguidas. Espere um minuto e tente de novo.';
     if (/database error|jovensgenios/i.test(m)) return 'Somente e-mails @jovensgenios.com podem acessar a trilha.';
-    if (/expired|invalid|not found/i.test(m)) return 'Esse código expirou ou não está certo. Confira o e-mail ou peça um novo.';
     return 'Não foi possível entrar agora (' + m + '). Tente de novo em instantes.';
   }
-  function readAuthError() {
-    var src = location.search + '&' + location.hash.replace(/^#/, '');
-    var m = src.match(/error_description=([^&]+)/);
-    if (!m) return null;
-    var d = decodeURIComponent(m[1].replace(/\+/g, ' '));
-    return /expired|invalid/i.test(d) ? 'Esse link expirou ou já foi usado. Peça um novo abaixo.' : 'Não foi possível entrar: ' + d;
-  }
-  /* Tira do endereço os dados que o link do e-mail traz, deixando só a rota da trilha */
+  /* Tira do endereço dados de login que possam ter vindo em links antigos */
   function cleanAuthUrl() {
     if (location.search || /^#(?!\/)/.test(location.hash)) {
       history.replaceState(null, '', location.pathname + (/^#\//.test(location.hash) ? location.hash : '#/inicio'));
@@ -953,60 +957,94 @@
       '<div class="login-planet">' + planetSVG(DATA.planetas[0], 'login') + '</div>' + inner + '</div></section>';
     document.title = 'Entrar · ' + DATA.config.titulo;
   }
-  function renderLogin(msg) {
+  function senhaCampo(id, label, auto) {
+    return '<label for="' + id + '">' + label + '</label>' +
+      '<span class="pass-wrap"><input id="' + id + '" type="password" autocomplete="' + auto + '" required>' +
+      '<button type="button" class="pass-toggle" data-show="' + id + '" aria-label="Mostrar senha" aria-pressed="false">' + ic('eye') + '</button></span>';
+  }
+  /* modo: 'entrar' ou 'criar' (primeiro acesso) */
+  function renderLogin(msg, modo) {
+    modo = modo || 'entrar';
+    var criar = modo === 'criar';
     loginShell('<p class="kicker">Jovens Gênios</p><h1>' + esc(DATA.config.titulo) + '</h1>' +
-      '<p class="login-lead">Entre com o seu e-mail da JG. Vamos enviar um link de acesso, sem senha.</p>' +
+      '<p class="login-lead">' + (criar
+        ? 'Primeiro acesso: use o seu e-mail da JG e crie uma senha.'
+        : 'Entre com o seu e-mail da JG e a sua senha.') + '</p>' +
       '<form id="loginForm" class="login-form" novalidate>' +
       '<label for="loginEmail">Seu e-mail @jovensgenios.com</label>' +
-      '<input id="loginEmail" type="email" autocomplete="email" inputmode="email" placeholder="nome@jovensgenios.com" required>' +
-      '<button class="btn-done" type="submit">Receber link de acesso</button>' +
+      '<input id="loginEmail" type="email" autocomplete="username" inputmode="email" placeholder="nome@jovensgenios.com" required>' +
+      senhaCampo('loginSenha', criar ? 'Crie uma senha (mínimo ' + SENHA_MIN + ' caracteres)' : 'Senha', criar ? 'new-password' : 'current-password') +
+      (criar ? senhaCampo('loginSenha2', 'Repita a senha', 'new-password') : '') +
+      '<button class="btn-done" type="submit">' + (criar ? 'Criar conta e entrar' : 'Entrar') + '</button>' +
       '</form>' +
-      '<p id="loginMsg" class="login-msg" role="alert">' + (msg ? esc(msg) : '') + '</p>');
+      '<p id="loginMsg" class="login-msg" role="alert">' + (msg ? esc(msg) : '') + '</p>' +
+      (criar
+        ? '<button type="button" class="link-btn" data-action="login-entrar">Já tenho conta: entrar</button>'
+        : '<button type="button" class="link-btn" data-action="login-criar">Primeiro acesso? Criar minha senha</button>' +
+          '<p class="login-help">Esqueceu a senha? Peça para a liderança cadastrar uma nova no painel do gestor.</p>'));
     var form = document.getElementById('loginForm');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      var senha = document.getElementById('loginSenha').value;
       var out = document.getElementById('loginMsg');
       if (!EMAIL_JG.test(email)) { out.textContent = 'Use o seu e-mail @jovensgenios.com.'; return; }
-      var btn = form.querySelector('button');
+      if (!senha) { out.textContent = 'Digite a sua senha.'; return; }
+      if (criar) {
+        if (senha.length < SENHA_MIN) { out.textContent = 'A senha precisa ter pelo menos ' + SENHA_MIN + ' caracteres.'; return; }
+        if (senha !== document.getElementById('loginSenha2').value) { out.textContent = 'As duas senhas não são iguais.'; return; }
+      }
+      var btn = form.querySelector('button[type=submit]');
+      var rotulo = btn.textContent;
       btn.disabled = true;
-      btn.textContent = 'Enviando…';
-      sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: location.origin + location.pathname } })
+      btn.textContent = criar ? 'Criando…' : 'Entrando…';
+      (criar ? sb.auth.signUp({ email: email, password: senha }) : sb.auth.signInWithPassword({ email: email, password: senha }))
         .then(function (r) {
           if (r.error) throw r.error;
-          renderCodeStep(email);
+          // o restante acontece em onAuthStateChange
+          if (criar && !r.data.session) {
+            // Supabase devolve sucesso sem sessão quando o e-mail já existe ou quando exige confirmação por e-mail
+            var ident = r.data.user && r.data.user.identities;
+            throw new Error(ident && ident.length === 0 ? 'already registered' : 'Email not confirmed');
+          }
         })
         .catch(function (err) {
           btn.disabled = false;
-          btn.textContent = 'Receber link de acesso';
+          btn.textContent = rotulo;
           out.textContent = authErrorText(err);
         });
     });
+    document.getElementById('loginEmail').focus();
   }
-  function renderCodeStep(email) {
-    loginShell('<p class="kicker">Quase lá</p><h1>Confira o seu e-mail</h1>' +
-      '<p class="login-lead">Enviamos um link de acesso para <strong>' + esc(email) + '</strong>. ' +
-      'Abra o e-mail <strong>neste aparelho e neste navegador</strong> e clique no link. Se não aparecer, olhe a caixa de spam.</p>' +
-      '<form id="codeForm" class="login-form" novalidate>' +
-      '<label for="loginCode">Ou digite o código que veio no e-mail</label>' +
-      '<input id="loginCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="123456" required>' +
-      '<button class="btn-done" type="submit">Entrar</button>' +
-      '</form>' +
-      '<p id="loginMsg" class="login-msg" role="alert"></p>' +
-      '<button type="button" class="link-btn" data-action="login-voltar">Usar outro e-mail ou pedir um novo link</button>');
-    var form = document.getElementById('codeForm');
-    form.addEventListener('submit', function (e) {
+  function togglePass(btn) {
+    var input = document.getElementById(btn.getAttribute('data-show'));
+    var show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    btn.setAttribute('aria-pressed', String(show));
+    btn.setAttribute('aria-label', show ? 'Esconder senha' : 'Mostrar senha');
+  }
+  function askNewPassword() {
+    openModal('<p class="kicker">Sua conta</p><h2 id="modalTitle">Mudar minha senha</h2>' +
+      '<form id="passForm" class="login-form">' +
+      senhaCampo('novaSenha', 'Nova senha (mínimo ' + SENHA_MIN + ' caracteres)', 'new-password') +
+      senhaCampo('novaSenha2', 'Repita a nova senha', 'new-password') +
+      '<div class="modal-actions"><button type="submit" class="btn btn-primary">Salvar senha</button>' +
+      '<button type="button" class="btn btn-ghost" data-action="close-modal">Cancelar</button></div>' +
+      '<p id="passMsg" class="login-msg" role="alert"></p></form>');
+    document.getElementById('novaSenha').focus();
+    document.getElementById('passForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      var code = document.getElementById('loginCode').value.replace(/\D/g, '');
-      var out = document.getElementById('loginMsg');
-      if (code.length < 6) { out.textContent = 'Digite o código completo, só com números.'; return; }
-      var btn = form.querySelector('button');
-      btn.disabled = true;
-      sb.auth.verifyOtp({ email: email, token: code, type: 'email' })
-        .then(function (r) { if (r.error) throw r.error; /* o restante acontece em onAuthStateChange */ })
-        .catch(function (err) { btn.disabled = false; out.textContent = authErrorText(err); });
+      var a = document.getElementById('novaSenha').value, b = document.getElementById('novaSenha2').value;
+      var out = document.getElementById('passMsg');
+      if (a.length < SENHA_MIN) { out.textContent = 'A senha precisa ter pelo menos ' + SENHA_MIN + ' caracteres.'; return; }
+      if (a !== b) { out.textContent = 'As duas senhas não são iguais.'; return; }
+      sb.auth.updateUser({ password: a }).then(function (r) {
+        if (r.error) { out.textContent = authErrorText(r.error); return; }
+        closeModal();
+        toast('Senha alterada');
+        announce('Senha alterada.');
+      });
     });
-    document.getElementById('loginCode').focus();
   }
 
   /* Depois do login: carrega perfil e progresso da conta e junta com o que havia no navegador */
@@ -1157,6 +1195,7 @@
         p = DATA.planetas.filter(function (x) { return x.id === ev.ref; })[0];
         return p ? 'Concluiu o planeta ' + p.nome + ' e ganhou o selo ' + seloNome(p) : 'Concluiu um planeta';
       case 'progresso_zerado': return 'Zerou o próprio progresso';
+      case 'senha_redefinida': return 'A liderança cadastrou uma nova senha';
     }
     return ev.tipo;
   }
@@ -1179,6 +1218,7 @@
     box.innerHTML = back +
       '<p class="kicker">Acompanhamento</p><h1>' + esc(nomeDe(r.perfil)) + '</h1>' +
       '<p class="lead">' + esc(r.perfil.email) + ' · último acesso: ' + dataHora(r.ultimo) + '</p>' +
+      '<div class="g-actions g-actions-left"><button type="button" class="btn btn-ghost" data-action="reset-pass" data-id="' + esc(r.perfil.id) + '">Cadastrar nova senha</button></div>' +
       '<div class="g-cards">' + statCard(s.pct + '%', 'da trilha concluída') + statCard(s.done + '/' + s.total, 'dias concluídos') +
       statCard(s.opened + '/' + s.matTotal, 'materiais abertos') + statCard(seloNome(s.selo), 'selo atual') + '</div>' +
       '<h2 class="section-title">Planetas</h2><div class="planet-rows">' + planetas + '</div>' +
@@ -1195,6 +1235,45 @@
           }).join('')
           : '<li>Sem registros ainda.</li>';
       });
+  }
+
+  /* Gestor cadastra uma senha nova para quem esqueceu (não depende de e-mail) */
+  function senhaSugerida() {
+    var chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789', s = '';
+    var rnd = new Uint32Array(10);
+    crypto.getRandomValues(rnd);
+    for (var i = 0; i < rnd.length; i++) s += chars[rnd[i] % chars.length];
+    return s;
+  }
+  function resetPasswordFor(uid) {
+    var r = GESTOR_ROWS.filter(function (x) { return x.perfil.id === uid; })[0];
+    if (!r) return;
+    var nome = nomeDe(r.perfil);
+    openModal('<p class="kicker">Painel do gestor</p><h2 id="modalTitle">Nova senha para ' + esc(nome) + '</h2>' +
+      '<p>Cadastre uma senha e passe para a pessoa. Depois ela pode trocar em <strong>avatar → Mudar minha senha</strong>.</p>' +
+      '<form id="resetForm" class="login-form">' +
+      '<label for="resetSenha">Nova senha (mínimo ' + SENHA_MIN + ' caracteres)</label>' +
+      '<input id="resetSenha" type="text" autocomplete="off" spellcheck="false" value="' + senhaSugerida() + '" required>' +
+      '<div class="modal-actions"><button type="submit" class="btn btn-primary">Salvar nova senha</button>' +
+      '<button type="button" class="btn btn-ghost" data-action="close-modal">Cancelar</button></div>' +
+      '<p id="resetMsg" class="login-msg" role="alert"></p></form>');
+    var input = document.getElementById('resetSenha');
+    input.focus();
+    input.select();
+    document.getElementById('resetForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var senha = input.value.trim();
+      var out = document.getElementById('resetMsg');
+      if (senha.length < SENHA_MIN) { out.textContent = 'A senha precisa ter pelo menos ' + SENHA_MIN + ' caracteres.'; return; }
+      sb.rpc('gestor_definir_senha', { alvo: uid, nova: senha }).then(function (res) {
+        if (res.error) { out.textContent = 'Não foi possível salvar: ' + res.error.message; return; }
+        openModal('<p class="kicker">Pronto</p><h2 id="modalTitle">Senha cadastrada</h2>' +
+          '<p>Passe para <strong>' + esc(nome) + '</strong> (' + esc(r.perfil.email) + '):</p>' +
+          '<p class="senha-nova">' + esc(senha) + '</p>' +
+          '<p>Esta senha não aparece de novo depois que você fechar esta janela.</p>' +
+          '<div class="modal-actions"><button type="button" class="btn btn-primary" data-action="close-modal">Fechar</button></div>');
+      });
+    });
   }
 
   function downloadCsv() {
@@ -1223,7 +1302,6 @@
       showError('<p>Não foi possível carregar o sistema de login. Confira a internet e recarregue a página.</p>');
       return;
     }
-    var urlErr = readAuthError();
     sb.auth.onAuthStateChange(function (event, session) {
       // a biblioteca pede para não chamar o Supabase direto dentro deste aviso
       setTimeout(function () {
@@ -1239,7 +1317,7 @@
       cleanAuthUrl();
       var session = r.data && r.data.session;
       if (session) { if (!USER) afterLogin(session.user); return; }
-      renderLogin(urlErr || (r.error ? 'O link não funcionou. Abra o link no mesmo navegador em que pediu o acesso, ou use o código que veio no e-mail.' : ''));
+      renderLogin();
     });
   }
 
