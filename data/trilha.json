@@ -38,6 +38,7 @@
           "materiais": [
             { "id": "mapa-produtos", "titulo": "Mapa de produtos JG", "formato": "PPT", "descricao": "Visão geral dos produtos, para quem são e que problema resolvem.", "link": "https://drive.google.com/file/d/1DBc_Og7N_O7YhkAIozR20qxDeb1_5A1V/view", "video": "" },
             { "id": "mapa-servicos", "titulo": "Mapa de serviços JG", "formato": "PPT", "descricao": "Serviços de formação e acompanhamento que complementam os produtos.", "link": "https://drive.google.com/file/d/1cH5IE6FL8ixfup37ycWw9plnCNewpp7P/view", "video": "" },
+            { "id": "formacao-plataformas", "titulo": "Formação nas plataformas JG", "formato": "PDF", "descricao": "Como funcionam as plataformas da JG, para mostrar o produto com segurança.", "link": "https://drive.google.com/file/d/1xeE4BgV0IRUjM9ipNzLZ-SmIqtvi0oD2/view", "video": "" },
             { "id": "biblioteca-provas", "titulo": "Biblioteca de provas e indicadores", "formato": "Documento", "descricao": "Resultados, números e casos para sustentar cada argumento.", "link": "https://drive.google.com/file/d/1dIyNR_uUGQzfglUBCDlUB9Y5H7Bd4mDZ/view", "video": "" }
           ]
         },
@@ -104,9 +105,10 @@
           "atividade": "Simular 15 minutos de discovery.",
           "entregavel": "Simulação com BANT preenchido.",
           "materiais": [
-            { "id": "roteiro-discovery", "titulo": "Roteiro de discovery", "formato": "PPT", "descricao": "Sequência de perguntas para entender o contexto do município.", "link": "https://drive.google.com/file/d/1GSvlR_iZMOYPS7pWA8J5teu1J1ESpSfr/view", "video": "" },
-            { "id": "banco-perguntas-persona", "titulo": "Banco de perguntas por persona", "formato": "PPT", "descricao": "Perguntas prontas para cada perfil de interlocutor.", "link": "https://drive.google.com/file/d/1PoFhAIOVUKTML1OD4gZnb0-IpC1rqHdE/view", "video": "" },
-            { "id": "criterios-qualificacao", "titulo": "Critérios de qualificação", "formato": "PPT", "descricao": "Como usar o BANT para decidir se a oportunidade avança.", "link": "https://drive.google.com/file/d/1ZtyGVaa8IRg24ZvPH2APrM3imPNaVvWk/view", "video": "" }
+            { "id": "roteiro-discovery", "titulo": "Roteiro de discovery", "formato": "PPT", "descricao": "Sequência de perguntas para entender o contexto do município.", "link": "https://drive.google.com/file/d/1lGXEiRltaXqr8p2ErigjZP33azub2h9V/view", "video": "" },
+            { "id": "banco-perguntas-persona", "titulo": "Banco de perguntas por persona", "formato": "PPT", "descricao": "Perguntas prontas para cada perfil de interlocutor.", "link": "https://drive.google.com/file/d/1FFMISGGSnYZWRaN4H3jS5yrmeVYnnmSQ/view", "video": "" },
+            { "id": "criterios-qualificacao", "titulo": "Critérios de qualificação", "formato": "PPT", "descricao": "Como usar o BANT para decidir se a oportunidade avança.", "link": "https://drive.google.com/file/d/1QuH-VPXJtnjAbXtnuWFxMIeaN-n_0eLE/view", "video": "" },
+            { "id": "treinamento-spin", "titulo": "Treinamento SPIN", "formato": "PDF", "descricao": "Método SPIN: perguntas de situação, problema, implicação e necessidade para conduzir o discovery.", "link": "https://drive.google.com/file/d/1GhGuvYZ8nnX7HbRbQoGpy0kU8WEV-fyv/view", "video": "" }
           ]
         },
         {
@@ -117,8 +119,8 @@
           "entregavel": "Demonstração com feedback.",
           "materiais": [
             { "id": "roteiro-primeira-reuniao", "titulo": "Roteiro de primeira reunião", "formato": "Documento", "descricao": "Abertura, agenda, perguntas e fechamento da primeira conversa.", "link": "https://drive.google.com/file/d/12k2bbgNHsUiKzrIPQNHL3HQsNEo277eQ/view", "video": "" },
-            { "id": "roteiro-demonstracao", "titulo": "Roteiro de demonstração", "formato": "PPT", "descricao": "Como mostrar a plataforma conectando cada tela a uma dor.", "link": "https://drive.google.com/file/d/1U4Somrm5OxisZmPbLO6lBtfj6ZUqDm1m/view", "video": "" },
-            { "id": "one-pager-cases", "titulo": "One-pager de cases", "formato": "PDF", "descricao": "Resumo de casos de sucesso para deixar com o cliente.", "link": "https://drive.google.com/file/d/1WeISP3FLbsXfGIjhJv3C17P4d1NQntfT/view", "video": "" }
+            { "id": "roteiro-demonstracao", "titulo": "Roteiro de demonstração", "formato": "PPT", "descricao": "Como mostrar a plataforma conectando cada tela a uma dor.", "link": "https://drive.google.com/file/d/1tRDTlBZllfSKBS1LhHo3rkpT4d5aJ5t9/view", "video": "" },
+            { "id": "one-pager-cases", "titulo": "One-pager de cases", "formato": "PDF", "descricao": "Resumo de casos de sucesso para deixar com o cliente.", "link": "COLE_O_LINK_AQUI", "video": "" }
           ]
         },
         {
@@ -185,7 +187,7 @@
           "atividade": "Responder à avaliação.",
           "entregavel": "Nota da avaliação.",
           "materiais": [
-            { "id": "avaliacao-conhecimento", "titulo": "Avaliação de conhecimento", "formato": "Formulário", "descricao": "Questões sobre JG, produtos, educação e venda B2G.", "link": "COLE_O_LINK_AQUI", "video": "" }
+            { "id": "avaliacao-conhecimento", "titulo": "Avaliação de conhecimento", "formato": "Formulário", "descricao": "20 questões de múltipla escolha sobre JG, educação, B2G e situações de venda. Cerca de 40 minutos.", "link": "https://docs.google.com/forms/d/e/1FAIpQLSeIpXOaThEt3I6cXxti8_lj5nbcWQZ6a0O6-hSqFltULbv7dQ/viewform", "video": "" }
           ]
         },
         {
